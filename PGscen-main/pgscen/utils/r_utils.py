@@ -179,7 +179,7 @@ def gaussianize(df: pd.DataFrame, gpd: bool = False) -> Tuple[dict, pd.DataFrame
         else:
             dist_dict[col] = PGscenECDF(data)
 
-        if tuple(dist_dict[col].rclass)[0][0:3] == 'gpd' and HAS_R_BACKEND:
+        if HAS_R_BACKEND and hasattr(dist_dict[col], 'rclass') and tuple(dist_dict[col].rclass)[0][0:3] == 'gpd':
             unif_df[col] = np.array(
                 Rsafd.pgpd(dist_dict[col], robjects.FloatVector(data))
             )
