@@ -13,20 +13,38 @@ test_path = Path(Path(__file__).parent.parent.parent, 'test', 'resources')
 
 
 def split_actuals_hist_future(actual_df, scenario_timesteps, in_sample=False):
+    ts0 = scenario_timesteps[0]
+    # Align timezone info to allow comparison
+    if hasattr(ts0, 'tzinfo') and ts0.tzinfo is not None and actual_df.index.tz is None:
+        ts0 = ts0.tz_localize(None)
+        scenario_timesteps = [t.tz_localize(None) if hasattr(t, 'tz_localize') else t
+                              for t in scenario_timesteps]
+    elif (not hasattr(ts0, 'tzinfo') or ts0.tzinfo is None) and actual_df.index.tz is not None:
+        ts0 = pd.Timestamp(ts0, tz=actual_df.index.tz)
+
     if in_sample:
         hist_index = ~actual_df.index.isin(scenario_timesteps)
     else:
-        hist_index = actual_df.index < scenario_timesteps[0]
+        hist_index = actual_df.index < ts0
 
     return actual_df[hist_index], actual_df[~hist_index]
 
 
 def split_forecasts_hist_future(forecast_df, scenario_timesteps,
                                 in_sample=False):
+    ts0 = scenario_timesteps[0]
+    # Align timezone info to allow comparison
+    if hasattr(ts0, 'tzinfo') and ts0.tzinfo is not None and forecast_df.Forecast_time.dt.tz is None:
+        ts0 = ts0.tz_localize(None)
+        scenario_timesteps = [t.tz_localize(None) if hasattr(t, 'tz_localize') else t
+                              for t in scenario_timesteps]
+    elif (not hasattr(ts0, 'tzinfo') or ts0.tzinfo is None) and forecast_df.Forecast_time.dt.tz is not None:
+        ts0 = pd.Timestamp(ts0, tz=forecast_df.Forecast_time.dt.tz)
+
     if in_sample:
         hist_index = ~forecast_df.Forecast_time.isin(scenario_timesteps)
     else:
-        hist_index = forecast_df.Forecast_time < scenario_timesteps[0]
+        hist_index = forecast_df.Forecast_time < ts0
 
     return forecast_df[hist_index], forecast_df[~hist_index]
 

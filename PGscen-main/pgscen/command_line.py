@@ -23,6 +23,7 @@ from .utils.data_utils import (load_load_data, load_wind_data, load_solar_data,
 
 from .engine import GeminiEngine
 from .pca import PCAGeminiEngine, PCAGeminiModel
+from .regime_model import RegimeGeminiEngine, RegimePCAGeminiEngine
 from .scoring import compute_energy_scores, compute_variograms
 
 
@@ -452,9 +453,9 @@ class T7kScenarioGenerator(ScenarioGenerator):
             load_zone_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['load'], scen_timesteps, in_sample=False)
 
-        load_engn = GeminiEngine(load_zone_actual_hists,
-                                 load_zone_forecast_hists,
-                                 scen_timesteps[0], asset_type='load')
+        load_engn = RegimeGeminiEngine(load_zone_actual_hists,
+                                       load_zone_forecast_hists,
+                                       scen_timesteps[0], asset_type='load')
 
         load_engn.fit(self.asset_rho, self.time_rho)
         load_engn.create_scenario(self.scen_count,
@@ -476,7 +477,7 @@ class T7kScenarioGenerator(ScenarioGenerator):
             wind_site_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['wind'], scen_timesteps, in_sample=True)
 
-        wind_engn = GeminiEngine(
+        wind_engn = RegimeGeminiEngine(
             wind_site_actual_hists, wind_site_forecast_hists,
             scen_timesteps[0], self.metadata['wind'], asset_type='wind'
             )
@@ -501,7 +502,7 @@ class T7kScenarioGenerator(ScenarioGenerator):
             solar_site_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['solar'], scen_timesteps, in_sample=False)
 
-        solar_engn = PCAGeminiEngine(
+        solar_engn = RegimePCAGeminiEngine(
             solar_site_actual_hists, solar_site_forecast_hists,
             scen_timesteps[0], self.metadata['solar'], us_state=self.us_state
             )
@@ -588,9 +589,9 @@ class NYScenarioGenerator(ScenarioGenerator):
             load_zone_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['load'], scen_timesteps, in_sample=False)
 
-        load_engn = GeminiEngine(load_zone_actual_hists,
-                                 load_zone_forecast_hists,
-                                 scen_timesteps[0], asset_type='load')
+        load_engn = RegimeGeminiEngine(load_zone_actual_hists,
+                                       load_zone_forecast_hists,
+                                       scen_timesteps[0], asset_type='load')
 
         load_engn.fit(self.asset_rho, self.time_rho)
         load_engn.create_scenario(self.scen_count,
@@ -612,7 +613,7 @@ class NYScenarioGenerator(ScenarioGenerator):
             wind_site_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['wind'], scen_timesteps, in_sample=True)
 
-        wind_engn = GeminiEngine(
+        wind_engn = RegimeGeminiEngine(
             wind_site_actual_hists, wind_site_forecast_hists,
             scen_timesteps[0], self.metadata['wind'], asset_type='wind'
             )
@@ -637,7 +638,7 @@ class NYScenarioGenerator(ScenarioGenerator):
             solar_site_forecast_futures) = split_forecasts_hist_future(
                     self.forecasts['solar'], scen_timesteps, in_sample=False)
 
-        solar_engn = PCAGeminiEngine(
+        solar_engn = RegimePCAGeminiEngine(
             solar_site_actual_hists, solar_site_forecast_hists,
             scen_timesteps[0], self.metadata['solar'], us_state=self.us_state
             )
