@@ -1,0 +1,10 @@
+owner_station_unit,zone,ptid,town,county_fips,state_fips,cod,plate_mw,cris_mw,sum_cap,win_cap,sum_2024,win_2024,dual,unit_type,fuel1,fuel2,energy_gwh,notes
+Orangeville Energy Storage LLC Orangeville ESR,A,323794,Orangeville,121,36,2021-10-19,20.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,-3.0,
+Galt Power Inc. KCE NY 6,A,323823,Hamburg,029,36,2023-07-01,20.0,,20.0,20.0,17.0,20.0,False,ES,BAT,,-4.6,
+Niagara Mohawk Power Corp. East Pulaski ESR,C,323781,Oswego,075,36,2019-05-01,2.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,0.0,
+New York Power Authority North Country ESR,D,323785,Chateaugay,033,36,2023-02-01,20.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,-1.2,
+"Stephentown Spindle, LLC Beacon LESR",F,323632,Stephentown,083,36,2010-11-29,20.0,,0.0,0.0,0.0,0.0,False,ES,FW,,-5.3,
+Galt Power Inc. KCE NY 1,F,323755,Stillwater,091,36,2019-03-13,20.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,-3.9,
+Orange and Rockland Pomona ESR,G,323819,Pomona,087,36,2023-07-07,3.0,,3.0,3.0,0.0,0.0,False,ES,BAT,,-0.2,
+"LI Energy Storage System, LLC East Hampton Battery Storage",K,5066,East Hampton,103,36,2018-08-01,5.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,,
+"LI Energy Storage System, LLC Montauk Battery Storage",K,5068,Montauk,103,36,2018-12-01,5.0,,0.0,0.0,0.0,0.0,False,ES,BAT,,,

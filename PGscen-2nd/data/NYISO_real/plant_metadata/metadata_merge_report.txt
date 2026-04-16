@@ -1,0 +1,129 @@
+
+=== WIND ===
+  Niagara Wind Power, LLC Steel Wind                  q=3  src=uswtdb  eia=0.72  uswtdb=0.72
+  Valcour Bliss Windpark, LLC Bliss Wind Power        q=3  src=uswtdb  eia=0.93  uswtdb=0.93
+  Erie Wind, LLC Erie Wind                            q=3  src=uswtdb  eia=0.50  uswtdb=0.50
+  Arkwright Summit Wind Farm LLC Arkwright Summit Wi  q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Cassadaga Wind, LLC Cassadaga Wind                  q=3  src=uswtdb  eia=0.94  uswtdb=0.94
+  Ball Hill Wind Energy, LLC Ball Hill Wind           q=3  src=uswtdb  eia=0.94  uswtdb=0.94
+  Canastota Windpower LLC Fenner Wind Power           q=3  src=uswtdb  eia=0.85  uswtdb=0.85
+  Canandaigua Power Partners, LLC Canandaigua Wind P  q=3  src=uswtdb  eia=0.53  uswtdb=0.61
+  Sheldon Energy LLC High Sheldon Wind Farm           q=3  src=uswtdb  eia=1.05  uswtdb=1.05
+  Valcour Wethersfield Windpark, LLC Wethersfield Wi  q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Howard Wind LLC Howard Wind                         q=3  src=uswtdb  eia=0.93  uswtdb=0.93
+  Stony Creek Energy LLC Orangeville Wind Farm        q=3  src=uswtdb  eia=0.95  uswtdb=0.65
+  Marsh Hill Energy LLC Marsh Hill Wind Farm          q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  NextEra Energy Marketing, LLC Eight Point Wind      q=3  src=uswtdb  eia=1.30  uswtdb=1.30
+  Baron Winds, LLC Baron Winds                        q=3  src=uswtdb  eia=0.74  uswtdb=0.78
+  Valcour Ellenburg Windapark,LLC Ellenburg Wind Pow  q=3  src=uswtdb  eia=0.77  uswtdb=0.77
+  Valcour Clinton Windpark,LLC Clinton Wind Power     q=3  src=uswtdb  eia=0.94  uswtdb=0.94
+  Valcour Altona Windpark, LLC Altona Wind Power      q=3  src=uswtdb  eia=0.93  uswtdb=0.93
+  Valcour  Chateaugay Windpark, LLC Chateaugay Wind   q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Marble River LLC Marble River Wind                  q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Jericho Rise Wind Farm LLC Jericho Rise Wind Farm   q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Madison Windpower, LLC Madison Wind Power           q=3  src=uswtdb  eia=0.94  uswtdb=0.94
+  Flat Rock Windpower, LLC Maple Ridge Wind 1         q=3  src=uswtdb  eia=0.85  uswtdb=0.99
+  Flat Rock Windpower II, LLC Maple Ridge Wind 2      q=3  src=uswtdb  eia=0.69  uswtdb=0.69
+  Munnsville Wind Farm, LLC Munnsville Wind Power     q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Hardscrabble Wind Power LLC Hardscrabble Wind       q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Galt Power Inc. Copenhagen Wind Farm                q=3  src=uswtdb  eia=1.30  uswtdb=1.30
+  Avangrid Renewables LLC Roaring Brook Wind          q=3  src=uswtdb  eia=1.30  uswtdb=1.30
+  Number Three Wind LLC Number Three Wind Power       q=3  src=uswtdb  eia=0.95  uswtdb=0.95
+  Bluestone Wind, LLC BlueStone Wind                  q=3  src=uswtdb  eia=0.94  uswtdb=0.94
+  Long Island Power Authority South Fork Wind         q=2  src=eia860  eia=0.78  uswtdb=0.24
+
+  EIA-860 entries not matched to any Gold Book row: 5
+    Dutch Hill Wind Project                             37.5 MW  Steuben
+    Cohocton Wind Project                               87.5 MW  Steuben
+    Henkel U.S. Operations Corporation                  3.4 MW  Ontario
+    Seneca Nation Cattaraugus Wind Turbine              1.5 MW  Erie
+    Harbec Energy                                       1.2 MW  Wayne
+  USWTDB projects not matched: 23
+    Maple Ridge I                                       231.0 MW
+    Maple Ridge (Lowville)                              136.9 MW
+    Dutch Hill/Cohocton                                 125.0 MW
+    Zotos                                               3.3 MW
+    Fenner Wind Power Project - Repower                 1.5 MW
+    Seneca Nation                                       1.5 MW
+    New York State Thruway Authority                    1.1 MW
+    Harbec Plastics                                     0.8 MW
+    unknown Erie County                                 0.2 MW
+    Town of Richland                                    0.1 MW
+
+=== SOLAR ===
+  Galt Power Inc. Puckett Solar                       q=2  src=eia860  eia=0.78  uswtdb=0.00
+  Galt Power Inc. Janis Solar                         q=2  src=eia860  eia=1.01  uswtdb=0.00
+  Galt Power Inc. Morris Ridge Solar                  q=2  src=eia860  eia=1.30  uswtdb=0.00
+  Galt Power Inc. Branscomb Solar                     q=2  src=eia860  eia=0.82  uswtdb=0.00
+  Galt Power Inc. Darby Solar                         q=2  src=eia860  eia=0.71  uswtdb=0.00
+  Galt Power Inc. Regan Solar                         q=2  src=eia860  eia=1.01  uswtdb=0.00
+  Galt Power Inc. Grissom Solar                       q=2  src=eia860  eia=1.08  uswtdb=0.00
+  Galt Power Inc. Stillwater Solar                    q=2  src=eia860  eia=1.01  uswtdb=0.00
+  Galt Power Inc. Pattersonville Solar                q=2  src=eia860  eia=1.00  uswtdb=0.00
+  Hecate Energy Albany 1 LLC Albany County Solar 1    q=2  src=eia860  eia=1.15  uswtdb=0.00
+  Hecate Energy Albany 2 LLC Albany County Solar 2    q=2  src=eia860  eia=1.15  uswtdb=0.00
+  NextEra Energy Marketing, LLC East Point Solar      q=2  src=eia860  eia=1.30  uswtdb=0.00
+  NextEra Energy Marketing, LLC High River Solar      q=2  src=eia860  eia=1.30  uswtdb=0.00
+  Long Island Power Authority Long Island Solar Farm  q=2  src=eia860  eia=0.80  uswtdb=0.00
+  Long Island Power Authority Calverton Solar         q=2  src=eia860  eia=0.75  uswtdb=0.00
+  Shoreham Solar Commons LLC Shoreham Solar           q=2  src=eia860  eia=1.08  uswtdb=0.00
+
+  EIA-860 entries not matched to any Gold Book row: 600
+    Owens Corning at Bethlehem                          2.0 MW  Albany
+    Port Richmond WWT Solar                             1.0 MW  Richmond
+    Brentwood Solar                                     1.0 MW  Suffolk
+    Deer Park                                           2.5 MW  Suffolk
+    Dennison                                            2.0 MW  Suffolk
+    North County                                        1.0 MW  Suffolk
+    Riverhead                                           1.5 MW  Suffolk
+    Cohalan                                             4.0 MW  Suffolk
+    Sutter Greenworks LLC                               5.0 MW  Suffolk
+    Sterlington Greenworks LLC                          1.3 MW  Suffolk
+    Leavenworth Greenworks LLC                          9.5 MW  Suffolk
+    Cornell Snyder Road Solar Array                     1.8 MW  Tompkins
+    Town of Williamson Landfill PV                      1.2 MW  Wayne
+    Clarkson Solar                                      2.0 MW  St Lawrence
+    Steel Sun                                           2.0 MW  Erie
+    Millbrook School                                    1.4 MW  Dutchess
+    Kings Park Solar I                                  2.0 MW  Suffolk
+    Kings Park Solar II                                 2.0 MW  Suffolk
+    Clarkstown Landfill Solar Facility                  2.0 MW  Rockland
+    Onondaga County - Metro Water Board                 1.0 MW  Onondaga
+
+=== STORAGE ===
+  Orangeville Energy Storage LLC Orangeville ESR      q=2  src=eia860  eia=1.00  uswtdb=0.00
+  Galt Power Inc. KCE NY 6                            q=2  src=eia860  eia=0.75  uswtdb=0.00
+  Niagara Mohawk Power Corp. East Pulaski ESR         q=2  src=eia860  eia=0.93  uswtdb=0.00
+  New York Power Authority North Country ESR          q=2  src=eia860  eia=0.59  uswtdb=0.00
+  Stephentown Spindle, LLC Beacon LESR                q=2  src=eia860  eia=1.06  uswtdb=0.00
+  Galt Power Inc. KCE NY 1                            q=2  src=eia860  eia=1.30  uswtdb=0.00
+  Orange and Rockland Pomona ESR                      q=1  src=none  eia=0.49  uswtdb=0.00
+  LI Energy Storage System, LLC East Hampton Battery  q=2  src=eia860  eia=0.91  uswtdb=0.00
+  LI Energy Storage System, LLC Montauk Battery Stor  q=2  src=eia860  eia=0.59  uswtdb=0.00
+
+  EIA-860 entries not matched to any Gold Book row: 39
+    Lockheed Martin RMS Syracuse                        1.0 MW  Onondaga
+    98th Street Battery Storage Station                 2.0 MW  Queens
+    Finchville Solar, LLC Hybrid CSG                    3.0 MW  Orange
+    RT 52 Walden Solar 1, LLC Hybrid                    4.0 MW  Orange
+    Lansing Renewables, LLC                             3.0 MW  Tompkins
+    Hales Mills Solar, LLC                              3.0 MW  Fulton
+    Owlville Creek Solar 2, LLC                         3.0 MW  Madison
+    Owlville Creek Solar, LLC                           3.0 MW  Madison
+    Middletown Solar 1, LLC Hybrid CSG                  1.6 MW  Orange
+    NY3 Battery                                         3.0 MW  Rockland
+    Mount Kisco Landfill Solar & Storage CSG            0.7 MW  Westchester
+    Blanchard Road 1 Community Solar                    5.0 MW  Jefferson
+    Blanchard Road 2 Community Solar                    5.0 MW  Jefferson
+    NYS Rte 12 Community Solar                          5.0 MW  Jefferson
+    Great Lakes Seaway Community Solar                  5.0 MW  Jefferson
+    Norwich Solar and Energy Storage CSG                5.0 MW  Chenango
+    Mt Pleasant Community Center                        0.7 MW  Westchester
+    Volney II                                           3.0 MW  Oswego
+    Glenmere Lake                                       2.0 MW  Orange
+    Fox Hills Battery Station                           7.5 MW  Richmond
+
+=== SUMMARY ===
+  wind: 31 plants, 31 with lat/lon (100%), 2994 MW total
+  solar: 16 plants, 16 with lat/lon (100%), 598 MW total
+  storage: 9 plants, 8 with lat/lon (89%), 115 MW total
