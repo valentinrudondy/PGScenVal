@@ -1,0 +1,41 @@
+eia_plant_id,plant_name,generator_id,county,latitude,longitude,nameplate_mw,technology,status,operating_year,ba_code
+55769.0,Madison Windpower LLC,MADW,Madison,42.894722,-75.451666,11.5,Onshore Wind Turbine,OP,2000,NYIS
+55790.0,Fenner Wind,1,Madison,42.988989,-75.762536,30.0,Onshore Wind Turbine,OP,2001,NYIS
+56290.0,Maple Ridge Wind Farm,1,Lewis,43.7853,-75.5753,137.0,Onshore Wind Turbine,OP,2005,NYIS
+56290.0,Maple Ridge Wind Farm,1A,Lewis,43.7853,-75.5753,61.1,Onshore Wind Turbine,OP,2006,NYIS
+56290.0,Maple Ridge Wind Farm,2,Lewis,43.7853,-75.5753,33.0,Onshore Wind Turbine,OP,2006,NYIS
+56290.0,Maple Ridge Wind Farm,3,Lewis,43.7853,-75.5753,90.1,Onshore Wind Turbine,OP,2006,NYIS
+56575.0,Steel Winds Wind Farm,1,Erie,42.8167,-78.8675,20.0,Onshore Wind Turbine,OP,2007,NYIS
+56594.0,Munnsville Wind Farm LLC,MU1,Madison,42.9086,-75.5697,34.5,Onshore Wind Turbine,OP,2007,NYIS
+56618.0,Clinton,1,Clinton,44.8914,-74.0061,100.5,Onshore Wind Turbine,OP,2008,NYIS
+56619.0,Ellenburg,1,Clinton,44.8914,-74.0061,81.0,Onshore Wind Turbine,OP,2008,NYIS
+56620.0,Bliss (NY),1,Wyoming,42.5367,-78.3047,100.5,Onshore Wind Turbine,OP,2008,NYIS
+56633.0,Dutch Hill Wind Project,1,Steuben,42.5456,-77.4967,37.5,Onshore Wind Turbine,OP,2009,NYIS
+56634.0,Cohocton Wind Project,1,Steuben,42.45,-77.52,87.5,Onshore Wind Turbine,OP,2009,NYIS
+56857.0,Marble River Wind Farm,GEN1,Clinton,44.975833,-73.929722,215.3,Onshore Wind Turbine,OP,2012,NYIS
+56901.0,Altona,1,Clinton,44.8216,-73.6509,97.5,Onshore Wind Turbine,OP,2009,NYIS
+56902.0,Wethersfield,1,Wyoming,42.6697,-78.2278,126.0,Onshore Wind Turbine,OP,2009,NYIS
+56904.0,Chateaugay,1,Franklin,44.8917,-74.0299,106.5,Onshore Wind Turbine,OP,2009,NYIS
+56953.0,High Sheldon Wind Farm,1,Wyoming,42.7794,-78.4269,112.5,Onshore Wind Turbine,OP,2009,NYIS
+57078.0,Steel Winds II,1,Erie,42.8072,-78.8617,15.0,Onshore Wind Turbine,OP,2012,NYIS
+57287.0,Hardscrabble Wind Power LLC,1,Herkimer,43.112222,-74.878888,74.0,Onshore Wind Turbine,OP,2011,NYIS
+57648.0,Henkel U.S. Operations Corporation,WT1,Ontario,42.886944,-76.968333,1.7,Onshore Wind Turbine,OP,2012,NYIS
+57648.0,Henkel U.S. Operations Corporation,WT2,Ontario,42.886944,-76.968333,1.7,Onshore Wind Turbine,OP,2012,NYIS
+57867.0,Howard Wind Farm,1,Steuben,42.315278,-77.538333,51.3,Onshore Wind Turbine,OP,2011,NYIS
+57867.0,Howard Wind Farm,2,Steuben,42.315278,-77.538333,4.1,Onshore Wind Turbine,OP,2012,NYIS
+58088.0,Stony Creek Wind Farm NY,1,Wyoming,42.767614,-78.415843,94.4,Onshore Wind Turbine,OP,2013,NYIS
+58768.0,Marsh Hill Wind Farm,1,Steuben,42.163889,-77.528889,16.2,Onshore Wind Turbine,OP,2014,NYIS
+58777.0,Cassadaga Wind Farm,1,Chautauqua,42.338333,-79.195556,124.0,Onshore Wind Turbine,OP,2021,NYIS
+58979.0,Copenhagen Wind Farm,CPHGN,Lewis,43.913056,-75.698611,79.9,Onshore Wind Turbine,OP,2018,NYIS
+59629.0,Jericho Rise Wind Farm LLC,GEN1,Franklin,44.888889,-74.103333,77.7,Onshore Wind Turbine,OP,2016,NYIS
+60596.0,Baron Winds Farm,1,Steuben,42.375,-77.593,130.0,Onshore Wind Turbine,OP,2023,NYIS
+61041.0,"Roaring Brook, LLC",WT1,Lewis,43.709597,-75.616219,79.7,Onshore Wind Turbine,OP,2021,NYIS
+61673.0,Arkwright Summit Wind Farm LLC,WT,Chautauqua,42.414911,-79.242681,78.4,Onshore Wind Turbine,OP,2018,NYIS
+61734.0,Seneca Nation Cattaraugus Wind Turbine,1,Erie,42.5809,-79.1027,1.5,Onshore Wind Turbine,OP,2017,NYIS
+62736.0,Harbec Energy,250KW,Wayne,43.22731,-77.364092,0.3,Onshore Wind Turbine,OS,2001,NYIS
+62736.0,Harbec Energy,850KW,Wayne,43.22731,-77.364092,0.9,Onshore Wind Turbine,OP,2011,NYIS
+65495.0,"Ball Hill Wind Energy, LLC",BALLH,Chautauqua,42.265261,-79.072522,107.5,Onshore Wind Turbine,OP,2023,NYIS
+65496.0,"Bluestone Wind, LLC",BLUES,Broome,42.111758,-75.457779,111.8,Onshore Wind Turbine,OP,2023,NYIS
+65522.0,Number Three Wind Project,65013,Lewis,43.839599,-75.569885,106.0,Onshore Wind Turbine,OP,2023,NYIS
+65561.0,South Fork Wind,SFWND,Suffolk,41.09,-71.13,130.0,Offshore Wind Turbine,OP,2024,NYIS
+66052.0,Eight Point Wind,EPW01,Steuben,42.101642,-77.701111,101.2,Onshore Wind Turbine,OP,2023,NYIS

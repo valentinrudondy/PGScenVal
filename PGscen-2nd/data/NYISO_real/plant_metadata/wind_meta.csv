@@ -1,0 +1,32 @@
+site_id,site_name,zone,county,town,latitude,longitude,nameplate_mw,operating_year,goldbook_ptid,eia_plant_id,uswtdb_project_name,latlon_source,match_quality,eia_match_score,uswtdb_match_score
+wind_323596,"Niagara Wind Power, LLC Steel Wind",A,Erie,Lackawanna,42.81790125,-78.8676375,20.0,2007,323596,56575,Steel Winds,uswtdb,3,0.717,0.717
+wind_323608,"Valcour Bliss Windpark, LLC Bliss Wind Power",A,Wyoming,Bliss,42.54511537313433,-78.25864194029852,100.5,2008,323608,56620,Noble Bliss,uswtdb,3,0.925,0.925
+wind_323693,"Erie Wind, LLC Erie Wind",A,Erie,Lackawanna,42.80724,-78.861695,15.0,2012,323693,57078,Steel Winds II,uswtdb,3,0.5,0.5
+wind_323751,Arkwright Summit Wind Farm LLC Arkwright Summit Wind Farm,A,Chautauqua,Arkwright,42.40774833333333,-79.23183305555555,78.4,2018,323751,61673,Arkwright Summit,uswtdb,3,0.953,0.953
+wind_323784,"Cassadaga Wind, LLC Cassadaga Wind",A,Chautauqua,Charlotte,42.315485675675674,-79.17470486486486,126.5,2021,323784,58777,Cassadaga,uswtdb,3,0.943,0.943
+wind_323825,"Ball Hill Wind Energy, LLC Ball Hill Wind",A,Chautauqua,Hanover,42.410562,-79.133326,107.5,2024,323825,65495,Ball Hill Wind,uswtdb,3,0.943,0.943
+wind_24204,Canastota Windpower LLC Fenner Wind Power,C,Madison,Fenner,42.98913894736842,-75.76067315789474,30.0,2001,24204,55790,Fenner Wind Power Project,uswtdb,3,0.845,0.845
+wind_323617,"Canandaigua Power Partners, LLC Canandaigua Wind Power",C,Steuben,Avoca,42.474311875,-77.5356603125,125.0,2008,323617,60596,Baron Winds I,uswtdb,3,0.533,0.611
+wind_323625,Sheldon Energy LLC High Sheldon Wind Farm,C,Wyoming,Sheldon,42.74401133333333,-78.3937928,118.1,2009,323625,56953,High Sheldon,uswtdb,3,1.05,1.05
+wind_323626,"Valcour Wethersfield Windpark, LLC Wethersfield Wind Power",C,Wyoming,Wethersfield,42.622928095238095,-78.26085630952382,126.0,2008,323626,56902,Noble Wethersfield,uswtdb,3,0.949,0.949
+wind_323690,Howard Wind LLC Howard Wind,C,Steuben,Howard,42.31271555555555,-77.53695703703704,55.4,2011,323690,57867,Howard,uswtdb,3,0.932,0.932
+wind_323706,Stony Creek Energy LLC Orangeville Wind Farm,C,Wyoming,Orangeville,42.746161551724136,-78.2406051724138,93.9,2013,323706,58088,Orangeville Wind,uswtdb,3,0.947,0.647
+wind_323713,Marsh Hill Energy LLC Marsh Hill Wind Farm,C,Steuben,Jasper,42.177321,-77.504577,16.2,2014,323713,58768,Marsh Hill,uswtdb,3,0.945,0.945
+wind_323820,"NextEra Energy Marketing, LLC Eight Point Wind",C,Steuben,Greenwood,42.073445416666665,-77.69628291666668,111.2,2023,323820,66052,Eight Point Wind,uswtdb,3,1.3,1.3
+wind_323822,"Baron Winds, LLC Baron Winds",C,Steuben,Cohocton,42.474311875,-77.5356603125,238.4,2023,323822,60596,Baron Winds I,uswtdb,3,0.742,0.783
+wind_323604,"Valcour Ellenburg Windapark,LLC Ellenburg Wind Power",D,Clinton,Ellenburg,44.86983074074074,-73.973735,81.0,2008,323604,56619,Noble Ellenburg,uswtdb,3,0.774,0.774
+wind_323605,"Valcour Clinton Windpark,LLC Clinton Wind Power",D,Clinton,Clinton,44.921358656716414,-73.9939323880597,100.5,2008,323605,56618,Noble Clinton,uswtdb,3,0.936,0.936
+wind_323606,"Valcour Altona Windpark, LLC Altona Wind Power",D,Clinton,Altona,44.82063307692308,-73.6496736923077,97.5,2008,323606,56901,Noble Altona,uswtdb,3,0.932,0.932
+wind_323614,"Valcour  Chateaugay Windpark, LLC Chateaugay Wind Power",D,Franklin,Chateaugay,44.89893802816901,-74.03576154929577,106.5,2008,323614,56904,Noble Chateaugay,uswtdb,3,0.945,0.945
+wind_323696,Marble River LLC Marble River Wind,D,Clinton,Ellenburg,44.92812714285714,-73.93881771428572,215.2,2012,323696,56857,Marble River,uswtdb,3,0.949,0.949
+wind_323719,Jericho Rise Wind Farm LLC Jericho Rise Wind Farm,D,Franklin,Chateaugay,44.88308324324324,-74.09657189189188,77.7,2016,323719,59629,Jericho Rise,uswtdb,3,0.949,0.949
+wind_24146,"Madison Windpower, LLC Madison Wind Power",E,Madison,Madison,42.89491857142857,-75.45204285714286,11.6,2000,24146,55769,Madison Windpower,uswtdb,3,0.936,0.936
+wind_323574,"Flat Rock Windpower, LLC Maple Ridge Wind 1",E,Lewis,Lowville,43.747380535714285,-75.55331866071428,231.0,2006,323574,56290,Maple Ridge,uswtdb,3,0.847,0.988
+wind_323611,"Flat Rock Windpower II, LLC Maple Ridge Wind 2",E,Lewis,Lowville,43.747380535714285,-75.55331866071428,90.8,2007,323611,56290,Maple Ridge,uswtdb,3,0.688,0.688
+wind_323609,"Munnsville Wind Farm, LLC Munnsville Wind Power",E,Madison,Bouckville,42.92641173913044,-75.55896086956521,34.5,2007,323609,56594,Munnsville,uswtdb,3,0.945,0.945
+wind_323673,Hardscrabble Wind Power LLC Hardscrabble Wind,E,Herkimer,Fairfield,43.14359810810811,-74.89501837837838,74.0,2011,323673,57287,Hardscrabble,uswtdb,3,0.949,0.949
+wind_323753,Galt Power Inc. Copenhagen Wind Farm,E,Lewis,Copenhagen,43.8908785,-75.63933775000001,79.9,2018,323753,58979,Copenhagen,uswtdb,3,1.3,1.3
+wind_323790,Avangrid Renewables LLC Roaring Brook Wind,E,Lewis,Martinsburg,43.7075445,-75.617106,79.7,2021,323790,61041,Roaring Brook Wind,uswtdb,3,1.3,1.3
+wind_323818,Number Three Wind LLC Number Three Wind Power,E,Lewis,Lowville,43.842781111111115,-75.5992362962963,103.9,2023,323818,65522,Number Three Wind Farm,uswtdb,3,0.949,0.949
+wind_323821,"Bluestone Wind, LLC BlueStone Wind",E,Broome,Sanford,42.09650653846154,-75.50982461538462,111.8,2024,323821,65496,Bluestone Wind,uswtdb,3,0.943,0.943
+wind_323839,Long Island Power Authority South Fork Wind,K,Suffolk,E Hampton,41.09,-71.13,136.0,2024,323839,65561,,eia860,2,0.776,0.235

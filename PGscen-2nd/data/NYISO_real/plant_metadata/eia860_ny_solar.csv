@@ -1,0 +1,633 @@
+eia_plant_id,plant_name,generator_id,county,latitude,longitude,nameplate_mw,technology,status,operating_year,ba_code
+57589.0,Long Island Solar Farm LLC,9WUBN,Suffolk,40.861111,-72.847777,31.5,Solar Photovoltaic,OP,2011,NYIS
+58550.0,Owens Corning at Bethlehem,PV1,Albany,42.586944,-73.865,2.0,Solar Photovoltaic,OP,2013,NYIS
+58647.0,Port Richmond WWT Solar,1,Richmond,40.638056,-74.126111,1.0,Solar Photovoltaic,OP,2015,NYIS
+58785.0,Brentwood Solar,BRT1,Suffolk,40.781389,-73.243889,1.0,Solar Photovoltaic,OP,2011,NYIS
+58786.0,Deer Park,DRP1,Suffolk,40.760833,-73.193889,2.5,Solar Photovoltaic,OP,2012,NYIS
+58787.0,Dennison,DNN1,Suffolk,40.763056,-73.323611,2.0,Solar Photovoltaic,OP,2011,NYIS
+58788.0,North County,NRT1,Suffolk,40.763056,-73.323611,1.0,Solar Photovoltaic,OP,2011,NYIS
+58789.0,Riverhead,RVH1,Suffolk,40.826111,-73.232222,1.5,Solar Photovoltaic,OP,2011,NYIS
+58790.0,Cohalan,CLN1,Suffolk,40.762465,-73.194441,2.5,Solar Photovoltaic,OP,2012,NYIS
+58790.0,Cohalan,CLN2,Suffolk,40.762465,-73.194441,1.5,Solar Photovoltaic,OP,2012,NYIS
+59274.0,Sutter Greenworks LLC,SUTTG,Suffolk,40.928056,-72.771111,5.0,Solar Photovoltaic,OP,2015,NYIS
+59275.0,Sterlington Greenworks LLC,STERG,Suffolk,41.0675,-72.440278,1.3,Solar Photovoltaic,OP,2015,NYIS
+59276.0,Leavenworth Greenworks LLC,LEAVG,Suffolk,40.925278,-72.763333,9.5,Solar Photovoltaic,OP,2016,NYIS
+59470.0,Cornell Snyder Road Solar Array,CSR1,Tompkins,42.4975,-76.46,1.8,Solar Photovoltaic,OP,2014,NYIS
+59613.0,Town of Williamson Landfill PV,TWLL,Wayne,43.244444,-77.174722,1.2,Solar Photovoltaic,OP,2014,NYIS
+59623.0,Clarkson Solar,CSPV,St Lawrence,44.671944,-74.949444,2.0,Solar Photovoltaic,OP,2014,NYIS
+59705.0,Steel Sun,SSUN2,Erie,42.812811,-78.845313,2.0,Solar Photovoltaic,OP,2016,NYIS
+59789.0,Millbrook School,PV1,Dutchess,41.84581,-73.619485,1.4,Solar Photovoltaic,OP,2015,NYIS
+59880.0,Kings Park Solar I,KIPS1,Suffolk,40.868294,-73.249281,2.0,Solar Photovoltaic,OP,2019,NYIS
+59881.0,Kings Park Solar II,KIPS2,Suffolk,40.868294,-73.249281,2.0,Solar Photovoltaic,OP,2019,NYIS
+60004.0,Clarkstown Landfill Solar Facility,INV#1,Rockland,41.100409,-73.951593,1.0,Solar Photovoltaic,OP,2014,NYIS
+60004.0,Clarkstown Landfill Solar Facility,INV#2,Rockland,41.100409,-73.951593,1.0,Solar Photovoltaic,OP,2014,NYIS
+60045.0,Shoreham Solar Commons,GEN1,Suffolk,40.934411,-72.888511,24.9,Solar Photovoltaic,OP,2018,NYIS
+60097.0,Onondaga County - Metro Water Board,PV1,Onondaga,43.183782,-76.224075,1.0,Solar Photovoltaic,OP,2016,NYIS
+60098.0,Onondaga County - Oak Orchard WWTP,PV1,Onondaga,43.172719,-76.130123,2.0,Solar Photovoltaic,OP,2017,NYIS
+60114.0,Oneida County- DPW,PV1,Oneida,43.150761,-75.371258,1.5,Solar Photovoltaic,OP,2017,ISNE
+60115.0,Town of Halfmoon,PV1,Saratoga,42.834978,-73.675675,1.0,Solar Photovoltaic,OP,2017,ISNE
+60150.0,Cornell Geneva Solar Farm,ARGOS,Ontario,42.866,-77.031,2.0,Solar Photovoltaic,OP,2015,NYIS
+60229.0,Orange County Solar Farm (NY),PV1,Orange,41.404879,-74.359495,1.5,Solar Photovoltaic,OP,2017,ISNE
+60232.0,Onondaga County- Jamesville,PV1,Onondaga,42.986644,-76.064219,2.0,Solar Photovoltaic,OP,2018,NYIS
+60365.0,Vulcraft Solar,VULC,Chemung,42.005874,-76.61935,1.6,Solar Photovoltaic,OP,2013,NYIS
+60425.0,Skidmore College,SO049,Saratoga,43.093682,-73.81132,1.8,Solar Photovoltaic,OP,2014,NYIS
+60431.0,Tompkins Cortland Community College,TC3,Tompkins,42.5025,-76.2865,2.0,Solar Photovoltaic,OP,2015,NYIS
+60452.0,Calverton,CALV,Suffolk,40.921086,-72.743701,3.0,Solar Photovoltaic,OP,2015,NYIS
+60453.0,"Cummins, Inc",CUMM,Chautauqua,42.08124,-79.36125,1.8,Solar Photovoltaic,OP,2015,NYIS
+60454.0,Houghton,HOUGH,Allegany,42.426731,-78.156589,2.0,Solar Photovoltaic,OP,2015,NYIS
+60455.0,Oneida - South,ONS,Oneida,43.166353,-75.386866,1.9,Solar Photovoltaic,OP,2015,NYIS
+60456.0,Oneida - West,ONW,Oneida,43.169617,-75.404866,1.9,Solar Photovoltaic,OP,2015,NYIS
+60462.0,Onondaga County- Clearwater,PV1,Oswego,43.429317,-76.515717,2.0,Solar Photovoltaic,OP,2017,ISNE
+60463.0,Greene County Meter #1,PV1,Greene,42.294823,-74.00076,1.6,Solar Photovoltaic,OP,2018,ISNE
+60477.0,Bethlehem - East,BE,Albany,42.539006,-73.824295,1.7,Solar Photovoltaic,OP,2016,NYIS
+60478.0,Bethlehem - West,BW,Albany,42.539006,-73.824295,1.0,Solar Photovoltaic,OP,2016,NYIS
+60507.0,Broome County,NORTH,Broome,42.104731,-75.93073,2.0,Solar Photovoltaic,OP,2018,NYIS
+60507.0,Broome County,SOUTH,Broome,42.104731,-75.93073,2.0,Solar Photovoltaic,OP,2018,NYIS
+60677.0,Tannery Road Landfill,TRSP,Oneida,43.239004,-75.534588,2.0,Solar Photovoltaic,OP,2016,NYIS
+60817.0,Sullivan County - Adult Care Solar,PV1,Sullivan,41.7966,-74.708077,2.0,Solar Photovoltaic,OP,2017,NYIS
+60818.0,Oswego County - Fulton Solar,PV1,Oswego,43.342437,-76.34325,2.0,Solar Photovoltaic,OP,2018,NYIS
+60819.0,Jefferson-Lewis BOCES Solar,PV1,Jefferson,43.970958,-75.969805,2.0,Solar Photovoltaic,OP,2017,NYIS
+60904.0,Time Warner Cable - Knowles,PV1,Steuben,42.337435,-77.375323,2.0,Solar Photovoltaic,OP,2018,NYIS
+60967.0,Onyx - Lamphear Road CSG,10016,Oneida,43.18413,-75.476724,2.0,Solar Photovoltaic,OP,2016,NYIS
+61003.0,Musgrave East Solar Farm,CMUSW,Cayuga,42.731496,-76.663665,2.0,Solar Photovoltaic,OP,2016,NYIS
+61015.0,Musgrave West Solar Farm,CMUSW,Cayuga,42.731496,-76.663665,2.0,Solar Photovoltaic,OP,2016,NYIS
+61030.0,Harford Solar Farm,CMUSW,Tompkins,42.448,-76.245,2.0,Solar Photovoltaic,OP,2016,NYIS
+61042.0,Canandaigua Westbrook Solar Array,PV1,Ontario,42.869086,-77.28446,1.3,Solar Photovoltaic,OP,2017,NYIS
+61043.0,Canandaigua Solar Array,PV1,Ontario,42.86887,-77.284561,2.0,Solar Photovoltaic,OP,2016,NYIS
+61210.0,Finger Lakes Solar I,FLS1,Ontario,42.814025,-77.045631,1.9,Solar Photovoltaic,OP,2016,NYIS
+61376.0,Cedar Creek PV,CEDR1,Nassau,40.64889,-73.506672,1.8,Solar Photovoltaic,OP,2017,NYIS
+61389.0,Letchworth Solar Project,PV1,Wyoming,42.618969,-78.17952,1.2,Solar Photovoltaic,OP,2017,NYIS
+61469.0,Lichtenthal,LIC01,Genesee,43.020053,-78.158181,2.0,Solar Photovoltaic,OP,2018,NYIS
+61470.0,Call Farms 1,CFM11,Genesee,43.037794,-78.187295,2.0,Solar Photovoltaic,OP,2018,NYIS
+61471.0,Call Farms 3,CFM31,Genesee,43.023046,-78.178591,2.0,Solar Photovoltaic,OP,2018,NYIS
+61487.0,SL Babylon,SLBAB,Suffolk,40.730844,-73.375833,9.0,Solar Photovoltaic,OP,2017,NYIS
+61509.0,Monroe County Sites A & B,MONA,Monroe,43.174071,-77.392234,1.7,Solar Photovoltaic,OP,2017,NYIS
+61509.0,Monroe County Sites A & B,MONB,Monroe,43.174071,-77.392234,1.7,Solar Photovoltaic,OP,2017,NYIS
+61510.0,"Monroe County Sites C, D, & E",MONC,Monroe,43.31879,-77.740208,2.0,Solar Photovoltaic,OP,2017,NYIS
+61510.0,"Monroe County Sites C, D, & E",MOND,Monroe,43.31879,-77.740208,2.0,Solar Photovoltaic,OP,2017,NYIS
+61510.0,"Monroe County Sites C, D, & E",MONE,Monroe,43.31879,-77.740208,2.0,Solar Photovoltaic,OP,2017,NYIS
+61575.0,Anheuser-Busch Baldwinsville,BAL01,Onondaga,43.151537,-76.414844,2.0,Solar Photovoltaic,OP,2018,NYIS
+61576.0,Columbia University - Johnson Farms,JF01,Orange,41.379107,-74.263804,2.0,Solar Photovoltaic,OP,2018,NYIS
+61577.0,Time Warner Cable Enterprises - Martino,MRT01,Oneida,43.183689,-75.43048,2.0,Solar Photovoltaic,OP,2018,NYIS
+61578.0,Columbia University - Minisink,MIN01,Orange,41.293747,-74.554452,2.0,Solar Photovoltaic,OP,2018,NYIS
+61579.0,St. Lawrence University - Sutton,SUT01,Jefferson,43.932397,-75.872257,2.0,Solar Photovoltaic,OP,2018,NYIS
+61604.0,Camden CSD Solar Array,1,Oneida,43.312306,-75.695263,1.8,Solar Photovoltaic,OP,2017,NYIS
+61717.0,"IRE Solar I, LLC",SSIRE,St Lawrence,44.3,-75.5,1.0,Solar Photovoltaic,OP,2017,NYIS
+61719.0,"CJ Solar I, LLC",LWCJ1,St Lawrence,44.7,-75.3,2.0,Solar Photovoltaic,OP,2018,NYIS
+61720.0,"COU Solar I, LLC",LECOU,St Lawrence,44.7,-75.3,1.5,Solar Photovoltaic,OP,2018,NYIS
+61724.0,Onyx - Saratoga Springs Landfill Solar C,10254,Saratoga,43.096874,-73.744855,2.0,Solar Photovoltaic,OP,2017,NYIS
+61725.0,Madison County,PV1,Madison,43.028289,-75.700978,1.8,Solar Photovoltaic,OP,2017,NYIS
+61764.0,Gore Mountain Solar II,SNWH2,Washington,43.543378,-73.32307,2.0,Solar Photovoltaic,OP,2016,NYIS
+61765.0,HGS Solar I,SNWH1,Washington,43.543716,-73.325257,2.0,Solar Photovoltaic,OP,2016,NYIS
+61804.0,City of Rochester Solar,ROC01,Monroe,43.176918,-77.678512,1.8,Solar Photovoltaic,OP,2017,NYIS
+61847.0,Broadalbin,10046,Fulton,43.061306,-74.154885,2.0,Solar Photovoltaic,OP,2018,NYIS
+61863.0,Duanesburg,10048,Montgomery,42.762173,-74.201552,2.0,Solar Photovoltaic,OP,2018,NYIS
+61888.0,Johnstown,10049,Fulton,42.999179,-74.314787,2.0,Solar Photovoltaic,OP,2018,NYIS
+61898.0,Solean Solar Project,SOLEA,Cattaraugus,42.086926,-78.448212,4.0,Solar Photovoltaic,OP,2016,NYIS
+61899.0,Lincoln Ave Solar Project,LINC,Suffolk,40.78144,-73.083437,2.0,Solar Photovoltaic,OP,2018,NYIS
+61900.0,Blydenburgh Solar Project,BLYD,Suffolk,40.815331,-73.182407,1.5,Solar Photovoltaic,OP,2018,NYIS
+61902.0,Holtsville Solar Project,HOLTS,Suffolk,40.797667,-73.033977,1.2,Solar Photovoltaic,OP,2017,NYIS
+61903.0,Sharon Springs,10116,Schoharie,42.775105,-74.567145,2.0,Solar Photovoltaic,OP,2018,NYIS
+61904.0,Amsterdam North,10044,Montgomery,42.953622,-74.119802,2.0,Solar Photovoltaic,OP,2018,NYIS
+61905.0,Amsterdam South,10045,Montgomery,42.948957,-74.126159,2.0,Solar Photovoltaic,OP,2018,NYIS
+61917.0,Kearsarge Oppenheim CSG,OPPEN,Fulton,43.060223,-74.736424,1.4,Solar Photovoltaic,OP,2018,NYIS
+61922.0,Sunlight Beacon,BEACO,Dutchess,41.494632,-73.981635,2.0,Solar Photovoltaic,OP,2018,NYIS
+61958.0,Broadalbin-Perth Solar,BAP1,Montgomery,43.018029,-74.191836,1.5,Solar Photovoltaic,OP,2018,NYIS
+62017.0,Riverhead Solar Farm,RIV1,Suffolk,40.922992,-72.7645,20.0,Solar Photovoltaic,OP,2019,NYIS
+62029.0,Enfield Community Solar,5515,Tompkins,42.453307,-76.594813,1.8,Solar Photovoltaic,OP,2017,NYIS
+62034.0,Baer Road CSG,7,Sullivan,41.797,-75.068,2.0,Solar Photovoltaic,OP,2018,NYIS
+62145.0,Minisink Solar 1 LLC,MINI1,Orange,41.321224,-74.514084,1.8,Solar Photovoltaic,OP,2018,NYIS
+62146.0,Minisink Community Solar 2 LLC,MINI2,Orange,41.319351,-74.515278,2.0,Solar Photovoltaic,OP,2018,NYIS
+62154.0,Kelly Bridge Road Community Solar Farm,12,Sullivan,41.775422,-74.776464,2.0,Solar Photovoltaic,OP,2020,NYIS
+62155.0,Hospital Rd Community Solar Farm CSG,9,Sullivan,41.774772,-75.036074,1.4,Solar Photovoltaic,OP,2019,NYIS
+62156.0,Pool Brook Rd Community Solar Farm,15,Otsego,42.542175,-75.083378,2.0,Solar Photovoltaic,OP,2019,NYIS
+62157.0,Breesport Road Community Solar Farm,235,Chemung,42.088,-76.713,2.0,Solar Photovoltaic,OP,2019,NYIS
+62158.0,Sacket Lake Rd #1 Community Solar Farm,11,Sullivan,41.38251,-74.43526,2.0,Solar Photovoltaic,OP,2020,NYIS
+62159.0,Sacket Lake Rd #2 Community Solar Farm,20,Sullivan,41.38251,-74.43526,1.7,Solar Photovoltaic,OP,2019,NYIS
+62160.0,Turner Rd Community Solar Project,300,Chemung,42.09305,-76.67848,2.0,Solar Photovoltaic,OP,2019,NYIS
+62303.0,Mattas Farms,MF01,Montgomery,42.893714,-74.216251,2.0,Solar Photovoltaic,OP,2018,NYIS
+62357.0,Gloversville Landfill Solar,08158,Fulton,43.052981,-74.308356,5.0,Solar Photovoltaic,OP,2021,NYIS
+62389.0,Pasto Solar,PASTO,Tioga,42.210028,-76.523763,16.0,Solar Photovoltaic,OP,2019,NYIS
+62412.0,Daum Solar,DAUM,Yates,42.760799,-77.247333,4.0,Solar Photovoltaic,OP,2020,NYIS
+62413.0,Ellis Solar,ELLIS,Tompkins,42.444628,-76.433237,18.0,Solar Photovoltaic,OP,2019,NYIS
+62423.0,Regeneron Pharmaceuticals Inc.,B17PV,Westchester,41.07875,-73.82227,0.1,Solar Photovoltaic,OP,2024,NYIS
+62423.0,Regeneron Pharmaceuticals Inc.,P19PV,Westchester,41.07875,-73.82227,0.8,Solar Photovoltaic,OP,2023,NYIS
+62423.0,Regeneron Pharmaceuticals Inc.,P9PV,Westchester,41.07875,-73.82227,0.5,Solar Photovoltaic,OP,2023,NYIS
+62471.0,Washington St Community Solar Farm #4,1034,Monroe,43.175,-77.849,2.5,Solar Photovoltaic,OP,2020,NYIS
+62472.0,Washington St Community Solar Farm #1,617,Monroe,43.173,-77.846,2.2,Solar Photovoltaic,OP,2020,NYIS
+62473.0,Washington St Community Solar Farm #3,1035,Monroe,43.172,-77.844,2.5,Solar Photovoltaic,OP,2020,NYIS
+62474.0,Gaskill Rd Community Solar Farm CSG,928,Tioga,42.116,-76.183,5.0,Solar Photovoltaic,OP,2019,NYIS
+62476.0,Big Tree Community Solar Farm,607,Erie,42.766,-78.559,2.0,Solar Photovoltaic,OP,2021,NYIS
+62477.0,Dryden Rd #2 Community Solar Farm CSG,372,Tompkins,42.487821,-76.319983,1.3,Solar Photovoltaic,OP,2019,NYIS
+62479.0,Woodoak Drive Community Solar Farm CSG,175,Sullivan,41.594,-75.027,2.0,Solar Photovoltaic,OP,2019,NYIS
+62480.0,Burritt Rd Community Solar Farm,635,Monroe,43.275,-77.764,2.0,Solar Photovoltaic,OP,2020,NYIS
+62486.0,CMR Solar LLC,CMRSL,Orange,41.561847,-74.345912,2.0,Solar Photovoltaic,OP,2019,NYIS
+62496.0,Telegraph Rd #1 Community Solar Farm,1268,Wyoming,42.561672,-78.17953,3.8,Solar Photovoltaic,OP,2021,NYIS
+62498.0,Telegraph Rd #2 Community Solar Farm,1413,Wyoming,42.559475,-78.179411,2.0,Solar Photovoltaic,OP,2021,NYIS
+62500.0,Route 19 #1 Community Solar Farm,1258,Wyoming,42.534,-78.151,2.0,Solar Photovoltaic,OP,2022,NYIS
+62502.0,Route 19 #2 Community Solar Farm,1415,Wyoming,42.533807,-78.15377,5.0,Solar Photovoltaic,OP,2022,NYIS
+62504.0,Frey Rd #1 Community Solar Farm,1159,Wayne,43.099866,-77.34513,2.0,Solar Photovoltaic,OP,2020,NYIS
+62507.0,County Route 11 Community Solar Farm,1419,Clinton,44.935,-73.677,4.1,Solar Photovoltaic,OP,2020,NYIS
+62508.0,Furnace Rd Community Solar Farm,1420,Wayne,43.241,-77.27,3.0,Solar Photovoltaic,OP,2020,NYIS
+62517.0,Yellow Mills Rd #1 Community Solar Farm,1142,Ontario,43.017848,-77.26049,2.3,Solar Photovoltaic,OP,2022,NYIS
+62518.0,Yellow Mills Rd #2 Community Solar Farm,1181,Ontario,43.016419,-77.26091,2.3,Solar Photovoltaic,OP,2022,NYIS
+62519.0,Yellow Mills Rd #3 Community Solar Farm,1244,Ontario,43.015301,-77.260662,2.3,Solar Photovoltaic,OP,2022,NYIS
+62521.0,Frey Rd #2 Community Solar Farm,1442,Wayne,43.099893,-77.343495,1.4,Solar Photovoltaic,OP,2020,NYIS
+62524.0,Route 22 Community Solar Farm CSG,1444,Clinton,44.725076,-73.467034,3.7,Solar Photovoltaic,OP,2021,NYIS
+62525.0,Villa Roma Rd #1,40,Sullivan,41.757083,-74.960959,2.0,Solar Photovoltaic,OP,2020,NYIS
+62526.0,Villa Roma Rd #2,41,Sullivan,41.756217,-74.961191,2.0,Solar Photovoltaic,OP,2020,NYIS
+62527.0,Villa Roma Rd #3 CSG,390,Sullivan,41.754421,-74.96152,2.0,Solar Photovoltaic,OP,2019,NYIS
+62528.0,Villa Roma Rd #4 CSG,391,Sullivan,41.754435,-74.958625,2.0,Solar Photovoltaic,OP,2019,NYIS
+62530.0,Boas Rd #1 Community Solar Farm,496,Clinton,44.934274,-73.672382,2.0,Solar Photovoltaic,OP,2019,NYIS
+62531.0,Boas Rd #2 Community Solar Farm,1010,Clinton,44.933177,-73.67122,2.0,Solar Photovoltaic,OP,2019,NYIS
+62532.0,Boas Rd #3 Community Solar Farm,1011,Clinton,44.933525,-73.66933,2.0,Solar Photovoltaic,OP,2019,NYIS
+62533.0,Boas Rd #4 Community Solar Farm,1023,Clinton,44.928987,-73.666505,2.0,Solar Photovoltaic,OP,2020,NYIS
+62549.0,Kearsarge Johnstown 1 CSG,JOHNN,Fulton,43.066012,-74.360177,1.5,Solar Photovoltaic,OP,2018,NYIS
+62556.0,Kearsarge Johnstown 2 CSG,JOHNS,Fulton,43.064422,-74.360221,2.0,Solar Photovoltaic,OP,2018,NYIS
+62580.0,Route 14A CDG Solar North and South LLC,6081,Ontario,42.815086,-77.046128,4.0,Solar Photovoltaic,OP,2018,NYIS
+62582.0,Newfield Community Solar LLC,5216,Tompkins,42.39131,-76.564236,6.0,Solar Photovoltaic,OP,2019,NYIS
+62582.0,Newfield Community Solar LLC,5465,Tompkins,42.39131,-76.564236,2.0,Solar Photovoltaic,OP,2019,NYIS
+62582.0,Newfield Community Solar LLC,5466,Tompkins,42.39131,-76.564236,2.0,Solar Photovoltaic,OP,2019,NYIS
+62582.0,Newfield Community Solar LLC,5467,Tompkins,42.39131,-76.564236,2.0,Solar Photovoltaic,OP,2019,NYIS
+62613.0,CBP Solar,CBPB1,Westchester,41.266188,-73.946882,1.8,Solar Photovoltaic,OP,2018,NYIS
+62614.0,Kinder Morgan Fordham,KMFO1,Richmond,40.542557,-74.236582,1.7,Solar Photovoltaic,OP,2018,NYIS
+62721.0,Steel Sun 2: 2303-III-9 Hamburg Tpke,SS29,Erie,42.81849,-78.855377,2.0,Solar Photovoltaic,OP,2019,NYIS
+62722.0,Steel Sun 2: 2303-III-4 Hamburg Tpke,SS24,Erie,42.811146,-78.854217,2.0,Solar Photovoltaic,OP,2019,NYIS
+62723.0,Steel Sun 2: 2303-III-2 Hamburg Tpke,SS22,Erie,42.809003,-78.85337,2.0,Solar Photovoltaic,OP,2019,NYIS
+62724.0,Homer Street West,HSW,Cattaraugus,42.098128,-78.442286,1.6,Solar Photovoltaic,OP,2019,NYIS
+62725.0,Homer Street East,HSE,Cattaraugus,42.099342,-78.44095,1.6,Solar Photovoltaic,OP,2019,NYIS
+62737.0,West Valley West,WVW,Cattaraugus,42.442927,-78.632137,5.0,Solar Photovoltaic,OP,2022,NYIS
+62738.0,West Valley East,WVE,Cattaraugus,42.443632,-78.632127,5.0,Solar Photovoltaic,OP,2022,NYIS
+62759.0,Greenville CSG,GV,Orange,41.356,-74.622,2.0,Solar Photovoltaic,OP,2019,NYIS
+62761.0,Chester CSG,CH,Orange,41.339,-74.288,2.0,Solar Photovoltaic,OP,2019,NYIS
+62764.0,Westtown CSG,WT,Orange,41.345,-74.561,2.0,Solar Photovoltaic,OP,2019,ISNE
+62777.0,Ulster County Solar,ULSTE,Ulster,41.961896,-73.981234,1.4,Solar Photovoltaic,OP,2018,NYIS
+62784.0,Franklin Solar Site,FRANK,Franklin,44.86832,-74.306523,1.6,Solar Photovoltaic,OP,2018,NYIS
+62785.0,Malone Solar Site,MALON,Franklin,44.870858,-74.307248,1.1,Solar Photovoltaic,OP,2018,NYIS
+62788.0,Sugarhill Road - Solitude Solar CSG,X0040,Saratoga,42.822572,-73.84853,4.7,Solar Photovoltaic,OP,2019,NYIS
+62810.0,"RIT Henrietta Solar 1, LLC",13500,Monroe,43.076198,-77.66724,1.6,Solar Photovoltaic,OP,2018,NYIS
+62831.0,Hickory Grove #1,25,Chemung,42.186827,-76.845064,2.0,Solar Photovoltaic,OP,2020,NYIS
+62832.0,Hickory Grove #2,309,Chemung,42.186,-76.845,1.7,Solar Photovoltaic,OP,2020,NYIS
+62834.0,Podunk Road CSG,871,Tompkins,42.46806,-76.65289,2.2,Solar Photovoltaic,OP,2019,NYIS
+62843.0,Garnet Solar (NY),PV1,Warren,43.723851,-74.062378,1.9,Solar Photovoltaic,OP,2018,NYIS
+62860.0,Chambers Road Solar,263,Chemung,42.187443,-76.894394,4.0,Solar Photovoltaic,OP,2020,NYIS
+62998.0,"25 Ashdown Road Solar, LLC",ASHDO,Saratoga,42.8826,-73.879,4.0,Solar Photovoltaic,OP,2019,NYIS
+62999.0,"Finchville Solar, LLC Hybrid CSG",FINCH,Orange,41.4565,-74.5465,5.0,Solar Photovoltaic,OP,2020,NYIS
+63000.0,"RT 52 Walden Solar 1, LLC Hybrid",WALDN,Orange,41.5841,-74.2163,5.0,Solar Photovoltaic,OP,2019,NYIS
+63012.0,"Ransomville Solar 1, LLC",SWANN,Niagara,43.1994,-78.949837,5.0,Solar Photovoltaic,OP,2019,NYIS
+63013.0,"Johnstown Solar 1, LLC",STATE,Fulton,43.0724,-74.3228,4.0,Solar Photovoltaic,OP,2019,NYIS
+63051.0,Hollygrove CSG,32,Wayne,43.26034,-76.7217,2.0,Solar Photovoltaic,OP,2018,NYIS
+63052.0,Guildlerland CSG,106,Albany,42.727288,-74.000814,2.0,Solar Photovoltaic,OP,2018,NYIS
+63055.0,Howland CSG,26,Oswego,43.63481,-76.08921,2.0,Solar Photovoltaic,OP,2018,NYIS
+63056.0,Gifford CSG,131,Schenectady,42.82395,-74.07086,2.0,Solar Photovoltaic,OP,2018,NYIS
+63057.0,Czub CSG,114,Rensselaer,42.91408,-73.59598,2.0,Solar Photovoltaic,OP,2018,NYIS
+63058.0,Mereand CSG,199,Jefferson,43.96414,-75.98679,2.0,Solar Photovoltaic,OP,2018,NYIS
+63059.0,Aegis CSG,19,Ontario,42.764688,-77.343879,2.0,Solar Photovoltaic,OP,2018,NYIS
+63060.0,Pearl CSG,28,Genesee,42.981335,-78.290418,2.0,Solar Photovoltaic,OP,2018,NYIS
+63060.0,Pearl CSG,29,Genesee,42.981335,-78.290418,2.0,Solar Photovoltaic,OP,2018,NYIS
+63079.0,Bethlehem Solar,157,Albany,42.601145,-73.887416,1.7,Solar Photovoltaic,OP,2019,NYIS
+63086.0,Frog Hollow CSG,1731,Ulster,41.739327,-74.496708,2.0,Solar Photovoltaic,OP,2019,NYIS
+63106.0,Dover CSG,21,Dutchess,41.680879,-73.576568,2.0,Solar Photovoltaic,OP,2019,NYIS
+63107.0,Howell CSG,1725,Orange,41.265258,-74.312978,2.0,Solar Photovoltaic,OP,2020,NYIS
+63108.0,Strauss CSG,30,Seneca,42.891451,-76.993915,2.0,Solar Photovoltaic,OP,2019,NYIS
+63112.0,Ellsworth I CSG,22,Saratoga,42.899313,-73.709799,2.0,Solar Photovoltaic,OP,2019,NYIS
+63129.0,Allis Medina Solar LLC CSG,ALLIS,Orleans,43.2205,-78.3574,5.0,Solar Photovoltaic,OP,2020,NYIS
+63130.0,Beals Medina Solar LLC CSG,BEALS,Orleans,43.2256,-78.3559,3.5,Solar Photovoltaic,OP,2020,NYIS
+63161.0,AES Tonawanda Solar LLC,TNWDA,Erie,42.9971,-78.9017,2.0,Solar Photovoltaic,OP,2020,NYIS
+63224.0,NY 26 Carthage CSG,X0140,Jefferson,43.955471,-75.618066,5.0,Solar Photovoltaic,OP,2020,NYIS
+63230.0,Knaggs Brothers Farm,KNAGG,Albany,42.73035,-73.9691,4.5,Solar Photovoltaic,OP,2018,NYIS
+63279.0,Barneveld Solar,PV1,Oneida,43.251388,-75.177222,1.0,Solar Photovoltaic,OP,2019,NYIS
+63291.0,Grand Prix Solar,GPS,Westchester,41.21125,-73.72252,1.6,Solar Photovoltaic,OP,2014,NYIS
+63292.0,100 Brook Hill Drive Solar,BHD,Rockland,41.09305,-73.9828,2.0,Solar Photovoltaic,OP,2015,NYIS
+63297.0,Hobart & William Smith College Gates Rd.,GATES,Ontario,42.86228,-77.05058,2.4,Solar Photovoltaic,OP,2017,NYIS
+63337.0,"Lansing Renewables, LLC",6004,Tompkins,42.59251,-76.56563,5.0,Solar Photovoltaic,OP,2020,NYIS
+63339.0,"Hales Mills Solar, LLC",6609,Fulton,43.01827,-74.32918,5.0,Solar Photovoltaic,OP,2020,NYIS
+63340.0,"Owlville Creek Solar 2, LLC",6609,Madison,43.078888,-75.77222,5.0,Solar Photovoltaic,OP,2020,NYIS
+63341.0,"Owlville Creek Solar, LLC",6608,Madison,43.08748,-75.77959,5.0,Solar Photovoltaic,OP,2020,NYIS
+63369.0,Riley Road LLC,RILE1,Orange,41.469132,-74.078372,2.0,Solar Photovoltaic,OP,2019,NYIS
+63369.0,Riley Road LLC,RILE2,Orange,41.469132,-74.078372,2.0,Solar Photovoltaic,OP,2019,NYIS
+63371.0,Hope Solar Farm LLC,BRUNS,Rensselaer,42.726428,-73.602129,2.0,Solar Photovoltaic,OP,2019,NYIS
+63372.0,Catlin Solar 1 LLC,CATLI,Schuyler,42.285942,-76.953981,4.0,Solar Photovoltaic,OP,2019,NYIS
+63373.0,Saratoga Solar LLC,SARAT,Saratoga,43.07377,-73.903954,5.0,Solar Photovoltaic,OP,2019,NYIS
+63405.0,Pearl II,29,Genesee,42.981336,-78.290419,2.0,Solar Photovoltaic,OP,2018,NYIS
+63407.0,Macedon,101,Wayne,43.058633,-77.346042,2.0,Solar Photovoltaic,OP,2019,NYIS
+63408.0,Whittier,300,Monroe,43.150002,-77.861396,2.0,Solar Photovoltaic,OP,2019,NYIS
+63409.0,Williamson,100,Wayne,43.1401,-77.0908,2.0,Solar Photovoltaic,OP,2019,NYIS
+63410.0,Bennett,304,Ontario,42.9352,-77.47107,1.4,Solar Photovoltaic,OP,2019,NYIS
+63411.0,"Greenwich Solar 1, LLC CSG",RTE40,Washington,43.0783,-73.5331,5.0,Solar Photovoltaic,OP,2020,NYIS
+63415.0,"Middletown Solar 1, LLC Hybrid CSG",CENTR,Orange,41.3902,-74.5199,1.6,Solar Photovoltaic,OP,2020,NYIS
+63450.0,Chenango Solar,PV1,Broome,42.198167,-75.927282,4.9,Solar Photovoltaic,OP,2019,NYIS
+63497.0,Calabro Airport North Solar Project,NORTH,Suffolk,40.8224,-72.875,1.3,Solar Photovoltaic,OP,2019,NYIS
+63498.0,Calabro Airport South Solar Project,SOUTH,Suffolk,40.811524,-72.857053,1.2,Solar Photovoltaic,OP,2019,NYIS
+63511.0,Mohonasen Central School District,PV1,Schenectady,42.767228,-73.956847,1.1,Solar Photovoltaic,OP,2019,NYIS
+63675.0,MSAP 13,TROYL,Rensselaer,42.698335,-73.67174,2.0,Solar Photovoltaic,OP,2020,NYIS
+63729.0,CES Marbletown Solar,MT1,Ulster,41.885716,-74.102718,3.0,Solar Photovoltaic,OP,2021,NYIS
+63747.0,Fogarty CSG,GRA,Orange,41.508729,-74.349999,2.0,Solar Photovoltaic,OP,2021,NYIS
+63748.0,Mount Hope West,MHW,Orange,41.466974,-74.509417,1.9,Solar Photovoltaic,OP,2020,NYIS
+63749.0,Mount Hope East,MHE,Orange,41.467654,-74.509646,1.9,Solar Photovoltaic,OP,2019,NYIS
+63750.0,Bluestone,BLU,Ulster,41.987467,-74.030193,2.0,Solar Photovoltaic,OP,2019,NYIS
+63751.0,Underhill,UND,Dutchess,41.716281,-73.884263,2.0,Solar Photovoltaic,OP,2019,NYIS
+63752.0,Grabinski,GRA,Orange,41.578731,-74.17967,2.0,Solar Photovoltaic,OP,2019,NYIS
+63772.0,Adirondack Solar,1394,Clinton,44.893641,-73.841731,1.1,Solar Photovoltaic,OP,2018,NYIS
+63774.0,Mount Kisco Landfill Solar & Storage CSG,KRS,Westchester,41.195478,-73.73606,1.0,Solar Photovoltaic,OP,2020,NYIS
+63780.0,NY- CSG- Johnstown 2,JOHN2,Fulton,43.04232,-74.37876,2.0,Solar Photovoltaic,OP,2020,NYIS
+63781.0,NY- CSG- Livingston 4,LIV4,Livingston,42.9199,-77.7642,2.0,Solar Photovoltaic,OP,2020,NYIS
+63800.0,NY - CSG - Ellsworth II,23,Saratoga,42.899691,-73.707473,2.0,Solar Photovoltaic,OP,2019,NYIS
+63854.0,Medusa NY 1,8175C,Albany,42.466286,-74.099533,2.0,Solar Photovoltaic,OP,2020,NYIS
+63855.0,Walden NY 1,8175E,Orange,41.552749,-74.145471,2.0,Solar Photovoltaic,OP,2020,NYIS
+63856.0,Westtown NY 2,8175D,Orange,41.345455,-74.52377,2.0,Solar Photovoltaic,OP,2020,NYIS
+63857.0,Middletown NY 1,8175B,Orange,41.40888,-74.509799,2.0,Solar Photovoltaic,OP,2020,NYIS
+63858.0,Westerlo NY 1,8175A,Albany,42.43822,-74.015894,2.0,Solar Photovoltaic,OP,2020,NYIS
+64017.0,Brick Church Solar,7405,Rensselaer,42.755594,-73.580034,4.0,Solar Photovoltaic,OP,2019,NYIS
+64030.0,Kenmare - Sullivan Community College,GEN1,Sullivan,41.772796,-74.666717,2.0,Solar Photovoltaic,OP,2015,NYIS
+64041.0,Wappinger 9D Solar,4683,Dutchess,41.56544,-73.937972,2.0,Solar Photovoltaic,OP,2019,NYIS
+64044.0,Off Airport Road - West,7141,Ulster,41.785648,-74.229036,4.0,Solar Photovoltaic,OP,2019,NYIS
+64046.0,6140 Route 209 - North,7140,Ulster,41.787555,-74.288885,4.0,Solar Photovoltaic,OP,2019,NYIS
+64077.0,Hecate Energy Albany County 1,ALBNY,Albany,42.515459,-73.833448,20.0,Solar Photovoltaic,OP,2024,NYIS
+64084.0,Blanchard Road 1 Community Solar,BR1CS,Jefferson,44.25479,-76.01178,5.0,Solar Photovoltaic,OP,2019,NYIS
+64087.0,Blanchard Road 2 Community Solar,BR2CS,Jefferson,44.25479,-76.01178,5.0,Solar Photovoltaic,OP,2019,NYIS
+64090.0,NYS Rte 12 Community Solar,NYR12,Jefferson,44.25479,-76.01178,5.0,Solar Photovoltaic,OP,2019,NYIS
+64091.0,Moore Road Community Solar,MROCS,Niagara,43.213,-78.903,5.0,Solar Photovoltaic,OP,2019,NYIS
+64092.0,Great Lakes Seaway Community Solar,GLSCS,Jefferson,44.25479,-76.01178,5.0,Solar Photovoltaic,OP,2019,NYIS
+64102.0,GE 19th Hole,GE19H,Fulton,42.985644,-74.313086,7.7,Solar Photovoltaic,OP,2018,NYIS
+64125.0,Podunque Road CSG,TWNSD,Allegany,42.415067,-78.23753,5.0,Solar Photovoltaic,OP,2021,NYIS
+64126.0,County Road 16,ORNGE,Schuyler,42.3771,-76.9022,2.0,Solar Photovoltaic,OP,2020,NYIS
+64127.0,Townsend Road(CSG),PODNQ,Schuyler,42.350101,-76.938014,3.7,Solar Photovoltaic,OP,2021,NYIS
+64310.0,Corning Riverview (CSG),CORN,Erie,43.001066,-78.91407,5.0,Solar Photovoltaic,OP,2020,NYIS
+64351.0,Amazon JFK8 Solar Project,JFK8,Richmond,40.618892,-74.187521,4.9,Solar Photovoltaic,OP,2021,NYIS
+64371.0,Cortlandville I Solar CSG,CORT1,Cortland,42.606794,-76.154486,5.0,Solar Photovoltaic,OP,2021,NYIS
+64372.0,Sangerfield Solar CSG,SNGFD,Oneida,42.924419,-75.42005,5.0,Solar Photovoltaic,OP,2021,NYIS
+64373.0,Clay Solar CSG,CLAY1,Onondaga,43.194525,-76.21195,5.0,Solar Photovoltaic,OP,2021,NYIS
+64374.0,Norwich Solar and Energy Storage CSG,NRWCH,Chenango,42.552861,-75.529572,5.0,Solar Photovoltaic,OP,2021,NYIS
+64421.0,Sunvestment Energy Group NY 63 LLC,DEWIT,Onondaga,43.0447,-76.0419,2.0,Solar Photovoltaic,OP,2020,NYIS
+64442.0,Mt Pleasant Community Center,MPPV,Westchester,41.09999,-73.77155,0.5,Solar Photovoltaic,OP,2022,NYIS
+64445.0,"County of Dutchess, NY (Airport)",PV1,Dutchess,41.631398,-73.876845,1.8,Solar Photovoltaic,OP,2020,NYIS
+64451.0,Rosemond Solar Community Solar,1583,Sullivan,41.71133,-74.54163,2.0,Solar Photovoltaic,OP,2021,NYIS
+64453.0,Volney II,VOLNE,Oswego,43.341,-76.354,1.5,Solar Photovoltaic,OP,2021,NYIS
+64525.0,Troupsburg,TB1,Steuben,42.0121,-77.3751,7.0,Solar Photovoltaic,OP,2020,NYIS
+64542.0,Coxsackie Solar,1,Greene,42.33337,-73.8475,5.0,Solar Photovoltaic,OP,2022,NYIS
+64554.0,Bright Field Solar LLC(CSG),BF,Allegany,42.46,-77.73832,4.0,Solar Photovoltaic,OP,2021,NYIS
+64555.0,Bright Oak Solar LLC(CSG),BO,Genesee,43.033,-78.24481,4.0,Solar Photovoltaic,OP,2021,NYIS
+64556.0,Bright Hill Solar LLC(CSG),BH,Livingston,42.46723,-77.70378,5.0,Solar Photovoltaic,OP,2021,NYIS
+64557.0,River Valley LLC (NY) (CSG),RV,Cattaraugus,42.06724,-78.47783,5.0,Solar Photovoltaic,OP,2021,NYIS
+64560.0,Tioga Solar South(CSG),TSS,Tioga,42.14134,-76.28797,5.0,Solar Photovoltaic,OP,2021,NYIS
+64561.0,Tioga Solar North(CSG),TSN,Tioga,42.14134,-76.28797,5.0,Solar Photovoltaic,OP,2021,NYIS
+64562.0,Washingtonville(CSG),WAS,Orange,41.424,-74.167,2.0,Solar Photovoltaic,OP,2021,NYIS
+64577.0,Minisink CSG,MIN,Orange,41.353476,-74.515411,1.0,Solar Photovoltaic,OP,2021,NYIS
+64578.0,Slate Hill(CSG),SLT,Orange,41.363,-74.503,2.0,Solar Photovoltaic,OP,2021,NYIS
+64593.0,Bellisario Solar 1,B1,Cortland,42.449783,-76.121116,5.0,Solar Photovoltaic,OP,2021,NYIS
+64594.0,Bellisario Solar 2,B1,Cortland,42.451944,-76.121116,5.0,Solar Photovoltaic,OP,2021,NYIS
+64595.0,Bellisario Solar 3,B1,Cortland,42.452956,-76.13176,5.0,Solar Photovoltaic,OP,2021,NYIS
+64679.0,"Hamlin Solar 1, LLC",HS1,Monroe,43.30141,-77.94429,5.0,Solar Photovoltaic,OP,2020,NYIS
+64680.0,"Clifton Park Solar 1, LLC",CP1,Saratoga,42.839013,-73.834722,5.0,Solar Photovoltaic,OP,2020,NYIS
+64681.0,"Clifton Park Solar 2, LLC",CP2,Saratoga,42.84037,-73.83546,2.0,Solar Photovoltaic,OP,2020,NYIS
+64692.0,Fredonia Solar LLC,533,Chautauqua,42.453047,-79.3408,1.1,Solar Photovoltaic,OP,2021,ISNE
+64715.0,Dusenberry,DSNBR,Rensselaer,42.7677,-73.6247,5.0,Solar Photovoltaic,OP,2021,ISNE
+64716.0,Knapp East (CSG),KNPPE,Genesee,43.0134,-78.4601,5.0,Solar Photovoltaic,OP,2021,ISNE
+64717.0,Main Rd Community Solar,MAINR,Erie,42.9976,-78.5047,5.0,Solar Photovoltaic,OP,2022,ISNE
+64718.0,Redman North Community Solar,RDMNN,Monroe,43.2752,-77.966,1.5,Solar Photovoltaic,OP,2022,ISNE
+64719.0,Glenmere Lake,GLNMR,Orange,41.3698,-74.366,2.0,Solar Photovoltaic,OP,2021,ISNE
+64720.0,Knapp West(CSG),KNPPW,Genesee,43.0148,-78.4609,5.0,Solar Photovoltaic,OP,2021,ISNE
+64721.0,Rowe (CSG),RWEAV,Cattaraugus,42.0687,-78.3752,5.0,Solar Photovoltaic,OP,2021,ISNE
+64722.0,Redman South Community Solar,RDMNS,Monroe,43.2743,-77.965,5.0,Solar Photovoltaic,OP,2022,ISNE
+64724.0,Townline Community Solar,TWNLN,Genesee,43.0421,-78.1337,5.0,Solar Photovoltaic,OP,2022,ISNE
+64725.0,Williams Rd,WLMRD,Niagara,43.204,-78.943,4.0,Solar Photovoltaic,OP,2021,ISNE
+64746.0,Goldman Sachs Carports Solar,GSCS,Albany,42.76573,-73.75055,1.0,Solar Photovoltaic,OP,2020,NYIS
+64788.0,Freehold(CSG),FRHOL,Greene,42.370433,-74.038047,2.0,Solar Photovoltaic,OP,2021,NYIS
+64867.0,Slayton Settlement Road Solar CSG,SLYTA,Niagara,43.203558,-78.645433,5.0,Solar Photovoltaic,OP,2024,NYIS
+64867.0,Slayton Settlement Road Solar CSG,SLYTB,Niagara,43.203558,-78.645433,2.0,Solar Photovoltaic,OP,2024,NYIS
+64931.0,Capital Hill Solar LLC,531,Albany,42.685295,-73.824937,1.5,Solar Photovoltaic,OP,2022,NYIS
+64964.0,Rock Island Road Solar Community Solar,ROCKI,St Lawrence,44.369913,-75.456999,3.5,Solar Photovoltaic,OP,2022,NYIS
+64965.0,Bullis Road Solar (CSG),BULLS,Erie,42.836293,-78.572791,4.5,Solar Photovoltaic,OP,2022,NYIS
+65067.0,ASA DeKalb NY Solar III LLC,DEK3,St Lawrence,44.424108,-75.379194,3.3,Solar Photovoltaic,OP,2024,NYIS
+65071.0,Buffalo NY GigaFactory,PV1,Erie,42.859297,-78.8418,2.0,Solar Photovoltaic,OP,2022,NYIS
+65090.0,Cortlandville III Solar CSG,CORT3,Cortland,42.60575,-76.132472,5.0,Solar Photovoltaic,OP,2023,NYIS
+65121.0,NY8 - Grissom Solar,GEN1,Montgomery,42.973,-74.321,20.0,Solar Photovoltaic,OP,2023,NYIS
+65122.0,NY8 - Branscomb Solar,GEN1,Rensselaer,42.962972,-73.586739,20.0,Solar Photovoltaic,OP,2021,NYIS
+65123.0,NY8 - Janis Solar,GEN1,Cortland,42.453939,-75.931033,20.0,Solar Photovoltaic,OP,2023,NYIS
+65124.0,NY8 - Regan Solar,GEN1,Montgomery,42.95474,-74.313115,20.0,Solar Photovoltaic,OP,2022,NYIS
+65125.0,NY8 - Puckett Solar,GEN1,Broome,42.252664,-75.834078,20.0,Solar Photovoltaic,OP,2022,NYIS
+65155.0,ASA DeKalb NY Solar II LLC,DEK2,St Lawrence,44.488156,-75.244375,3.0,Solar Photovoltaic,OP,2023,NYIS
+65156.0,ASA DeKalb NY Solar I LLC,DEK1,St Lawrence,44.492092,-75.2448,5.0,Solar Photovoltaic,OP,2023,NYIS
+65157.0,ASA Gouverneur NY Solar I LLC,GOV1,St Lawrence,44.390853,-75.443244,1.5,Solar Photovoltaic,OP,2024,NYIS
+65158.0,ASA Gouverneur NY Solar II LLC,GOV2,St Lawrence,44.360089,-75.427467,4.0,Solar Photovoltaic,OP,2024,NYIS
+65159.0,ASA Volney NY Solar I LLC,VOL1,Oswego,43.328217,-76.358997,5.0,Solar Photovoltaic,OP,2023,NYIS
+65161.0,ASA Clayton NY Solar I LLC,CLA1,Jefferson,44.161761,-76.108986,1.3,Solar Photovoltaic,OP,2024,NYIS
+65163.0,Orioles Community Solar,ORIOL,Greene,42.426,-73.817,5.6,Solar Photovoltaic,OP,2022,NYIS
+65165.0,Ontario Sun,ONSUN,Oswego,43.644,-76.156,2.4,Solar Photovoltaic,OP,2023,NYIS
+65217.0,South Goshen Community Solar,SGOSH,Orange,41.3927,-74.3478,5.0,Solar Photovoltaic,OP,2021,NYIS
+65222.0,County Road 17 (CSG),AFTON,Chenango,42.27842,-75.5415,3.3,Solar Photovoltaic,OP,2022,NYIS
+65232.0,Chambers 3 - Lewis County,GEN1,Lewis,43.78013,-75.49986,2.0,Solar Photovoltaic,OP,2018,NYIS
+65233.0,Chambers 3 - Erie County Alden,GEN1,Erie,42.93284,-78.55716,2.0,Solar Photovoltaic,OP,2018,NYIS
+65297.0,DOCCS Midstate,81722,Oneida,43.164033,-75.304087,3.8,Solar Photovoltaic,OP,2021,NYIS
+65298.0,DOCCS Eastern,81724,Ulster,41.738928,-74.368626,5.0,Solar Photovoltaic,OP,2021,NYIS
+65299.0,DOCCS Wende,81721,Erie,42.929982,-78.55481,5.0,Solar Photovoltaic,OP,2021,NYIS
+65300.0,DOCCS Greenhaven,81723,Dutchess,41.578415,-73.72058,3.7,Solar Photovoltaic,OP,2021,NYIS
+65309.0,Millersport GM 1,532,Erie,42.99208,-78.79084,5.0,Solar Photovoltaic,OP,2023,NYIS
+65337.0,"Maybrook Solar, LLC (CSG)",MAYBK,Orange,41.463056,-74.247778,5.0,Solar Photovoltaic,OP,2023,NYIS
+65378.0,OYA Robinson Road,NY002,Jefferson,44.26323,-75.99105,5.0,Solar Photovoltaic,OP,2022,NYIS
+65379.0,OYA State Route 122,NY001,Franklin,44.922,-74.265,4.5,Solar Photovoltaic,OP,2021,NYIS
+65385.0,Airport Road Solar (CSG),AIRPT,Orange,41.42827,-74.39665,3.4,Solar Photovoltaic,OP,2022,NYIS
+65434.0,OYA Wayside Drive,NY003,Jefferson,44.017,-75.922,5.0,Solar Photovoltaic,OP,2022,NYIS
+65435.0,OYA Pulaski,NY004,Oswego,43.583,-76.18,3.5,Solar Photovoltaic,OP,2022,NYIS
+65436.0,OYA Main Street,NY006,Livingston,42.875,-77.877,5.0,Solar Photovoltaic,OP,2022,NYIS
+65450.0,NY - PANYNJ - LaGuardia - Rooftop,18002,Queens,40.772982,-73.874722,1.0,Solar Photovoltaic,OP,2022,NYIS
+65459.0,OYA Church Road,NY005,Onondaga,43.19133,-76.38954,5.0,Solar Photovoltaic,OP,2022,NYIS
+65487.0,"Washington Avenue Solar, LLC",WASH,Schenectady,42.821552,-73.949911,4.6,Solar Photovoltaic,OP,2020,NYIS
+65587.0,RT32 Westerlo Solar 1,7105,Albany,42.44623,-74.01607,5.0,Solar Photovoltaic,OP,2020,NYIS
+65597.0,"CEC, LLC Westtown B",CLWB,Orange,41.345272,-74.561334,2.0,Solar Photovoltaic,OP,2018,NYIS
+65613.0,JB-Tobin 2,JBTB2,Dutchess,41.68963,-73.80517,1.6,Solar Photovoltaic,OP,2021,NYIS
+65620.0,100 Lower,100LR,Orange,41.294,-74.539,2.0,Solar Photovoltaic,OP,2020,NYIS
+65621.0,456 Lower,456LR,Orange,41.311,-74.522,1.4,Solar Photovoltaic,OP,2020,NYIS
+65624.0,Union Springs 40,US40,Cayuga,42.85,-76.65,5.0,Solar Photovoltaic,OP,2022,NYIS
+65625.0,Union Springs 963,US963,Cayuga,42.85,-76.65,5.0,Solar Photovoltaic,OP,2022,NYIS
+65626.0,North Eagle Village Solar,NEV,Onondaga,43.05,-75.95,5.0,Solar Photovoltaic,OP,2022,NYIS
+65627.0,Green Lakes Solar,GL,Onondaga,43.05,-75.95,5.0,Solar Photovoltaic,OP,2022,NYIS
+65628.0,Judd Road Solar,JR,Oneida,43.15,-75.35,5.0,Solar Photovoltaic,OP,2022,NYIS
+65643.0,Castleton,CASTN,Rensselaer,42.523,-73.703,5.0,Solar Photovoltaic,OP,2021,NYIS
+65647.0,Croton Solar,CROT,Westchester,41.280404,-73.867575,3.0,Solar Photovoltaic,OP,2021,NYIS
+65679.0,Calverton Solar Energy Center,11933,Suffolk,40.91367,-72.750359,22.9,Solar Photovoltaic,OP,2022,NYIS
+65721.0,RT405 Westerlo Solar 2,7104,Albany,42.44506,-74.01609,5.0,Solar Photovoltaic,OP,2020,ISNE
+65723.0,LR Wheatfield Solar 1,15557,Niagara,43.12163,-78.91409,5.0,Solar Photovoltaic,OP,2020,ISNE
+65724.0,Pendleton Solar 1,15889,Niagara,43.09723,-78.75382,5.0,Solar Photovoltaic,OP,2020,ISNE
+65752.0,East Fishkill CSG,EFK,Dutchess,41.571,-73.829,2.0,Solar Photovoltaic,OP,2019,NYIS
+65753.0,ELP Greenport CSG,GRPRT,Columbia,42.237,-73.782,5.0,Solar Photovoltaic,OP,2020,NYIS
+65754.0,ELP Kinderhook CSG,KDRHK,Columbia,42.464,-73.691,5.0,Solar Photovoltaic,OP,2020,NYIS
+65755.0,ELP Myer CSG,MYER,Ulster,42.041,-73.978,1.9,Solar Photovoltaic,OP,2021,NYIS
+65757.0,ELP Saugerties CSG,SGRTS,Ulster,42.04,-74.074,1.9,Solar Photovoltaic,OP,2020,NYIS
+65765.0,"High River Energy Center, LLC",HR01,Montgomery,42.901856,-74.13273,90.0,Solar Photovoltaic,OP,2024,NYIS
+65775.0,Cream Street Solar,5324,Dutchess,41.75596,-73.87539,2.0,Solar Photovoltaic,OP,2020,ISNE
+65776.0,Little Falls Solar,5939,Herkimer,43.05899,-74.88603,2.0,Solar Photovoltaic,OP,2020,ISNE
+65777.0,Little Falls Solar 1,5779,Herkimer,43.05414,-74.85455,2.0,Solar Photovoltaic,OP,2020,ISNE
+65785.0,1639 RT 29 Solar 1,19822,Fulton,43.04296,-74.24935,4.0,Solar Photovoltaic,OP,2020,ISNE
+65786.0,1639 RT 29 Solar 2,19823,Fulton,43.04296,-74.24935,2.5,Solar Photovoltaic,OP,2020,ISNE
+65805.0,East Point Energy Center,EP01,Schoharie,42.461371,-74.335092,50.0,Solar Photovoltaic,OP,2024,NYIS
+65815.0,NY - Mines Press,MPRES,Westchester,41.27803,-73.86612,1.0,Solar Photovoltaic,OP,2021,NYIS
+65826.0,Day Hollow Road Community Solar,1829,Tioga,42.113052,-76.178056,5.0,Solar Photovoltaic,OP,2024,NYIS
+65839.0,NY8 - Darby Solar,GEN1,Rensselaer,42.970331,-73.573258,20.0,Solar Photovoltaic,OP,2023,NYIS
+65840.0,NY8 - Teichos Pattersonville,GEN1,Schenectady,42.8808,-74.0951,20.0,Solar Photovoltaic,OP,2024,NYIS
+65841.0,NY8 - ELP Stillwater Solar,GEN1,Saratoga,42.926231,-73.711468,20.0,Solar Photovoltaic,OP,2023,NYIS
+66034.0,Sugar Hill Solar 1,19826,Saratoga,42.83259,-73.84255,5.0,Solar Photovoltaic,OP,2020,ISNE
+66036.0,3104 Batavia Solar,20205,Genesee,42.9994,-78.27517,3.0,Solar Photovoltaic,OP,2021,ISNE
+66037.0,3232 Batavia Solar,20206,Genesee,43.00024,-78.26818,4.0,Solar Photovoltaic,OP,2021,ISNE
+66040.0,Niagara Depot Solar,23204,Niagara,43.1191,-79.00705,3.5,Solar Photovoltaic,OP,2023,ISNE
+66061.0,Angelica Solar Site 1,A1,Allegany,42.30639,-78.070392,5.0,Solar Photovoltaic,OP,2022,NYIS
+66062.0,Angelica Solar Site 2,A2,Allegany,42.304408,-78.076676,5.0,Solar Photovoltaic,OP,2022,NYIS
+66063.0,Angelica Solar Site 3,A3,Allegany,42.301546,-78.074922,5.0,Solar Photovoltaic,OP,2022,NYIS
+66064.0,Angelica Solar Site 4,A4,Allegany,42.303015,-78.070922,5.0,Solar Photovoltaic,OP,2022,NYIS
+66065.0,West Valley Solar,WVS1,Cattaraugus,42.449,-78.652,5.0,Solar Photovoltaic,OP,2022,NYIS
+66065.0,West Valley Solar,WVS2,Cattaraugus,42.449,-78.652,5.0,Solar Photovoltaic,OP,2022,NYIS
+66074.0,Marlborough Solar,4942,Ulster,41.66398,-73.97007,2.0,Solar Photovoltaic,OP,2021,ISNE
+66081.0,Lenox Renewables,8211,Madison,43.11064,-75.77579,3.3,Solar Photovoltaic,OP,2021,ISNE
+66094.0,Bizer Creek,561,Erie,43.00008,-78.793752,1.5,Solar Photovoltaic,OP,2023,NYIS
+66126.0,Hecate Energy Albany 2 LLC,292,Albany,42.507913,-73.83651,21.1,Solar Photovoltaic,OP,2024,NYIS
+66176.0,Landau Solar,10891,Ulster,41.90066,-74.027773,2.0,Solar Photovoltaic,OP,2021,NYIS
+66177.0,Drinkwater Solar,10896,Montgomery,43.014985,-74.683403,2.0,Solar Photovoltaic,OP,2021,NYIS
+66187.0,McCarthy Solar,10992,Orange,41.401253,-74.179076,2.0,Solar Photovoltaic,OP,2021,NYIS
+66206.0,Mohawk View Solar,MOVSO,Montgomery,42.9412,-74.372177,5.0,Solar Photovoltaic,OP,2021,NYIS
+66207.0,Van Epps Solar,VEPSO,Montgomery,42.93404,-74.3782,5.0,Solar Photovoltaic,OP,2021,NYIS
+66209.0,Bantam Solar,10986,Montgomery,43.070426,-74.730767,5.0,Solar Photovoltaic,OP,2022,NYIS
+66210.0,Bogart Solar,10887,Greene,42.209593,-73.995085,2.0,Solar Photovoltaic,OP,2019,NYIS
+66211.0,Brickchurch Solar,10889,Wayne,43.201698,-76.968078,2.0,Solar Photovoltaic,OP,2020,NYIS
+66212.0,Canoga Solar,10965,Seneca,42.85206,-76.8001,5.0,Solar Photovoltaic,OP,2021,NYIS
+66213.0,Costanza Solar,10907,Albany,42.460556,-74.069444,2.0,Solar Photovoltaic,OP,2020,NYIS
+66214.0,County Route 84 Solar,10967,Steuben,42.027157,-77.582546,5.0,Solar Photovoltaic,OP,2021,NYIS
+66215.0,Cafferty Hill Solar,10996,Broome,42.081843,-76.112885,5.0,Solar Photovoltaic,OP,2022,NYIS
+66217.0,Donati Solar,10968,Seneca,42.944796,-76.790886,2.0,Solar Photovoltaic,OP,2021,NYIS
+66218.0,Dubois Solar (Hybrid),10892,Ulster,41.598889,-74.285833,2.0,Solar Photovoltaic,OP,2020,NYIS
+66219.0,Dunkleman Solar,11008,Cattaraugus,42.35131,-78.848243,5.0,Solar Photovoltaic,OP,2023,NYIS
+66220.0,Finney Solar,10999,Montgomery,42.979546,-74.275082,5.0,Solar Photovoltaic,OP,2021,NYIS
+66221.0,Henrietta Solar,10972,Monroe,43.021133,-77.7068,5.0,Solar Photovoltaic,OP,2021,NYIS
+66222.0,Landau II Solar (Hybrid),10895,Ulster,41.900186,-74.024392,4.0,Solar Photovoltaic,OP,2021,NYIS
+66223.0,Lockenhurst Pond Solar,11000,Orange,41.33695,-74.55504,2.0,Solar Photovoltaic,OP,2022,NYIS
+66224.0,New Beginnings Solar,10890,Ulster,41.892424,-74.093599,2.0,Solar Photovoltaic,OP,2019,NYIS
+66225.0,NY70 Solar,10970,Livingston,42.552187,-77.967989,5.0,Solar Photovoltaic,OP,2021,NYIS
+66226.0,Reid Solar,10991,Oneida,43.205594,-75.382968,4.8,Solar Photovoltaic,OP,2021,NYIS
+66227.0,Reisender Solar,10886,Ulster,41.743505,-74.514615,2.0,Solar Photovoltaic,OP,2019,NYIS
+66228.0,Salt Point Solar (Hybrid),10888,Dutchess,41.741126,-73.882065,2.0,Solar Photovoltaic,OP,2021,NYIS
+66229.0,Sangolqui Solar,10975,Seneca,42.947327,-76.785599,2.0,Solar Photovoltaic,OP,2021,NYIS
+66230.0,State Route 14A Solar,10997,Yates,42.740808,-77.072419,5.0,Solar Photovoltaic,OP,2021,NYIS
+66231.0,State Highway 17B Solar,10988,Sullivan,41.682259,-74.876541,4.4,Solar Photovoltaic,OP,2021,NYIS
+66232.0,Svenski Solar (Hybrid),10894,Orange,41.535043,-74.322869,2.0,Solar Photovoltaic,OP,2022,NYIS
+66233.0,West Creek Solar,10995,Tioga,42.192559,-76.259349,5.0,Solar Photovoltaic,OP,2021,NYIS
+66234.0,Wheatland 2A Solar,10971,Monroe,43.017211,-77.798702,4.5,Solar Photovoltaic,OP,2021,NYIS
+66235.0,Wheatland 2B Solar,10961,Monroe,43.015501,-77.798643,4.5,Solar Photovoltaic,OP,2021,NYIS
+66236.0,Wildflower Way Solar,10982,Steuben,42.358381,-77.304225,5.0,Solar Photovoltaic,OP,2021,NYIS
+66256.0,Source Power Company - Aldrich,P4726,St. Lawrence,44.534193,-75.659472,5.0,Solar Photovoltaic,OP,2022,NYIS
+66258.0,Source Power NY II - Whaling,P5569,Oneida,43.191807,-75.185477,3.2,Solar Photovoltaic,OP,2023,NYIS
+66259.0,Source Power NY III - Medina II (CSG),P5646,Orleans,43.267674,-78.399539,5.0,Solar Photovoltaic,OP,2024,NYIS
+66272.0,RIC - Hanover (CSG),GEN1,Chautauqua,42.55,-79.15,5.0,Solar Photovoltaic,OP,2023,NYIS
+66273.0,Summit - Cicero,GEN1,Onondaga,43.2,-76.12,5.0,Solar Photovoltaic,OP,2024,NYIS
+66274.0,Summit - Lysander (CSG),GEN1,Onondaga,43.160278,-76.283611,3.5,Solar Photovoltaic,OP,2023,NYIS
+66275.0,Summit - Oswego,GEN1,Oswego,43.37,-76.464722,2.2,Solar Photovoltaic,OP,2023,NYIS
+66322.0,Summit - Scriba CSG,GEN1,Oswego,43.46,-76.464722,5.0,Solar Photovoltaic,OP,2023,NYIS
+66360.0,Ruler Solar Partners (CSG),RUSP1,St. Lawrence,44.656306,-75.497111,4.9,Solar Photovoltaic,OP,2023,NYIS
+66361.0,Royal Solar Partners (CSG),ROSP1,St. Lawrence,44.656306,-75.498444,5.0,Solar Photovoltaic,OP,2023,NYIS
+66380.0,"SCS Penfield One 010750 Penfield, LLC",83022,Monroe,43.134,-77.38,5.0,Solar Photovoltaic,OP,2022,NYIS
+66387.0,Oswego,NECA,Oswego,43.472383,-76.340961,5.0,Solar Photovoltaic,OP,2023,NYIS
+66388.0,NY USLE Rome-Oriskany,NECA,Oneida,43.193134,-75.427581,3.5,Solar Photovoltaic,OP,2023,NYIS
+66424.0,ELP Livingston Solar,LIV,Columbia,42.169,-73.76708,5.0,Solar Photovoltaic,OP,2023,NYIS
+66425.0,ELP Claverack Solar,CLAV,Columbia,42.248364,-73.738017,5.0,Solar Photovoltaic,OP,2023,NYIS
+66442.0,LSE Musca Solar,ORANG,Schuyler,42.30895,-77.0403,5.0,Solar Photovoltaic,OP,2022,NYIS
+66449.0,Northline Solar CSG,NORTH,Rensselaer,42.8691,-73.6153,4.0,Solar Photovoltaic,OP,2024,NYIS
+66473.0,LSE Pavo Solar,WALTO,Delaware,42.157714,-75.045106,2.3,Solar Photovoltaic,OP,2022,NYIS
+66481.0,Union Vale,UVALE,Dutchess,41.661,-73.742,1.7,Solar Photovoltaic,OP,2021,NYIS
+66482.0,Ghent (NY),GHENT,Columbia,42.277433,-73.709201,3.3,Solar Photovoltaic,OP,2021,NYIS
+66483.0,Stanford,SNFRD,Dutchess,41.865,-73.703,5.0,Solar Photovoltaic,OP,2021,NYIS
+66488.0,Davis Solar,10958,Orange,41.42453,-74.36029,2.0,Solar Photovoltaic,OP,2023,NYIS
+66489.0,Genesee - CCR Solar,10951,Monroe,43.31085,-77.78582,3.7,Solar Photovoltaic,OP,2022,NYIS
+66490.0,Bullitt Farm Solar,10998,Oneida,43.19567,-75.26312,5.0,Solar Photovoltaic,OP,2023,NYIS
+66501.0,Cicero Energy Storage 1 LLC,CCPV1,Onondaga,43.147448,-76.086772,5.0,Solar Photovoltaic,OP,2022,NYIS
+66503.0,Cicero Energy Storage 2 LLC,CCPV2,Onondaga,43.151269,-76.08879,5.0,Solar Photovoltaic,OP,2022,NYIS
+66504.0,Sunnyside 1 Solar,SS1,Schenectady,42.836275,-73.943953,5.0,Solar Photovoltaic,OP,2023,NYIS
+66522.0,Amherst Community Solar,18208,Erie,43.049931,-78.746052,5.0,Solar Photovoltaic,OP,2023,NYIS
+66524.0,Greene Community Solar,20738,Chenango,42.252071,-75.826416,5.0,Solar Photovoltaic,OP,2024,NYIS
+66526.0,NY Geneseo 3240 W Lake Rd Solar,19372,Livingston,42.847208,-77.718272,5.0,Solar Photovoltaic,OP,2024,NYIS
+66527.0,NY Grand Island 871 Whitehaven Rd Solar,21011,Erie,43.027501,-78.92066,5.0,Solar Photovoltaic,OP,2024,NYIS
+66528.0,NY Lancaster Gunnville Rd Site 1 Solar C,18237,Erie,42.952629,-78.61796,5.0,Solar Photovoltaic,OP,2024,NYIS
+66529.0,NY Lancaster Shisler Rd Site 2 Solar CSG,21013,St Lawrence,44.678878,-74.964072,5.2,Solar Photovoltaic,OP,2024,NYIS
+66530.0,NY Potsdam 28 Hamilton St. Solar,21013,St Lawrence,44.678878,-74.964072,4.4,Solar Photovoltaic,OP,2024,NYIS
+66583.0,Phillips Route 82 Solar LLC,05658,Dutchess,41.65,-73.75,5.0,Solar Photovoltaic,OP,2022,NYIS
+66586.0,DOCCS Greene,06945,Greene,42.35,-73.85,5.0,Solar Photovoltaic,OP,2022,NYIS
+66645.0,ELP - Kipp,KIPP,Columbia,42.20193,-73.78298,3.5,Solar Photovoltaic,OP,2023,NYIS
+66729.0,(3K) 59 Hetcheltown Rd,P3101,Schenectady,42.87657,-73.91048,1.4,Solar Photovoltaic,OP,2020,NYIS
+66731.0,Lightstar Renewables - Project 1001,P4450,Dutchess,41.7754,-73.8758,3.9,Solar Photovoltaic,OP,2021,NYIS
+66732.0,Lightstar Renewables - Project 1002,P4451,Dutchess,41.807744,-73.903508,2.1,Solar Photovoltaic,OP,2021,NYIS
+66734.0,Marathon Solar Farm LLC South,P4739,Madison,43.0832,-75.7351,4.4,Solar Photovoltaic,OP,2020,NYIS
+66749.0,Herrington Solar,HERR1,Rensselaer,42.873378,-73.622029,5.0,Solar Photovoltaic,OP,2021,NYIS
+66752.0,NY Van Buren II CSG,NGVB2,Onondaga,43.1,-76.294,3.0,Solar Photovoltaic,OP,2023,NYIS
+66762.0,SCH County - (1B) 10 Alice Wagner Way Ni,P3599,Schenectady,42.83447,-73.89808,3.5,Solar Photovoltaic,OP,2020,NYIS
+66763.0,SCH County - (1E) 398 Anthony St Schenec,P3600,Schenectady,42.841167,-73.916454,1.0,Solar Photovoltaic,OP,2020,NYIS
+66764.0,SCH - (2A) 156 Barhydt Rd Glenville,3954,Schenectady,42.85,-74.05,5.0,Solar Photovoltaic,OP,2021,NYIS
+66765.0,SCH County - (2B) 4982 Rynex Corners Rd,3595,Schenectady,42.884182,-74.080778,2.5,Solar Photovoltaic,OP,2020,NYIS
+66766.0,SCH County - (2D) 98 Cheltingham Ave Sch,P3608,Schenectady,42.791847,-73.95683,2.8,Solar Photovoltaic,OP,2020,NYIS
+66767.0,Source Power Company - Richland,4725,Oswego,43.511296,-76.119554,2.0,Solar Photovoltaic,OP,2021,NYIS
+66769.0,Source Power Company - Silver Creek,P4468,Chautauqua,42.517279,-79.221323,5.0,Solar Photovoltaic,OP,2021,NYIS
+66771.0,Marathon Solar Farm II LLC North,P4471,Madison,43.0832,-75.7351,2.9,Solar Photovoltaic,OP,2020,NYIS
+66777.0,Geneseo Solar,GEN1,Livingston,42.821,-77.72,5.0,Solar Photovoltaic,OP,2021,NYIS
+66812.0,BQ - Psychedelic Site CSG,P5570,Sullivan,41.71525,-74.79739,2.7,Solar Photovoltaic,OP,2022,NYIS
+66816.0,Glenville Solar (CSG),GLEN,Schenectady,42.83949,-73.93256,4.3,Solar Photovoltaic,OP,2023,NYIS
+66817.0,Copenhagen Solar,COPE,Lewis,43.863103,-75.719312,2.9,Solar Photovoltaic,OP,2024,NYIS
+66822.0,Carthage A,NECA,Jefferson,43.997512,-75.662935,5.0,Solar Photovoltaic,OP,2022,NYIS
+66823.0,Carthage B,NECB,Jefferson,43.990287,-75.661256,3.3,Solar Photovoltaic,OP,2022,NYIS
+66827.0,FFP - NY Burch CSG,P5651,Washington,43.32265,-73.46798,2.5,Solar Photovoltaic,OP,2024,NYIS
+66829.0,FFP - NY Werner CSG,P5650,Monroe,42.966063,-77.683867,5.0,Solar Photovoltaic,OP,2024,NYIS
+66835.0,Lightstar Renewables - Project 1004,P4453,Ulster,42.09927,-73.95526,3.5,Solar Photovoltaic,OP,2022,NYIS
+66836.0,Source Power II - Taft CSG,P5567,Onondaga,43.12198,-76.04235,3.7,Solar Photovoltaic,OP,2023,NYIS
+66846.0,Jogee Road Solar,JOGEE,Orange,41.399969,-74.502206,2.0,Solar Photovoltaic,OP,2022,NYIS
+66856.0,NY Sorrell Hill II CSG,NGSH2,Onondaga,43.14672,-76.35467,5.0,Solar Photovoltaic,OP,2024,NYIS
+66940.0,Halsey Valley,HAL20,Tioga,42.069077,-76.35324,5.0,Solar Photovoltaic,OP,2020,NYIS
+66947.0,Mannys Corners Solar 1 (CSG),MANNY,Montgomery,42.964,-74.1444,4.9,Solar Photovoltaic,OP,2024,NYIS
+67031.0,NY Hermon 1040 County Rd 21,20144,St. Lawrence,44.432,-75.21,2.2,Solar Photovoltaic,OP,2024,NYIS
+67034.0,NY SHERMAN 176 W MAIN ST - SL 1,21104,Chautauqua,42.156051,-79.601612,4.7,Solar Photovoltaic,OP,2024,NYIS
+67045.0,NY Avon I CSG,AVON1,Livingston,42.9002,-77.7295,5.0,Solar Photovoltaic,OP,2024,NYIS
+67113.0,SSC Oswego II LLC,GEN1,Oswego,43.470642,-76.471915,4.8,Solar Photovoltaic,OP,2024,NYIS
+67144.0,DG Moorman Creek,MMCK,Monroe,43.288,-77.865,4.4,Solar Photovoltaic,OP,2024,NYIS
+67181.0,Hunt Creek,HUN21,Tioga,42.053168,-76.320493,4.0,Solar Photovoltaic,OP,2021,NYIS
+67202.0,Avon Solar Farm LLC,AVON2,Monroe,42.927,-77.738,4.0,Solar Photovoltaic,OP,2021,NYIS
+67212.0,Sweden 1,SWED1,Monroe,43.17,-77.941,5.0,Solar Photovoltaic,OP,2021,NYIS
+67213.0,Hamlin 1,HAM1,Monroe,43.33,-77.965,4.5,Solar Photovoltaic,OP,2021,NYIS
+67227.0,NY Ridgeway I CSG,NYRWY,Orleans,43.281,-78.37,3.0,Solar Photovoltaic,OP,2023,NYIS
+67228.0,Broadway CDG Solar LLC,BROAD,Erie,42.904125,-78.714255,5.0,Solar Photovoltaic,OP,2023,NYIS
+67268.0,Source Power NY III - Remsen,P5648,Oneida,43.334376,-75.17795,3.5,Solar Photovoltaic,OP,2023,NYIS
+67271.0,The Source at White Plains (UBS),P3879,Westchester,41.028481,-73.759073,1.0,Solar Photovoltaic,OP,2022,NYIS
+67275.0,White Plains_RFP-Gedney Way Landfill,4072C,Westchester,41.008926,-73.757657,0.5,Solar Photovoltaic,OP,2022,NYIS
+67275.0,White Plains_RFP-Gedney Way Landfill,4072G,Westchester,41.008926,-73.757657,1.5,Solar Photovoltaic,OP,2022,NYIS
+67281.0,FFP - NY Urbanski,5653,Orange,41.330899,-74.40342,4.4,Solar Photovoltaic,OP,2024,NYIS
+67282.0,FFP - NY Varano,5654,Orange,41.375291,-74.392905,5.0,Solar Photovoltaic,OP,2024,NYIS
+67293.0,EDF - Liberty NY - Real Term CSG,71334,Westchester,41.066468,-73.822512,1.8,Solar Photovoltaic,OP,2023,NYIS
+67293.0,EDF - Liberty NY - Real Term CSG,71335,Westchester,41.066468,-73.822512,0.3,Solar Photovoltaic,OP,2023,NYIS
+67295.0,Source Power NY II - Locust 1,P5564,Cortland,42.613905,-76.16685,5.0,Solar Photovoltaic,OP,2023,NYIS
+67329.0,Sheesley (CSG),SC,St Lawrence,44.6059,-75.1589,4.4,Solar Photovoltaic,OP,2024,NYIS
+67335.0,Tiffany,SC,Chenango,42.58319,-75.47034,5.0,Solar Photovoltaic,OP,2022,NYIS
+67337.0,Ver Plank North (CSG),SC,Onondaga,43.201165,-76.176087,4.0,Solar Photovoltaic,OP,2024,NYIS
+67338.0,Ver Plank South (CSG),SC,Onondaga,43.194602,-76.17513,5.0,Solar Photovoltaic,OP,2024,NYIS
+67345.0,Smith Creek,SMI21,Tioga,42.053168,-76.320493,3.8,Solar Photovoltaic,OP,2021,NYIS
+67403.0,Altamont (NY) (CSG),SC,Albany,42.678742,-73.947194,2.3,Solar Photovoltaic,OP,2024,NYIS
+67406.0,Comfort CSG,SC,Erie,43.0169,-78.9779,4.0,Solar Photovoltaic,OP,2024,NYIS
+67407.0,Clemons Road Solar,CLEM,Onondaga,43.063039,-76.010965,2.8,Solar Photovoltaic,OP,2024,ISNE
+67408.0,Pike Road Solar (NY),PIKE,Genesee,42.96881,-78.210037,3.0,Solar Photovoltaic,OP,2024,ISNE
+67409.0,Alexander Road Solar,ALEX,Genesee,42.973941,-78.206068,1.6,Solar Photovoltaic,OP,2024,ISNE
+67414.0,Princetown Solar 1,PRNC1,Schenectady,42.78,-74.07,5.0,Solar Photovoltaic,OP,2024,NYIS
+67426.0,Wolcott Hill (Camden) (CSG),SC,Oneida,43.350259,-75.729243,5.0,Solar Photovoltaic,OP,2024,NYIS
+67440.0,Peterboro (CSG),SC,Oneida,43.070743,-75.545291,4.0,Solar Photovoltaic,OP,2024,NYIS
+67456.0,700 Binnewater,7BPV1,Ulster,41.849012,-74.089932,1.1,Solar Photovoltaic,OP,2022,ISNE
+67468.0,"GSPP 7024 Fox Rd, LLC",FOX,Oneida,43.200586,-75.258084,5.0,Solar Photovoltaic,OP,2023,ISNE
+67470.0,"GSPP 4643 Twelve Corners Road, LLC",TWEL,Cayuga,42.841631,-76.445347,4.7,Solar Photovoltaic,OP,2023,ISNE
+67471.0,"GSPP 126 Little Bow Rd N, LLC",LBN,St. Lawrence,44.344964,-75.486061,4.8,Solar Photovoltaic,OP,2023,ISNE
+67472.0,"GSPP 126 Little Bow Rd S, LLC",LBS,St. Lawrence,44.344964,-75.486061,5.0,Solar Photovoltaic,OP,2023,ISNE
+67475.0,"Saratoga Solar III, LLC",SARA3,Saratoga,43.07072,-73.898068,3.5,Solar Photovoltaic,OP,2023,ISNE
+67476.0,"Saratoga Solar IV, LLC",SARA4,Saratoga,43.068154,-73.920141,3.5,Solar Photovoltaic,OP,2023,ISNE
+67479.0,Portland SP,PORT1,Chautauqua,42.39101,-79.42755,2.5,Solar Photovoltaic,OP,2023,NYIS
+67480.0,NY Finchville Tpke CSG,FCHVL,Orange,41.449394,-74.554782,1.8,Solar Photovoltaic,OP,2024,NYIS
+67481.0,NY Lower Road II CSG,LWRD2,Orange,41.338012,-74.481046,2.0,Solar Photovoltaic,OP,2023,NYIS
+67482.0,NY Lower Road III CSG,LWRD3,Orange,41.333041,-74.484514,2.0,Solar Photovoltaic,OP,2023,NYIS
+67550.0,State Route 5,SR5,Oneida,43.070724,-75.4944,4.4,Solar Photovoltaic,OP,2023,NYIS
+67571.0,NY Newark St Rt 31 - Environomics S1,20880,Ontario,43.03497,-77.148381,5.0,Solar Photovoltaic,OP,2024,NYIS
+67574.0,Sunnyside 2 Solar,SS2,Schenectady,42.836275,-73.943953,5.0,Solar Photovoltaic,OP,2023,NYIS
+67582.0,Collins (NY) (CSG),COLLI,Oneida,43.27,-75.19,5.0,Solar Photovoltaic,OP,2024,NYIS
+67585.0,Ny Frankfort Bleecker St - Frankfort -NG,21015,Herkimer,43.088444,-75.176988,4.0,Solar Photovoltaic,OP,2024,NYIS
+67586.0,NY Newark ST RT 31 - Environomics S2,20654,Ontario,43.033056,-77.146389,4.0,Solar Photovoltaic,OP,2024,NYIS
+67592.0,NSF Aurelius Site 1 LLC,PV1,Cayuga,42.92211,-76.60788,5.0,Solar Photovoltaic,OP,2024,NYIS
+67593.0,"NSF Aurelius Site 2, LLC",PV1,Cayuga,42.92269,-76.60255,5.0,Solar Photovoltaic,OP,2024,NYIS
+67594.0,NSF Aurelius Site 3 LLC,PV1,Cayuga,42.91942,-76.60775,5.0,Solar Photovoltaic,OP,2024,NYIS
+67595.0,NSF Aurelius Site 4 LLC,PV1,Cayuga,42.91947,-76.60423,4.9,Solar Photovoltaic,OP,2024,NYIS
+67599.0,NY ALTONA MAYOTT - Environomics P1,20641,Clinton,44.878445,-73.583492,5.0,Solar Photovoltaic,OP,2024,NYIS
+67600.0,NY ALTONA MAYOTT - Environomics P2,20641,Clinton,44.878445,-73.583492,5.0,Solar Photovoltaic,OP,2024,NYIS
+67604.0,NSF Torrey Site 3,TRY03,Yates,42.659,-76.927,5.0,Solar Photovoltaic,OP,2023,NYIS
+67605.0,NSF Torrey Site 2,TRY02,Yates,42.659,-76.931,5.0,Solar Photovoltaic,OP,2023,NYIS
+67606.0,NSF Torrey Site 1,TRY01,Yates,42.659,-76.935,4.6,Solar Photovoltaic,OP,2023,NYIS
+67611.0,Glen Mary 1,10993,Tioga,42.108829,-76.297208,4.9,Solar Photovoltaic,OP,2021,NYIS
+67612.0,Glen Mary 2,10994,Tioga,42.106054,-76.290717,2.2,Solar Photovoltaic,OP,2021,NYIS
+67613.0,Barone,11034,Sullivan,41.596415,-74.45664,3.0,Solar Photovoltaic,OP,2024,NYIS
+67615.0,"Krumkill Road Solar North, LLC",11086,Albany,42.66627,-73.856466,5.0,Solar Photovoltaic,OP,2024,NYIS
+67616.0,"Krumkill Road Solar South, LLC",11087,Albany,42.66627,-73.856466,3.8,Solar Photovoltaic,OP,2024,NYIS
+67617.0,Spencer (NY),11017,Tioga,42.233962,-76.369628,4.9,Solar Photovoltaic,OP,2024,NYIS
+67618.0,Eddy,11054,Wayne,43.203233,-77.206878,2.3,Solar Photovoltaic,OP,2023,NYIS
+67619.0,Janiak,10898,Orange,41.409555,-74.587813,2.0,Solar Photovoltaic,OP,2023,NYIS
+67620.0,Ridgeway 1,11018,Monroe,43.189133,-77.742717,5.0,Solar Photovoltaic,OP,2023,NYIS
+67621.0,Rivard 2,11012,Chautauqua,42.50275,-79.281723,4.6,Solar Photovoltaic,OP,2023,NYIS
+67631.0,County Route 11B,10983,Clinton,44.939563,-73.67152,4.9,Solar Photovoltaic,OP,2024,NYIS
+67632.0,Acer,ACER,St Lawrence,44.756501,-75.1604,4.3,Solar Photovoltaic,OP,2024,NYIS
+67634.0,Buck Run,BUCKR,Monroe,43.282648,-77.965811,5.0,Solar Photovoltaic,OP,2024,NYIS
+67638.0,Grass River,GRASS,St Lawrence,44.623428,-75.203352,4.1,Solar Photovoltaic,OP,2024,NYIS
+67640.0,Meltwater,MELTW,Onondaga,43.068278,-75.947436,5.0,Solar Photovoltaic,OP,2024,NYIS
+67641.0,Niagara (NY),NIAGA,Niagara,43.295921,-78.825867,4.2,Solar Photovoltaic,OP,2024,NYIS
+67745.0,White Plains RFP Shapham Place,4075,Westchester,41.021546,-73.758915,1.2,Solar Photovoltaic,OP,2022,NYIS
+67908.0,Richmond (NY),RICH1,Ontario,42.792865,-77.526792,5.0,Solar Photovoltaic,OP,2023,NYIS
+67911.0,Catskill Solar,CATSK,Columbia,42.27,-73.748,5.0,Solar Photovoltaic,OP,2023,NYIS
+67912.0,Claverack Creek Solar,CLAVE,Columbia,42.271,-73.75,5.0,Solar Photovoltaic,OP,2024,NYIS
+67932.0,Bodhi Solar,BODHI,Monroe,43.012,-77.874,5.0,Solar Photovoltaic,OP,2024,NYIS
+68020.0,Independence East,IE,Allegany,42.073301,-77.79781,5.0,Solar Photovoltaic,OP,2024,NYIS
+68067.0,Niagara Solar Project,NIAGA,Niagara,43.208,-78.904,5.0,Solar Photovoltaic,OP,2024,NYIS
+68091.0,Independence Road (CSG),IR,Allegany,42.089058,-77.822683,5.0,Solar Photovoltaic,OP,2024,NYIS
+68092.0,Ruhlmann A (CSG),RA,Niagara,43.151901,-78.702465,5.0,Solar Photovoltaic,OP,2024,NYIS
+68115.0,Ticon Solar,TICON,Essex,43.868,-73.44,5.0,Solar Photovoltaic,OP,2024,NYIS
+68152.0,Rush Solar,RUSH1,Monroe,42.947,-77.698,5.0,Solar Photovoltaic,OP,2024,NYIS
+68154.0,Guilderland Solar,GDRLD,Albany,42.716554,-74.022635,5.0,Solar Photovoltaic,OP,2023,NYIS
+68158.0,Enfield Solar Site 2,ENFI2,Tompkins,42.445,-76.608,5.0,Solar Photovoltaic,OP,2024,NYIS
+68159.0,Enfield Solar Site 3,ENFI3,Tompkins,42.446,-76.603,5.0,Solar Photovoltaic,OP,2024,NYIS
+68160.0,Enfield Solar Site 1,ENFI1,Tompkins,42.448,-76.609,5.0,Solar Photovoltaic,OP,2024,NYIS
+68162.0,Coventry Solar Site 2,COVE2,Broome,42.315,-75.671,5.0,Solar Photovoltaic,OP,2024,NYIS
+68163.0,Coventry Solar Site 3,COVE3,Broome,42.18,-75.402,5.0,Solar Photovoltaic,OP,2024,NYIS
+68206.0,CAMILLUS B (CSG),CAM B,Onondaga,43.07487,-76.31272,5.0,Solar Photovoltaic,OP,2024,NYIS
+68207.0,CAMILLUS A (CSG),CAM A,Onondaga,43.073458,-76.314106,5.0,Solar Photovoltaic,OP,2024,NYIS
+68274.0,Morris Ridge Solar,MOR01,Livingston,42.663093,-77.890835,177.0,Solar Photovoltaic,OP,2024,NYIS
+68387.0,Warrior Solar Partners,WASP1,Herkimer,43.072972,-75.126889,5.0,Solar Photovoltaic,OP,2023,NYIS
+68399.0,TJA-NY- Dix Solar Farm LLC,DIXNY,Schuyler,42.3085,-76.891,3.9,Solar Photovoltaic,OP,2024,NYIS
+68400.0,"TJA-NY-Chestnut Ridge Rd Moravia, LLC",CHEST,Cayuga,42.72657,-76.39461,3.6,Solar Photovoltaic,OP,2024,NYIS
+68401.0,"TJA-NY-1454 CR 15 Oswegatchie, LLC",OSWEG,St Lawrence,44.60128,-75.35402,4.9,Solar Photovoltaic,OP,2024,NYIS
+68402.0,"TJA-NY-Cohocton Solar Farm, LLC",COHOC,Steuben,42.545103,-77.456851,5.0,Solar Photovoltaic,OP,2024,NYIS
+68403.0,TJA-NY-Canton Solar Farm LLC,CANTO,St Lawrence,44.601551,-75.131559,4.9,Solar Photovoltaic,OP,2024,NYIS
+68404.0,"TJA-NY-Barrett Rd New Woodstock, LLC",BARNY,Madison,42.830348,-75.827099,4.7,Solar Photovoltaic,OP,2024,NYIS
+68405.0,Caledonia CSG LLC,CALED,Livingston,42.9763,-77.8724,5.0,Solar Photovoltaic,OP,2024,NYIS
+68407.0,Martinsburg CSG LLC,MARTI,Lewis,43.7279,-75.4697,2.2,Solar Photovoltaic,OP,2024,NYIS
+68419.0,Richland North,RN,Oswego,43.52434,-76.158503,5.0,Solar Photovoltaic,OP,2024,NYIS
+68420.0,Richland South,RS,Oswego,43.520882,-76.157182,5.0,Solar Photovoltaic,OP,2024,NYIS
+68421.0,Ellisburg,EB,Jefferson,43.798261,-76.082539,5.0,Solar Photovoltaic,OP,2024,NYIS
+68628.0,Eden Dowmont Road,EDDOW,Washington,43.270625,-73.524084,5.0,Solar Photovoltaic,OP,2024,NYIS
+68629.0,Eden Hidden Meadows,EHMEA,Washington,43.282021,-73.522672,5.0,Solar Photovoltaic,OP,2024,NYIS
+68631.0,CES Heuvelton,HEUVE,St Lawrence,44.620618,-75.444907,5.0,Solar Photovoltaic,OP,2024,NYIS
+68636.0,GSPP 409 Ferris Road,FERR,St. Lawrence,44.734853,-74.64869,5.0,Solar Photovoltaic,OP,2024,ISNE
+68637.0,GSPP 641 Ferris Road East,FERRE,St. Lawrence,44.755047,-74.650548,4.0,Solar Photovoltaic,OP,2024,ISNE
+68638.0,GSPP 641 Ferris Road West,FERRW,St. Lawrence,44.751923,-74.65717,2.5,Solar Photovoltaic,OP,2024,ISNE
+68641.0,Randall Road Solar I,RAND1,Saratoga,42.975944,-73.927233,3.4,Solar Photovoltaic,OP,2024,ISNE
+68642.0,Randall Road Solar II,RAND2,Saratoga,42.975947,-73.927191,2.3,Solar Photovoltaic,OP,2024,ISNE
+68643.0,Swaggertown Solar I,SWAG1,Schenectady,42.895595,-73.958461,2.8,Solar Photovoltaic,OP,2024,ISNE
+68645.0,Belair,121,Rensselaer,42.75382,-73.64631,4.0,Solar Photovoltaic,OP,2024,NYIS
+68646.0,Kilmer,171,Niagara,43.19049,-78.88973,5.0,Solar Photovoltaic,OP,2024,NYIS
+68647.0,Manlius East,116,Onondaga,43.01548,-75.96947,5.0,Solar Photovoltaic,OP,2024,NYIS
+68648.0,Manlius North,115,Onondaga,43.01061,-75.96538,1.4,Solar Photovoltaic,OP,2024,NYIS
+68649.0,Manlius West,117,Onondaga,43.0112,-75.96874,5.0,Solar Photovoltaic,OP,2024,NYIS
+68650.0,Mantisi,166,Monroe,43.19415,-77.98454,5.0,Solar Photovoltaic,OP,2024,NYIS
+68653.0,Quaker,122,Warren,43.32288,-73.61235,5.0,Solar Photovoltaic,OP,2024,NYIS
+68654.0,Rak 1,169,Chautauqua,42.44156,-79.29234,5.0,Solar Photovoltaic,OP,2023,NYIS
+68659.0,Wheatfield,100,Niagara,43.12266,-78.85095,4.0,Solar Photovoltaic,OP,2023,NYIS
+68660.0,Wolf,165,Monroe,43.19827,-77.98811,3.6,Solar Photovoltaic,OP,2024,NYIS
+68664.0,Swaggertown Solar II,SWAG2,Schenectady,42.895595,-73.958461,5.0,Solar Photovoltaic,OP,2024,ISNE
+68675.0,Maple North 1,4611,Fulton,42.986,-74.183,4.1,Solar Photovoltaic,OP,2024,NYIS
+68676.0,Maple North 2,46112,Fulton,42.986,-74.183,3.6,Solar Photovoltaic,OP,2024,NYIS
+68677.0,Maple West,4672,Fulton,42.984025,-74.200832,5.0,Solar Photovoltaic,OP,2024,NYIS
+68704.0,Manilus,MAN1,Onondaga,43.045646,-76.024893,4.5,Solar Photovoltaic,OP,2023,NYIS
+68746.0,North Troy,10648,Rensselaer,42.775263,-73.653295,4.0,Solar Photovoltaic,OP,2024,NYIS
+68764.0,Rak 2,170,Chautauqua,42.4367,-79.29715,3.5,Solar Photovoltaic,OP,2023,NYIS
+68804.0,Rivard 1,11011,Chautauqua,42.50275,-79.281723,4.6,Solar Photovoltaic,OP,2023,NYIS
+68806.0,Ridgeway 2,11027,Monroe,43.189134,-77.742717,2.5,Solar Photovoltaic,OP,2023,NYIS
+68807.0,Catskill,11021,Broome,42.337823,-75.903449,3.8,Solar Photovoltaic,OP,2023,NYIS
+68946.0,Pivot Solar NY 1,PNY1,Essex,43.861617,-73.445896,5.0,Solar Photovoltaic,OP,2024,NYIS
+68947.0,Pivot Solar NY 3,PNY3,Cattaraugus,42.485672,-78.499162,2.3,Solar Photovoltaic,OP,2024,NYIS
+68948.0,Pivot Solar NY 6,PNY6,Essex,43.856722,-73.4494,5.0,Solar Photovoltaic,OP,2024,NYIS
+68949.0,Pivot Solar NY 9,PNY9,Essex,43.878473,-73.448543,5.0,Solar Photovoltaic,OP,2024,NYIS
+68962.0,Pivot Solar NY 4,PNY4,Oneida,43.140915,-75.556675,2.4,Solar Photovoltaic,OP,2024,NYIS
+68965.0,Pivot Solar NY 5,PNY5,Essex,43.897977,-73.421355,2.5,Solar Photovoltaic,OP,2024,NYIS
+69065.0,Burns Road Solar,BURN,Erie,42.668272,-79.002447,3.2,Solar Photovoltaic,OP,2024,NYIS
+69067.0,Pivot Niagara Solar,NIAG,Niagara,43.132801,-79.035449,3.0,Solar Photovoltaic,OP,2024,NYIS
+69083.0,Spring Street Road,SP341,Cayuga,42.84676,-76.67594,5.0,Solar Photovoltaic,OP,2023,NYIS
+69089.0,Angell Road,ANGEL,Chautauqua,42.5226,-79.1345,2.2,Solar Photovoltaic,OP,2024,NYIS
+69090.0,Hanover Road,HANOV,Chautauqua,42.5315,-79.1477,2.7,Solar Photovoltaic,OP,2024,NYIS
+69091.0,Kirkland,KIRK,Oneida,43.0591,-73.3738,4.2,Solar Photovoltaic,OP,2024,NYIS
+69092.0,Arcadia,ARCAD,Wayne,43.1519,-77.08037,3.0,Solar Photovoltaic,OP,2024,NYIS
+69093.0,Harris,HARIS,Sullivan,41.77168,-74.73596,2.0,Solar Photovoltaic,OP, ,NYIS
+69094.0,State HWY 17C,ST17C,Tioga,42.06674,-76.33938,5.0,Solar Photovoltaic,OP,2024,NYIS
+69095.0,Day Hollow,DAYH,Tioga,42.1129,-76.17569,5.0,Solar Photovoltaic,OP,2024,NYIS
+69096.0,Jericho,JERIC,Allegany,42.24172,-77.78193,5.0,Solar Photovoltaic,OP,2024,NYIS

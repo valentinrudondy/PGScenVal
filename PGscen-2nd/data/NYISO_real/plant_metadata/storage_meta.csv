@@ -1,0 +1,10 @@
+site_id,site_name,zone,county,town,latitude,longitude,nameplate_mw,operating_year,goldbook_ptid,eia_plant_id,uswtdb_project_name,latlon_source,match_quality,eia_match_score,uswtdb_match_score
+storage_323794,Orangeville Energy Storage LLC Orangeville ESR,A,Wyoming,Orangeville,42.738686,-78.239731,20.0,2021,323794,64686.0,,eia860,2,1.004,
+storage_323823,Galt Power Inc. KCE NY 6,A,Erie,Hamburg,42.962412,-73.746506,20.0,2023,323823,62147.0,,eia860,2,0.75,
+storage_323781,Niagara Mohawk Power Corp. East Pulaski ESR,C,Oswego,Oswego,43.546613,-76.10403,2.0,2019,323781,62981.0,,eia860,2,0.925,
+storage_323785,New York Power Authority North Country ESR,D,Franklin,Chateaugay,44.887905,-74.11828,20.0,2023,323785,63238.0,,eia860,2,0.586,
+storage_323632,"Stephentown Spindle, LLC Beacon LESR",F,Rensselaer,Stephentown,42.556501,-73.377477,20.0,2010,323632,57710.0,,eia860,2,1.06,
+storage_323755,Galt Power Inc. KCE NY 1,F,Saratoga,Stillwater,42.962412,-73.746506,20.0,2019,323755,62147.0,,eia860,2,1.3,
+storage_323819,Orange and Rockland Pomona ESR,G,Rockland,Pomona,,,3.0,2023,323819,,,none,1,0.488,
+storage_5066,"LI Energy Storage System, LLC East Hampton Battery Storage",K,Suffolk,East Hampton,40.961751,-72.209858,5.0,2018,5066,62733.0,,eia860,2,0.906,
+storage_5068,"LI Energy Storage System, LLC Montauk Battery Storage",K,Suffolk,Montauk,41.03988,-71.964359,5.0,2018,5068,62734.0,,eia860,2,0.586,

@@ -1,0 +1,9 @@
+**/__pycache__/**
+.idea/
+*egg-info
+.DS_Store
+build/
+.ipynb_checkpoints
+__scratch__/
+data/cache/hrrr/
+

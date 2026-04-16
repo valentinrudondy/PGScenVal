@@ -1,0 +1,49 @@
+eia_plant_id,plant_name,generator_id,county,latitude,longitude,nameplate_mw,technology,status,operating_year,ba_code
+57710.0,Stephentown Spindle,SRS1,Rensselaer,42.556501,-73.377477,20.0,Flywheels,OP,2011,NYIS
+61739.0,Lockheed Martin RMS Syracuse,SYR1,Onondaga,43.109574,-76.189224,1.0,Batteries,OS,2017,NYIS
+62147.0,KCE NY 1,KNY1,Saratoga,42.962412,-73.746506,20.0,Batteries,OP,2019,NYIS
+62733.0,East Hampton Energy Storage Center,BEH,Suffolk,40.961751,-72.209858,5.0,Batteries,OP,2018,NYIS
+62734.0,Montauk Energy Storage Center,BME,Suffolk,41.03988,-71.964359,5.0,Batteries,OP,2019,NYIS
+62839.0,98th Street Battery Storage Station,ESS98,Queens,40.679137,-73.840187,2.0,Batteries,OP,2021,NYIS
+62981.0,East Pulaski BESS,BESS,Oswego,43.546613,-76.10403,2.0,Batteries,OP,2018,NYIS
+62999.0,"Finchville Solar, LLC Hybrid CSG",BESS,Orange,41.4565,-74.5465,3.0,Batteries,OP,2020,NYIS
+63000.0,"RT 52 Walden Solar 1, LLC Hybrid",BESS,Orange,41.5841,-74.2163,4.0,Batteries,OP,2020,NYIS
+63238.0,Willis Battery Storage,WB1,Franklin,44.887905,-74.11828,20.0,Batteries,OP,2023,NYIS
+63337.0,"Lansing Renewables, LLC",14320,Tompkins,42.59251,-76.56563,3.0,Batteries,OP,2022,NYIS
+63339.0,"Hales Mills Solar, LLC",09751,Fulton,43.01827,-74.32918,3.0,Batteries,OP,2024,NYIS
+63340.0,"Owlville Creek Solar 2, LLC",20660,Madison,43.078888,-75.77222,3.0,Batteries,OP,2022,NYIS
+63341.0,"Owlville Creek Solar, LLC",20660,Madison,43.08748,-75.77959,3.0,Batteries,OP,2022,NYIS
+63415.0,"Middletown Solar 1, LLC Hybrid CSG",BATT,Orange,41.3902,-74.5199,1.6,Batteries,OP,2020,NYIS
+63585.0,NY3 Battery,NY3,Rockland,41.18512,-74.07467,3.0,Batteries,OP,2020,NYIS
+63774.0,Mount Kisco Landfill Solar & Storage CSG,KISCB,Westchester,41.195478,-73.73606,0.7,Batteries,OP,2020,NYIS
+64084.0,Blanchard Road 1 Community Solar,BR1S,Jefferson,44.25479,-76.01178,5.0,Batteries,OP,2019,NYIS
+64087.0,Blanchard Road 2 Community Solar,BR2S,Jefferson,44.25479,-76.01178,5.0,Batteries,OP,2019,NYIS
+64090.0,NYS Rte 12 Community Solar,NR12S,Jefferson,44.25479,-76.01178,5.0,Batteries,OP,2019,NYIS
+64092.0,Great Lakes Seaway Community Solar,GLSS,Jefferson,44.25479,-76.01178,5.0,Batteries,OP,2019,NYIS
+64374.0,Norwich Solar and Energy Storage CSG,NRWCB,Chenango,42.552861,-75.529572,5.0,Batteries,OP,2021,NYIS
+64442.0,Mt Pleasant Community Center,MPES,Westchester,41.09999,-73.77155,0.7,Batteries,OP,2022,NYIS
+64453.0,Volney II,VOLES,Oswego,43.341,-76.354,3.0,Batteries,OP,2021,NYIS
+64686.0,Orangeville Storage,65002,Wyoming,42.738686,-78.239731,24.7,Batteries,OP,2022,NYIS
+64719.0,Glenmere Lake,BESS,Orange,41.3698,-74.366,2.0,Batteries,OP,2021,ISNE
+65035.0,Fox Hills Battery Station,ESSFH,Richmond,40.61081,-74.07717,7.5,Batteries,OP,2023,NYIS
+65217.0,South Goshen Community Solar,BESS,Orange,41.3927,-74.3478,4.5,Batteries,OP,2021,NYIS
+65692.0,NY6 Battery,NY6,Erie,42.804294,-78.827618,20.0,Batteries,OP,2023,NYIS
+65815.0,NY - Mines Press,MPBS,Westchester,41.27803,-73.86612,1.0,Batteries,OP,2022,NYIS
+66218.0,Dubois Solar (Hybrid),BAT,Ulster,41.598889,-74.285833,2.0,Batteries,OP,2020,NYIS
+66222.0,Landau II Solar (Hybrid),BAT,Ulster,41.900186,-74.024392,4.0,Batteries,OP,2021,NYIS
+66228.0,Salt Point Solar (Hybrid),BAT,Dutchess,41.741126,-73.882065,2.0,Batteries,OP,2021,NYIS
+66232.0,Svenski Solar (Hybrid),BAT,Orange,41.535043,-74.322869,2.0,Batteries,OP,2022,NYIS
+66488.0,Davis Solar,BAT,Orange,41.42453,-74.36029,2.0,Batteries,OP,2023,NYIS
+66501.0,Cicero Energy Storage 1 LLC,CCBA1,Onondaga,43.147448,-76.086772,5.0,Batteries,OP,2022,NYIS
+66503.0,Cicero Energy Storage 2 LLC,CCBA2,Onondaga,43.151269,-76.08879,5.0,Batteries,OP,2022,NYIS
+66764.0,SCH - (2A) 156 Barhydt Rd Glenville,3954B,Schenectady,42.85,-74.05,2.5,Batteries,OP,2021,NYIS
+66765.0,SCH County - (2B) 4982 Rynex Corners Rd,3595B,Schenectady,42.884182,-74.080778,2.5,Batteries,OP,2020,NYIS
+66767.0,Source Power Company - Richland,4725B,Oswego,43.511296,-76.119554,2.5,Batteries,OP,2021,NYIS
+67275.0,White Plains_RFP-Gedney Way Landfill,4072B,Westchester,41.008926,-73.757657,1.3,Batteries,OP,2022,NYIS
+67281.0,FFP - NY Urbanski,5653B,Orange,41.330899,-74.40342,4.0,Batteries,OP,2024,NYIS
+67282.0,FFP - NY Varano,5654B,Orange,41.375291,-74.392905,5.0,Batteries,OP,2024,NYIS
+67745.0,White Plains RFP Shapham Place,4075B,Westchester,41.021546,-73.758915,5.0,Batteries,OP,2022,NYIS
+67883.0,"Gabby Giffords Clean Energy, LLC",ND003,Richmond,40.552574,-74.150883,5.0,Batteries,OP,2024,NYIS
+67883.0,"Gabby Giffords Clean Energy, LLC",ND004,Richmond,40.552574,-74.150883,3.0,Batteries,OP,2024,NYIS
+67886.0,Gunther,ND001,Bronx,40.86451,-73.83598,1.5,Batteries,OP,2023,NYIS
+67886.0,Gunther,ND002,Bronx,40.86451,-73.83598,1.5,Batteries,OP,2023,NYIS
