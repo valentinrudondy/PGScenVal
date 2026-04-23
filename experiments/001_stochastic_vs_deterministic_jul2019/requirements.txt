@@ -1,0 +1,15 @@
+# Pinned dependencies for experiment 001 reproducibility
+# Environment: conda env vatic-test (Python 3.11.15)
+# Solver: CBC (coin-or-cbc via conda-forge)
+
+Vatic==0.4.1a1
+pgscen==0.2.1a2
+gridx-egret==0.1.0
+pyomo==6.10.0
+numpy==1.26.4
+pandas==2.1.4
+scipy==1.17.1
+matplotlib==3.10.8
+dill==0.4.1
+PyYAML==6.0.3
+pyarrow>=14.0

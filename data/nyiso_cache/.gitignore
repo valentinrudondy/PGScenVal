@@ -1,0 +1,4 @@
+# NYISO cached data files — large and re-downloadable.
+# Do not commit to git.
+*
+!.gitignore

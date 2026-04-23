@@ -1,0 +1,58 @@
+# Experiment 001: Stochastic vs Deterministic UC — July 2019 peak week
+# Research question: How much does accounting for renewable/load uncertainty
+# change expected production cost and commitment behavior on NYISO?
+
+experiment:
+  name: "001_stochastic_vs_deterministic_jul2019"
+  description: "Cost of uncertainty: 100 PGscen scenarios vs. deterministic forecast"
+
+dates:
+  start: "2019-07-15"
+  end: "2019-07-21"       # inclusive — 7 target days
+  warmup: "2019-07-14"    # 1-day warmup (excluded from analysis)
+  warmup_smoke: "2019-07-17"  # warmup for smoke test
+  year: 2019
+
+scenarios:
+  count: 100
+  smoke_test_count: 5
+  smoke_test_day: "2019-07-18"
+  random_seed: 42
+
+pgscen:
+  # Path to PGscen-2nd data directory (HRRR-derived wind/solar/load)
+  data_dir: "../../PGscen-2nd/data"
+  # PGscen uses data/NYISO/ for load and data/NYISO_real/ for wind/solar
+  asset_rho: 0.05
+  time_rho: 0.05
+  nearest_days: 50
+  pca_components: 0.9   # for solar: fraction of variance explained
+
+vatic:
+  pgscen_dir: "../../PGscen-2nd/data/NYISO_real"
+  use_reduced_network: true
+  solver: "cbc"
+  solver_options:
+    seconds: 600          # 10-min timeout per solve
+  run_lmps: true
+  output_detail: 2        # full detail: thermal, bus, line
+  mipgap: 0.01
+  reserve_factor: 0.05
+  verbosity: 0            # quiet for batch runs
+  ruc_horizon: 48
+  sced_horizon: 4
+
+parallelism:
+  # Number of parallel workers for stochastic runs
+  # null = os.cpu_count() - 1
+  max_workers: null
+
+paths:
+  results_dir: "results"
+  scenarios_dir: "results/scenarios"
+  deterministic_dir: "results/deterministic"
+  stochastic_dir: "results/stochastic"
+  figures_dir: "results/figures"
+  log_file: "results/run.log"
+
+conda_env: "vatic-test"

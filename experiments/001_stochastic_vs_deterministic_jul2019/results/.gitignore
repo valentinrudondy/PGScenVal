@@ -1,0 +1,3 @@
+# Ignore all experiment outputs (large binary files)
+*
+!.gitignore
