@@ -1,0 +1,435 @@
+2026-04-23 15:22:23,112 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 15:22:23,112 [INFO] Warmup: enabled
+2026-04-23 15:22:23,121 [INFO] === Year 2022 (warmup): 2022-09-19 → 2022-09-20 → 2022-09-21 → 2022-09-22 ===
+2026-04-23 15:22:23,252 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 15:22:25,646 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 15:22:27,446 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 15:22:27,446 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 15:22:27,446 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 15:22:33,643 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 15:22:33,687 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 15:25:51,209 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 15:25:51,209 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 15:25:51,501 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 15:25:51,502 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 15:25:51,557 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 15:25:56,061 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 15:26:08,137 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 15:37:59,670 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 15:46:29,259 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 15:51:52,921 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:58)
+2026-04-23 15:53:48,139 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 15:53:48,139 [INFO] Warmup: enabled
+2026-04-23 15:53:48,144 [INFO] === Year 2020 (warmup): 2020-09-21 → 2020-09-22 → 2020-09-23 → 2020-09-24 ===
+2026-04-23 15:53:50,246 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 15:53:52,019 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 15:53:52,020 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 15:53:52,020 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 15:53:57,930 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 15:53:57,972 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 15:55:25,005 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 15:55:25,006 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 15:55:25,066 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 15:55:25,067 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 15:55:25,119 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 15:55:40,592 [INFO]   WARMUP 2020-09-21: cost=$2416233, LS=0 MWh, RS=3016 MWh
+2026-04-23 15:57:34,579 [INFO]   Day 1 2020-09-22: cost=$2491570, LS=0 MWh, RS=123 MWh
+2026-04-23 16:00:25,636 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 16:00:36,477 [INFO]   Day 2 2020-09-23: cost=$2518976, LS=0 MWh, RS=1793 MWh
+2026-04-23 16:04:07,749 [INFO]   Day 3 2020-09-24: cost=$2977140, LS=0 MWh, RS=0 MWh
+2026-04-23 16:04:07,753 [INFO]   TOTAL 2020: cost=$7987687, LS=0 MWh, RS=1917 MWh, time=620s
+2026-04-23 16:04:22,413 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 16:04:22,413 [INFO] Warmup: enabled
+2026-04-23 16:04:22,422 [INFO] === Year 2023 (warmup): 2023-09-18 → 2023-09-19 → 2023-09-20 → 2023-09-21 ===
+2026-04-23 16:04:22,521 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 16:04:24,652 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 16:04:26,263 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 16:04:26,263 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 16:04:26,264 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 16:04:32,659 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 16:04:32,702 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 16:06:35,705 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 16:06:35,706 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 16:06:35,764 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 16:06:35,764 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 16:06:35,814 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 16:06:38,828 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 16:06:51,125 [INFO]   WARMUP 2023-09-18: cost=$4963165, LS=2161 MWh, RS=2228 MWh
+2026-04-23 16:06:51,133 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 16:16:43,412 [INFO]   Day 1 2023-09-19: cost=$3778659, LS=0 MWh, RS=0 MWh
+2026-04-23 16:16:43,419 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 16:21:28,367 [INFO]   Day 2 2023-09-20: cost=$3865913, LS=0 MWh, RS=0 MWh
+2026-04-23 16:21:28,374 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 16:27:00,942 [INFO]   Day 3 2023-09-21: cost=$3877911, LS=0 MWh, RS=0 MWh
+2026-04-23 16:27:00,945 [INFO]   TOTAL 2023: cost=$11522482, LS=0 MWh, RS=0 MWh, time=1359s
+2026-04-23 16:36:26,936 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 16:36:26,937 [INFO] Warmup: enabled
+2026-04-23 16:36:26,948 [INFO] === Year 2022 (warmup): 2022-09-19 → 2022-09-20 → 2022-09-21 → 2022-09-22 ===
+2026-04-23 16:36:27,040 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 16:36:29,253 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 16:36:31,063 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 16:36:31,063 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 16:36:31,063 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 16:36:37,225 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 16:36:37,273 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 16:40:08,105 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 16:40:08,106 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 16:40:08,169 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 16:40:08,169 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 16:40:08,223 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 16:40:12,577 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 16:40:24,226 [INFO]   WARMUP 2022-09-19: cost=$10273449, LS=3470 MWh, RS=0 MWh
+2026-04-23 16:40:24,234 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 16:43:48,722 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:58)
+2026-04-23 16:44:07,875 [INFO]   Day 1 2022-09-20: cost=$8478330, LS=0 MWh, RS=0 MWh
+2026-04-23 16:44:07,882 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 16:48:24,417 [INFO]   Day 2 2022-09-21: cost=$7614100, LS=0 MWh, RS=0 MWh
+2026-04-23 16:48:24,425 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 16:52:11,857 [INFO]   Day 3 2022-09-22: cost=$7447038, LS=0 MWh, RS=0 MWh
+2026-04-23 16:52:11,860 [INFO]   TOTAL 2022: cost=$23539468, LS=0 MWh, RS=0 MWh, time=945s
+2026-04-23 16:52:27,007 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 16:52:27,007 [INFO] Warmup: enabled
+2026-04-23 16:52:27,016 [INFO] === Year 2020 (warmup): 2020-09-21 → 2020-09-22 → 2020-09-23 → 2020-09-24 ===
+2026-04-23 16:52:29,149 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 16:52:30,920 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 16:52:30,920 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 16:52:30,920 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 16:52:36,873 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 16:52:36,917 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 16:53:53,986 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 16:53:53,986 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 16:53:54,046 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 16:53:54,046 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 16:53:54,098 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 16:54:04,515 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 16:54:09,763 [INFO]   WARMUP 2020-09-21: cost=$1946812, LS=0 MWh, RS=0 MWh
+2026-04-23 16:55:52,854 [INFO]   Day 1 2020-09-22: cost=$2003484, LS=0 MWh, RS=0 MWh
+2026-04-23 16:58:03,233 [INFO]   Day 2 2020-09-23: cost=$2133649, LS=0 MWh, RS=0 MWh
+2026-04-23 17:03:34,254 [INFO]   Day 3 2020-09-24: cost=$2484119, LS=0 MWh, RS=0 MWh
+2026-04-23 17:03:34,257 [INFO]   TOTAL 2020: cost=$6621253, LS=0 MWh, RS=0 MWh, time=667s
+2026-04-23 17:03:35,330 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 17:03:35,330 [INFO] Warmup: enabled
+2026-04-23 17:03:35,339 [INFO] === Year 2023 (warmup): 2023-09-18 → 2023-09-19 → 2023-09-20 → 2023-09-21 ===
+2026-04-23 17:03:35,438 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 17:03:37,577 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 17:03:39,216 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 17:03:39,216 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 17:03:39,216 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 17:03:45,613 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 17:03:45,657 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 17:07:59,232 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 17:07:59,232 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 17:07:59,292 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 17:07:59,292 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 17:07:59,342 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 17:08:02,270 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 17:08:14,370 [INFO]   WARMUP 2023-09-18: cost=$4325092, LS=1972 MWh, RS=0 MWh
+2026-04-23 17:08:14,378 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 17:11:41,082 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:58)
+2026-04-23 17:12:02,137 [INFO]   Day 1 2023-09-19: cost=$3318389, LS=0 MWh, RS=0 MWh
+2026-04-23 17:12:02,145 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 17:15:24,825 [INFO]   Day 2 2023-09-20: cost=$3280894, LS=0 MWh, RS=0 MWh
+2026-04-23 17:15:24,834 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 17:18:22,578 [INFO]   Day 3 2023-09-21: cost=$3260175, LS=0 MWh, RS=0 MWh
+2026-04-23 17:18:22,581 [INFO]   TOTAL 2023: cost=$9859458, LS=0 MWh, RS=0 MWh, time=887s
+2026-04-23 17:23:45,678 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-23 17:23:45,678 [INFO] Warmup: enabled
+2026-04-23 17:23:45,688 [INFO] === Year 2020 (warmup): 2020-09-21 → 2020-09-22 → 2020-09-23 → 2020-09-24 ===
+2026-04-23 17:23:47,764 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-23 17:23:49,371 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:126)
+2026-04-23 17:23:49,371 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:127)
+2026-04-23 17:23:49,371 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:130)
+2026-04-23 17:23:55,329 [INFO] Calculating PTDF Matrix Factorization
+2026-04-23 17:23:55,372 [WARNING] DEPRECATED: The quicksum(linear=...) argument is deprecated and
+ignored.  (deprecated in 6.6.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/uc_utils.py:100)
+2026-04-23 17:25:22,285 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:63)
+2026-04-23 17:25:22,286 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:66)
+2026-04-23 17:25:22,346 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:198)
+2026-04-23 17:25:22,346 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:199)
+2026-04-23 17:25:22,398 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/startup_costs.py:239)
+2026-04-23 17:25:37,895 [INFO]   WARMUP 2020-09-21: cost=$2416233, LS=0 MWh, RS=3016 MWh
+2026-04-23 17:27:32,741 [INFO]   Day 1 2020-09-22: cost=$2491570, LS=0 MWh, RS=123 MWh
+2026-04-23 17:30:24,219 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:54)
+2026-04-23 17:30:34,802 [INFO]   Day 2 2020-09-23: cost=$2518976, LS=0 MWh, RS=1793 MWh
+2026-04-23 17:34:01,777 [INFO]   Day 3 2020-09-24: cost=$2977140, LS=0 MWh, RS=0 MWh
+2026-04-23 17:34:01,780 [INFO]   TOTAL 2020: cost=$7987687, LS=0 MWh, RS=1917 MWh, time=616s
+2026-04-23 17:34:01,781 [INFO] === Year 2022 (warmup): 2022-09-19 → 2022-09-20 → 2022-09-21 → 2022-09-22 ===
+2026-04-23 17:34:01,875 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 17:37:47,836 [INFO]   WARMUP 2022-09-19: cost=$11802775, LS=3687 MWh, RS=4783 MWh
+2026-04-23 17:37:47,844 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 17:50:04,321 [INFO]   Day 1 2022-09-20: cost=$10015171, LS=0 MWh, RS=13 MWh
+2026-04-23 17:50:04,329 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 17:58:35,336 [INFO]   Day 2 2022-09-21: cost=$9374463, LS=0 MWh, RS=5649 MWh
+2026-04-23 17:58:35,343 [INFO] EIA Henry Hub 2022 avg: $6.42/MMBTU
+2026-04-23 18:03:58,610 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/miniconda3/envs/vatic-test/lib/python3.11/site-packages/egret/model_library/unit_commitment/power_vars.py:58)
+2026-04-23 18:04:18,999 [INFO]   Day 3 2022-09-22: cost=$7826647, LS=0 MWh, RS=1315 MWh
+2026-04-23 18:04:19,002 [INFO]   TOTAL 2022: cost=$27216281, LS=0 MWh, RS=6976 MWh, time=1817s
+2026-04-23 18:04:19,004 [INFO] === Year 2023 (warmup): 2023-09-18 → 2023-09-19 → 2023-09-20 → 2023-09-21 ===
+2026-04-23 18:04:19,011 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 18:06:44,764 [INFO]   WARMUP 2023-09-18: cost=$4963165, LS=2161 MWh, RS=2228 MWh
+2026-04-23 18:06:44,772 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 18:16:20,770 [INFO]   Day 1 2023-09-19: cost=$3778659, LS=0 MWh, RS=0 MWh
+2026-04-23 18:16:20,777 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 18:21:04,718 [INFO]   Day 2 2023-09-20: cost=$3865913, LS=0 MWh, RS=0 MWh
+2026-04-23 18:21:04,726 [INFO] EIA Henry Hub 2023 avg: $2.54/MMBTU
+2026-04-23 18:26:36,867 [INFO]   Day 3 2023-09-21: cost=$3877911, LS=0 MWh, RS=0 MWh
+2026-04-23 18:26:36,870 [INFO]   TOTAL 2023: cost=$11522482, LS=0 MWh, RS=0 MWh, time=1338s
+2026-04-24 15:27:10,922 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-24 15:27:10,922 [INFO] Warmup: enabled
+2026-04-24 15:27:10,933 [INFO] === Year 2020 (warmup): 2020-09-21 → 2020-09-22 → 2020-09-23 → 2020-09-24 ===
+2026-04-24 15:27:11,078 [INFO] Path B import costs for 2020 from NYISO cache: {'HQ_import': np.float64(10.14), 'NE_import': np.float64(17.06), 'PJM_import': np.float64(16.25), 'IESO_import': np.float64(14.32)}
+2026-04-24 15:27:12,797 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-24 15:27:14,696 [INFO] Calculating PTDF Matrix Factorization
+2026-04-24 15:31:22,067 [INFO] Reserve requirement: 2620 MW (fixed, NYISO Ancillary Services Manual)
+2026-04-24 15:31:22,067 [INFO] Warmup: enabled
+2026-04-24 15:31:22,078 [INFO] === Year 2020 (warmup): 2020-09-21 → 2020-09-22 → 2020-09-23 → 2020-09-24 ===
+2026-04-24 15:31:22,225 [INFO] Path B import costs for 2020 from NYISO cache: {'HQ_import': np.float64(10.14), 'NE_import': np.float64(17.06), 'PJM_import': np.float64(16.25), 'IESO_import': np.float64(14.32)}
+2026-04-24 15:31:23,961 [WARNING] DEPRECATED: Using __getitem__ to return a set value from its (ordered)
+position is deprecated.  Please use at()  (deprecated in 6.1, will be
+removed in (or after) 7.0)
+(called from /Users/val/Desktop/Princeton/Vatic/vatic/models/params.py:1049)
+2026-04-24 15:31:25,867 [INFO] Calculating PTDF Matrix Factorization
+2026-04-24 15:33:57,329 [INFO]   WARMUP 2020-09-21: cost=$2333915, LS=0 MWh, RS=2002 MWh
+2026-04-24 15:33:57,474 [INFO] Path B import costs for 2020 from NYISO cache: {'HQ_import': np.float64(10.14), 'NE_import': np.float64(17.06), 'PJM_import': np.float64(16.25), 'IESO_import': np.float64(14.32)}
+2026-04-24 15:36:20,169 [INFO]   Day 1 2020-09-22: cost=$2463948, LS=0 MWh, RS=743 MWh
+2026-04-24 15:36:20,346 [INFO] Path B import costs for 2020 from NYISO cache: {'HQ_import': np.float64(10.14), 'NE_import': np.float64(17.06), 'PJM_import': np.float64(16.25), 'IESO_import': np.float64(14.32)}
+2026-04-24 15:38:19,516 [INFO]   Day 2 2020-09-23: cost=$2452645, LS=0 MWh, RS=1228 MWh
+2026-04-24 15:38:19,670 [INFO] Path B import costs for 2020 from NYISO cache: {'HQ_import': np.float64(10.14), 'NE_import': np.float64(17.06), 'PJM_import': np.float64(16.25), 'IESO_import': np.float64(14.32)}
