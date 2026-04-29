@@ -41,6 +41,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "Vatic"))
 sys.path.insert(0, str(PROJECT_ROOT / "PGscen-2nd"))
 
+# Verify Egret patch before running (see docs/egret_patch_required.md)
+from vatic._egret_compat import check_egret_patch
+check_egret_patch()
+
 PGSCEN_DIR = str(PROJECT_ROOT / "PGscen-2nd" / "data" / "NYISO_real")
 RESULTS_DIR = SCRIPT_DIR / "results"
 
@@ -57,6 +61,12 @@ NYISO_RESERVE_REQUIREMENT_MW = 2620.0
 # Simulation configs per year
 # ---------------------------------------------------------------------------
 YEAR_CONFIGS = {
+    2019: {
+        "sim_start": "2019-07-08",
+        "sim_days": 3,
+        "warmup_date": "2019-07-07",
+        "fuel_price_date": "2019-07-08",
+    },
     2020: {
         "sim_start": "2020-09-22",
         "sim_days": 3,
@@ -109,8 +119,8 @@ def run_single_day(loader, gen_data, load_data, day_date, run_lmps=True,
         out_dir=None,
         start_date=day_date,
         num_days=1,
-        solver="cbc",
-        solver_options={"seconds": 600},
+        solver="gurobi",
+        solver_options={"TimeLimit": 600},
         run_lmps=run_lmps,
         mipgap=0.01,
         load_shed_penalty=1e4,

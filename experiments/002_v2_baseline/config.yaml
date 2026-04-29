@@ -1,0 +1,59 @@
+# Experiment 002: v2 Stochastic vs Deterministic UC — July 2019 peak week
+# Re-runs the same scientific experiment as 001, but under fully validated
+# v2 infrastructure: Gurobi PTDF, Path B import costs, PTDF slacks ($5k/MWh),
+# multi-bus imports, BESS from Gold Book + pumped storage, mandatory warmup,
+# fixed 2,620 MW reserve.
+
+experiment:
+  name: "002_v2_baseline"
+  description: "v2 cost of uncertainty: 100 PGscen scenarios vs. deterministic"
+
+dates:
+  start: "2019-07-15"
+  end: "2019-07-21"       # inclusive — 7 target days
+  warmup: "2019-07-14"    # 1-day warmup (excluded from analysis)
+  warmup_smoke: "2019-07-17"  # warmup for smoke test
+  year: 2019
+
+scenarios:
+  count: 100
+  smoke_test_count: 5
+  smoke_test_day: "2019-07-18"
+  random_seed: 42
+
+pgscen:
+  data_dir: "../../PGscen-2nd/data"
+  asset_rho: 0.05
+  time_rho: 0.05
+  nearest_days: 50
+  pca_components: 0.9
+
+vatic:
+  pgscen_dir: "../../PGscen-2nd/data/NYISO_real"
+  use_reduced_network: true
+  # --- v2 changes ---
+  solver: "gurobi"
+  solver_options:
+    TimeLimit: 1200         # 20-min timeout per solve (Gurobi param name)
+  run_lmps: true
+  output_detail: 2
+  mipgap: 0.01
+  # Fixed 2,620 MW reserve (NYISO 10-min spinning + 30-min operating)
+  reserve_requirement_mw: 2620
+  reserve_factor: 0.0       # use fixed MW, not % of load
+  verbosity: 1              # aggressive logging for v2
+  ruc_horizon: 48
+  sced_horizon: 4
+
+parallelism:
+  max_workers: null
+
+paths:
+  results_dir: "results"
+  scenarios_dir: "results/scenarios"
+  deterministic_dir: "results/deterministic"
+  stochastic_dir: "results/stochastic"
+  figures_dir: "results/figures"
+  log_file: "results/run.log"
+
+conda_env: "vatic-test"

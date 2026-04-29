@@ -1,0 +1,6 @@
+*.pkl
+*.parquet
+*.log
+scenarios/
+deterministic/
+stochastic/
