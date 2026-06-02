@@ -447,6 +447,49 @@ def pluswind_v5_power_multicell_A_hubshear(
     return nameplate_mw * (plant_cell_weights * cf_pc * (1.0 - L)).sum(axis=1)
 
 
+def pluswind_v6_power_multicell_A_learned(
+    ws_cells: np.ndarray, pres_pa_cells: np.ndarray, t2m_k_cells: np.ndarray,
+    plant_cell_weights: np.ndarray,
+    nameplate_mw: np.ndarray,
+    curve_ws: np.ndarray, plant_curve_cf: np.ndarray,
+) -> np.ndarray:
+    """Method A with per-plant learned/archetype curves (Task 2.1).
+
+    The curve already absorbs the PLUSWIND-style 7% loss + density-corrected
+    WS-to-CF mapping (it was fit against PLUSWIND-CF), so there is no separate
+    density step inside this function — caller has already passed in
+    cell-level pres/T2m but density-correction is applied to the WS, and no
+    additional loss-taper step is applied.
+
+    Inputs:
+      ws_cells, pres_pa_cells, t2m_k_cells — length-C cell-level arrays.
+      plant_cell_weights — (N, C); rows sum to 1 for plants with weight.
+      nameplate_mw       — (N,).
+      curve_ws           — (K,) shared WS grid.
+      plant_curve_cf     — (N, K) per-plant CF curve. The caller supplies
+        archetype-pooled curves for plants with a known archetype and a
+        SAM-curve fallback for plants without.
+
+    Returns: (N,) power in MW.
+
+    Differs from v4_A by: (a) NO loss-taper step (losses baked into the
+    learned curve); (b) the curve_cf is per-plant but typically driven by
+    archetype assignment rather than per-plant SAM specs.
+    """
+    n_plants = len(nameplate_mw)
+    n_cells  = len(ws_cells)
+    assert plant_cell_weights.shape == (n_plants, n_cells)
+
+    ws_corr = density_correct_wind_speed(ws_cells, pres_pa_cells, t2m_k_cells)
+
+    cf_pc = np.zeros((n_plants, n_cells), dtype=float)
+    for p in range(n_plants):
+        cf_pc[p, :] = np.interp(
+            ws_corr, curve_ws, plant_curve_cf[p], left=0.0, right=0.0)
+
+    return nameplate_mw * (plant_cell_weights * cf_pc).sum(axis=1)
+
+
 def pluswind_v4_power_multicell_B(
     ws_cells: np.ndarray, pres_pa_cells: np.ndarray, t2m_k_cells: np.ndarray,
     plant_cell_weights: np.ndarray,

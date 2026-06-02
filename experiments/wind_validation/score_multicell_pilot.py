@@ -200,7 +200,7 @@ def main():
     meta = pd.read_csv(PM_DIR / "wind_meta.csv")
 
     paths = {n: OUT_DIR / f"multicell_pilot_{args.tag}_{n}.csv"
-             for n in ["single", "multiA", "multiB", "v5hub"]}
+             for n in ["single", "multiA", "multiB", "v5hub", "v6lrn"]}
     paths = {n: p for n, p in paths.items() if p.exists()}
     if not paths:
         raise FileNotFoundError(

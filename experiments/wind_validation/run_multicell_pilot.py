@@ -44,6 +44,8 @@ from tqdm import tqdm
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "PGscen-2nd"))
+ARCH_CURVES_CSV = REPO_ROOT / "docs" / "figures" / "wind_v3" / "archetype_curves.csv"
+ARCH_ASSIGN_CSV = REPO_ROOT / "docs" / "figures" / "wind_v3" / "archetype_assignment.csv"
 from pgscen.utils.wind_physics import (
     build_sam_curves,
     estimate_shear_alpha,
@@ -52,6 +54,7 @@ from pgscen.utils.wind_physics import (
     pluswind_v4_power_multicell_A,
     pluswind_v4_power_multicell_B,
     pluswind_v5_power_multicell_A_hubshear,
+    pluswind_v6_power_multicell_A_learned,
 )
 
 logging.basicConfig(level=logging.INFO,
@@ -360,6 +363,43 @@ def main():
     # because of the count-weighted dominant cell vs. nearest-to-centroid.)
     single_cell_col = W.argmax(axis=1)  # (N,) col index per plant
 
+    # ----- Per-plant archetype curve (Task 2.1 — v6 path) -----
+    # Build per-plant curve_cf array: archetype curve for plants with known
+    # archetype, SAM curve as the fallback. Curve_ws is the archetype grid.
+    v6_enabled = ARCH_CURVES_CSV.exists() and ARCH_ASSIGN_CSV.exists()
+    v6_curve_ws = None
+    v6_plant_curve_cf = None
+    if v6_enabled:
+        ac = pd.read_csv(ARCH_CURVES_CSV)
+        assign = pd.read_csv(ARCH_ASSIGN_CSV)
+        v6_curve_ws = ac["ws"].to_numpy()
+        # Build (N, K) per-plant curve table by archetype mapping.
+        per_plant_curves = np.zeros((len(meta_subset), len(v6_curve_ws)))
+        for i, sid in enumerate(meta_subset["site_id"]):
+            arow = assign[assign["site_id"] == sid]
+            if arow.empty:
+                arch = "unknown"
+            else:
+                arch = arow.iloc[0]["archetype"]
+            if arch in ac.columns:
+                per_plant_curves[i, :] = ac[arch].to_numpy()
+            else:
+                # SAM fallback for unknown — interpolate SAM curve to v6 ws grid
+                sam_cf_i = np.interp(v6_curve_ws, curve_ws, curve_cf[i],
+                                     left=0.0, right=0.0)
+                per_plant_curves[i, :] = sam_cf_i
+                log.info(f"  v6 fallback: {sid} -> SAM curve "
+                         f"({arch} not in archetype table)")
+        v6_plant_curve_cf = per_plant_curves
+        # Log archetype per plant
+        for i, sid in enumerate(meta_subset["site_id"]):
+            arow = assign[assign["site_id"] == sid]
+            a = arow.iloc[0]["archetype"] if not arow.empty else "unknown"
+            sp = arow.iloc[0]["spec_pw"] if not arow.empty else float("nan")
+            log.info(f"  arch[{sid}] = {a}  (spec_pw {sp:.0f} W/m^2)")
+    else:
+        log.warning("v6 archetype curves not found; v6hub path disabled")
+
     # ----- Per-plant hub height (USWTDB t_hh mean per EIA plant) -----
     # Task 1.2 lever. Plants without USWTDB hub height (e.g. South Fork
     # offshore) fall back to 80 m so the shear-extrapolation ratio is 1.
@@ -389,6 +429,7 @@ def main():
     power_multiA = np.full((len(hours), n_plants), np.nan)
     power_multiB = np.full((len(hours), n_plants), np.nan)
     power_v5_hub = np.full((len(hours), n_plants), np.nan)
+    power_v6_lrn = np.full((len(hours), n_plants), np.nan) if v6_enabled else None
 
     def _do_hour(i_h):
         i, h = i_h
@@ -406,6 +447,11 @@ def main():
         pV5 = pluswind_v5_power_multicell_A_hubshear(
             ws80, ws10, pres, t2m, W, hub_h,
             nameplate_mw, curve_ws, curve_cf, rated_ws)
+        # Method A v6: multi-cell + per-plant archetype-pooled learned curve.
+        pV6 = (pluswind_v6_power_multicell_A_learned(
+                   ws80, pres, t2m, W, nameplate_mw,
+                   v6_curve_ws, v6_plant_curve_cf)
+               if v6_enabled else None)
         # Single-cell baseline (v3): each plant uses only its dominant cell, WS80.
         ws_s   = ws80[single_cell_col]
         pres_s = pres[single_cell_col]
@@ -413,7 +459,7 @@ def main():
         pS = pluswind_v3_power_all_plants(
             ws_s, pres_s, t2m_s, nameplate_mw,
             curve_ws, curve_cf, rated_ws)
-        return i, (pS, pA, pB, pV5)
+        return i, (pS, pA, pB, pV5, pV6)
 
     n_ok = n_fail = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -424,11 +470,13 @@ def main():
                 if out is None:
                     n_fail += 1
                 else:
-                    pS, pA, pB, pV5 = out
+                    pS, pA, pB, pV5, pV6 = out
                     power_single[i, :] = pS
                     power_multiA[i, :] = pA
                     power_multiB[i, :] = pB
                     power_v5_hub[i, :] = pV5
+                    if pV6 is not None and power_v6_lrn is not None:
+                        power_v6_lrn[i, :] = pV6
                     n_ok += 1
                 pbar.update(1)
     log.info(f"Fetch + compute: {n_ok} hours OK, {n_fail} failed")
@@ -437,10 +485,13 @@ def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     idx = pd.DatetimeIndex(hours, tz="UTC", name="Time")
     site_ids = meta_subset["site_id"].tolist()
-    for name, arr in [("single", power_single),
-                      ("multiA", power_multiA),
-                      ("multiB", power_multiB),
-                      ("v5hub",  power_v5_hub)]:
+    methods_out = [("single", power_single),
+                   ("multiA", power_multiA),
+                   ("multiB", power_multiB),
+                   ("v5hub",  power_v5_hub)]
+    if power_v6_lrn is not None:
+        methods_out.append(("v6lrn", power_v6_lrn))
+    for name, arr in methods_out:
         df = pd.DataFrame(arr, index=idx, columns=site_ids)
         out = OUT_DIR / f"multicell_pilot_{args.out_tag}_{name}.csv"
         df.to_csv(out, float_format="%.4f")
