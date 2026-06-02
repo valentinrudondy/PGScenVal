@@ -148,6 +148,19 @@ def merge_one(kind: str, gb: pd.DataFrame, eia: pd.DataFrame,
         name = gb_row["owner_station_unit"]
         county = NY_COUNTY_FIPS.get(str(gb_row["county_fips"]).zfill(3), "")
         plate = gb_row["plate_mw"]
+        # Per-plant nameplate override (R1.3, 2026-06-02). Goldbook plate_mw is
+        # normally the as-built capacity, but for a few PTIDs it is a stale
+        # CRIS/registration figure that overstates the installed turbines.
+        # Baron Winds (PTID 323822): goldbook plate_mw=238.4 but EIA-860 as-built
+        # =130.0 MW and USWTDB 32 turbines + goldbook sum_2024/win_2024 both =121.8
+        # MW. The 238.4 inflated modeled potential ~1.8x, producing the spurious
+        # "49-140% loss" vs EIA-923. Corrected to the EIA-860 as-built nameplate.
+        # Metadata correction only (I2) — value chosen from EIA-860, not tuned to
+        # metered; it happens to bring the 2024 loss into a physical 6% band.
+        NAMEPLATE_OVERRIDES = {323822: 130.0}
+        _ptid = int(gb_row["ptid"]) if pd.notna(gb_row.get("ptid")) else None
+        if kind == "wind" and _ptid in NAMEPLATE_OVERRIDES:
+            plate = NAMEPLATE_OVERRIDES[_ptid]
 
         eia_idx, eia_score = best_match(name, county, plate, eia, "plant_name")
         eia_match = eia.loc[eia_idx] if eia_idx is not None else None

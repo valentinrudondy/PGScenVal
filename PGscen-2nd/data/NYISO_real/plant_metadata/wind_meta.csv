@@ -13,7 +13,7 @@ wind_323690,Howard Wind LLC Howard Wind,C,Steuben,Howard,42.31271555555555,-77.5
 wind_323706,Stony Creek Energy LLC Orangeville Wind Farm,C,Wyoming,Orangeville,42.746161551724136,-78.2406051724138,93.9,2013,323706,58088,Orangeville Wind,uswtdb,3,0.947,0.647
 wind_323713,Marsh Hill Energy LLC Marsh Hill Wind Farm,C,Steuben,Jasper,42.177321,-77.504577,16.2,2014,323713,58768,Marsh Hill,uswtdb,3,0.945,0.945
 wind_323820,"NextEra Energy Marketing, LLC Eight Point Wind",C,Steuben,Greenwood,42.073445416666665,-77.69628291666668,111.2,2023,323820,66052,Eight Point Wind,uswtdb,3,1.3,1.3
-wind_323822,"Baron Winds, LLC Baron Winds",C,Steuben,Cohocton,42.474311875,-77.5356603125,238.4,2023,323822,60596,Baron Winds I,uswtdb,3,0.742,0.783
+wind_323822,"Baron Winds, LLC Baron Winds",C,Steuben,Cohocton,42.474311875,-77.5356603125,130.0,2023,323822,60596,Baron Winds I,uswtdb,3,0.742,0.783
 wind_323604,"Valcour Ellenburg Windapark,LLC Ellenburg Wind Power",D,Clinton,Ellenburg,44.86983074074074,-73.973735,81.0,2008,323604,56619,Noble Ellenburg,uswtdb,3,0.774,0.774
 wind_323605,"Valcour Clinton Windpark,LLC Clinton Wind Power",D,Clinton,Clinton,44.921358656716414,-73.9939323880597,100.5,2008,323605,56618,Noble Clinton,uswtdb,3,0.936,0.936
 wind_323606,"Valcour Altona Windpark, LLC Altona Wind Power",D,Clinton,Altona,44.82063307692308,-73.6496736923077,97.5,2008,323606,56901,Noble Altona,uswtdb,3,0.932,0.932

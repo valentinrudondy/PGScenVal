@@ -50,6 +50,23 @@ PLUSWIND_YEARS = [2018, 2019, 2020, 2021]
 # LPI overlap with v3 hourly: 2022-09-09 → 2024-12-31 (v3 has no 2025+).
 LPI_YEARS = [2022, 2023, 2024]
 
+# KNOWN ISSUE (R1.3, 2026-06-02): stale-PLUSWIND-truth seam for the two
+# repowered Lackawanna plants. Steel Wind (wind_323596, EIA 56575) and Erie
+# Wind (wind_323693, EIA 57078) were repowered Clipper-C93 -> GE2.5-116 in
+# Dec 2019. TURBINE_SPEC_OVERRIDES correctly switches the model to GE2.5-116
+# from 2020 on, but the PLUSWIND truth files are built from the 2018 pre-repower
+# input source for ALL years (InputSource=pluswind.c0.2018.<eia>.csv, verified
+# identical across 2018-2021). So the model-vs-PLUSWIND comparison is clean in
+# 2018-2019 (nMAE ~2.4%, r 0.9997) but apples-to-oranges in 2020-2021
+# (nMAE ~27% — the (116/93)^2 = 1.56x swept-area mismatch), which pools to the
+# headline 15%/18%. This is a TRUTH-side artifact, not a model error: the model
+# is correct for the physical post-2019 fleet; PLUSWIND is stale. The
+# level-validatable PLUSWIND window for EIA 56575/57078 is 2018-2019 only.
+# Do NOT extend the override past 2019 (that would make the model wrong vs the
+# real fleet to chase a stale benchmark). Verified high-confidence; both plants
+# share one HRRR cell (1.28 km apart) and show the identical lockstep seam.
+STALE_PLUSWIND_TRUTH_2018_SPEC = {"wind_323596", "wind_323693"}
+
 # Prefer the `NY_WindFarmGenData_*` files (full 2022-09 → 2026-06 set, 4 LPI
 # groups). The older `MapleRidgeWindFarm_*` files are byte-identical for their
 # overlap window — same NYISO source — so we deliberately exclude them to
