@@ -52,6 +52,51 @@ def loss_fraction(ws: np.ndarray, rated_ws: np.ndarray) -> np.ndarray:
 
 
 # ---------------------------------------------------------------------------
+# Hub-height shear extrapolation (Task 1.2)
+# ---------------------------------------------------------------------------
+
+SHEAR_ALPHA_DEFAULT = 1.0 / 7.0   # Standard onshore power-law exponent.
+SHEAR_ALPHA_MIN     = -0.10       # Clip pathological negative shear (unstable BL)
+SHEAR_ALPHA_MAX     =  0.40       # Clip nighttime LLJ extremes
+SHEAR_WS10_MIN_MS   =  1.0        # Below this, log-ratio is too noisy → fall back
+
+def estimate_shear_alpha(ws80: np.ndarray, ws10: np.ndarray) -> np.ndarray:
+    """Hourly power-law shear exponent from HRRR 10 m and 80 m wind.
+
+        WS(h) = WS_ref * (h / h_ref) ** alpha   (power law, 1/7-th rule baseline)
+        alpha = log(WS80 / WS10) / log(80 / 10)
+
+    Two safety rails:
+      - WS10 below 1 m/s: log ratio is numerically wild → fall back to 1/7.
+      - Result clipped to [-0.10, 0.40]. Real values cluster around 0.10-0.25
+        on land; clip catches unstable-BL / LLJ outliers that would shift power
+        by tens of percent.
+
+    Returned exponent applies cell-by-cell; pass it into ``extrapolate_to_hub``.
+    """
+    ws80 = np.asarray(ws80, dtype=float)
+    ws10 = np.asarray(ws10, dtype=float)
+    out = np.full_like(ws80, SHEAR_ALPHA_DEFAULT)
+    ok = (ws10 >= SHEAR_WS10_MIN_MS) & (ws80 > 0)
+    if ok.any():
+        out[ok] = np.log(ws80[ok] / ws10[ok]) / np.log(80.0 / 10.0)
+    return np.clip(out, SHEAR_ALPHA_MIN, SHEAR_ALPHA_MAX)
+
+
+def extrapolate_to_hub(ws80: np.ndarray, alpha: np.ndarray,
+                       hub_h_m: np.ndarray | float) -> np.ndarray:
+    """Power-law extrapolation from 80 m to per-plant hub height.
+
+        WS(hub) = WS80 * (hub / 80) ** alpha
+
+    Inputs can be scalars or arrays; broadcasting follows numpy rules. Passing
+    ``hub_h_m == 80`` returns ``ws80`` unchanged.
+    """
+    ratio = np.asarray(hub_h_m, dtype=float) / 80.0
+    return ws80 * np.power(ratio, alpha)
+
+
+# ---------------------------------------------------------------------------
 # Density correction (IEC 61400-12-1)
 # ---------------------------------------------------------------------------
 
@@ -337,6 +382,69 @@ def pluswind_v4_power_multicell_A(
     # cells to get plant total. weight already accounts for the share of
     # nameplate in each cell, so plant power = nameplate × Σ_c w_pc × CF_pc × (1-L_pc).
     return (nameplate_mw * (plant_cell_weights * cf_pc * (1.0 - L)).sum(axis=1))
+
+
+def pluswind_v5_power_multicell_A_hubshear(
+    ws80_cells: np.ndarray, ws10_cells: np.ndarray,
+    pres_pa_cells: np.ndarray, t2m_k_cells: np.ndarray,
+    plant_cell_weights: np.ndarray,
+    hub_h_m: np.ndarray,
+    nameplate_mw: np.ndarray,
+    curve_ws: np.ndarray, curve_cf: np.ndarray, rated_ws: np.ndarray,
+) -> np.ndarray:
+    """Method A with per-plant hub-height shear extrapolation (Task 1.2).
+
+    Pipeline per hour:
+      1. Per-cell shear exponent alpha_c from HRRR 80 m and 10 m wind.
+      2. Per-(plant, cell) hub-extrapolated WS = WS80_c * (hub_h_p / 80) ^ alpha_c.
+         When hub_h_p == 80, the row collapses to plain WS80 (verified).
+      3. Density correction at the hub-extrapolated WS using cell-local pres / T2m.
+         (Density doesn't vary materially with the 10-40 m extrapolation; we
+         keep cell pres/t2m for shape parity with v4.)
+      4. SAM curve eval per (plant, cell), then nameplate-weighted sum to plant.
+      5. Loss taper at the same hub-corrected WS.
+
+    Reduces to Method A v4 exactly when ws10_cells == ws80_cells (alpha = 0)
+    OR when hub_h_m is uniformly 80 (ratio = 1). Either invariant gives a
+    cheap regression check.
+    """
+    n_plants = len(nameplate_mw)
+    n_cells  = len(ws80_cells)
+    assert plant_cell_weights.shape == (n_plants, n_cells)
+    assert hub_h_m.shape == (n_plants,)
+
+    # 1. Per-cell alpha (length C).
+    alpha = estimate_shear_alpha(ws80_cells, ws10_cells)
+
+    # 2. Per-(plant, cell) hub WS. (N, 1) × (1, C) → (N, C).
+    ratio = np.power(hub_h_m[:, None] / 80.0, alpha[None, :])
+    ws_pc = ws80_cells[None, :] * ratio                            # (N, C)
+
+    # 3. Density correction per cell — broadcast cell pres/t2m across plants.
+    ws_corr = density_correct_wind_speed(
+        ws_pc, pres_pa_cells[None, :], t2m_k_cells[None, :])       # (N, C)
+
+    # 4. Curve eval per (plant, cell). One interp per plant; vectorise over cells.
+    cf_pc = np.zeros((n_plants, n_cells), dtype=float)
+    for p in range(n_plants):
+        cf_pc[p, :] = np.interp(
+            ws_corr[p, :], curve_ws, curve_cf[p], left=0.0, right=0.0)
+
+    # 5. Loss taper at the hub-corrected WS, per (plant, cell).
+    rs = rated_ws[:, None]
+    rs_star = rs - 0.5
+    L = np.full((n_plants, n_cells), LOSS_FRAC, dtype=float)
+    taper = (ws_corr >= rs_star) & (ws_corr <= rs + 2.0)
+    L = np.where(
+        taper,
+        LOSS_FRAC * (1.0 - (ws_corr - rs_star) / LOSS_TAPER_WIDTH),
+        L,
+    )
+    L = np.where(ws_corr > rs + 2.0, 0.0, L)
+    L = np.clip(L, 0.0, LOSS_FRAC)
+
+    # 6. Plant power = nameplate × Σ_c w_pc × CF_pc × (1-L_pc).
+    return nameplate_mw * (plant_cell_weights * cf_pc * (1.0 - L)).sum(axis=1)
 
 
 def pluswind_v4_power_multicell_B(

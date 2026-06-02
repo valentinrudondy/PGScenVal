@@ -46,9 +46,12 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "PGscen-2nd"))
 from pgscen.utils.wind_physics import (
     build_sam_curves,
+    estimate_shear_alpha,
+    extrapolate_to_hub,
     pluswind_v3_power_all_plants,
     pluswind_v4_power_multicell_A,
     pluswind_v4_power_multicell_B,
+    pluswind_v5_power_multicell_A_hubshear,
 )
 
 logging.basicConfig(level=logging.INFO,
@@ -90,6 +93,9 @@ def _s3():
 
 WIND_IDX_PATTERNS    = ["UGRD:80 m above ground", "VGRD:80 m above ground"]
 DENSITY_IDX_PATTERNS = ["PRES:surface", "TMP:2 m above ground"]
+# 10 m wind for shear extrapolation (Task 1.2). HRRR variable names: u10/v10
+# (shortNames in eccodes); index strings below match the .idx file syntax.
+WIND10_IDX_PATTERNS  = ["UGRD:10 m above ground", "VGRD:10 m above ground"]
 _IDX_CACHE: dict[str, str] = {}
 _IDX_LOCK = threading.Lock()
 
@@ -237,22 +243,35 @@ def build_plant_cell_weights(
 
 def fetch_one_hour(
     valid_time: datetime, unique_cells: list[tuple[int, int]],
-) -> tuple[datetime, np.ndarray, np.ndarray, np.ndarray] | None:
-    """Return (valid_time, ws, pres, t2m) at the unique cells, or None on failure.
+) -> tuple[datetime, np.ndarray, np.ndarray, np.ndarray, np.ndarray] | None:
+    """Return (valid_time, ws80, pres, t2m, ws10) at the unique cells, or None.
 
-    Single F00 actuals for valid_time (init = valid_time, fhour 0).
+    Single F00 actuals for valid_time. ws10 is the HRRR 10 m wind speed used
+    by Task 1.2 (hub-height shear). It's pulled from the SAME GRIB file as
+    ws80 — both UGRD/VGRD live in the wrfsfc file — but with a different idx
+    pattern set, so it's a second byte-range request to S3.
     """
     s3_key = hrrr_s3_key(valid_time.strftime("%Y%m%d"), valid_time.hour, 0)
+    rows = np.array([rc[0] for rc in unique_cells])
+    cols = np.array([rc[1] for rc in unique_cells])
 
-    # Wind (UGRD/VGRD at 80m)
+    # Wind 80 m
     wind_bytes = download_subset(s3_key, WIND_IDX_PATTERNS)
     if wind_bytes is None:
         return None
     wind = _read_grib_bytes(wind_bytes)
-    u = wind["u"]; v = wind["v"]
-    rows = np.array([rc[0] for rc in unique_cells])
-    cols = np.array([rc[1] for rc in unique_cells])
-    ws = np.sqrt(u[rows, cols] ** 2 + v[rows, cols] ** 2)
+    ws80 = np.sqrt(wind["u"][rows, cols] ** 2 + wind["v"][rows, cols] ** 2)
+
+    # Wind 10 m (separate byte-range pattern set). eccodes shortName for 10 m
+    # winds is "10u"/"10v" (not "u"/"v" which it uses for 80 m). Be tolerant
+    # in case the convention shifts across HRRR versions.
+    w10_bytes = download_subset(s3_key, WIND10_IDX_PATTERNS)
+    if w10_bytes is None:
+        return None
+    w10 = _read_grib_bytes(w10_bytes)
+    u10_key = "10u" if "10u" in w10 else "u"
+    v10_key = "10v" if "10v" in w10 else "v"
+    ws10 = np.sqrt(w10[u10_key][rows, cols] ** 2 + w10[v10_key][rows, cols] ** 2)
 
     # Density (PRES surface, TMP 2m)
     dens_bytes = download_subset(s3_key, DENSITY_IDX_PATTERNS)
@@ -261,7 +280,7 @@ def fetch_one_hour(
     dens = _read_grib_bytes(dens_bytes)
     pres = dens["sp"][rows, cols]
     t2m  = dens["2t"][rows, cols]
-    return valid_time, ws, pres, t2m
+    return valid_time, ws80, pres, t2m, ws10
 
 
 # --------------------------------------------------------------------------
@@ -341,6 +360,21 @@ def main():
     # because of the count-weighted dominant cell vs. nearest-to-centroid.)
     single_cell_col = W.argmax(axis=1)  # (N,) col index per plant
 
+    # ----- Per-plant hub height (USWTDB t_hh mean per EIA plant) -----
+    # Task 1.2 lever. Plants without USWTDB hub height (e.g. South Fork
+    # offshore) fall back to 80 m so the shear-extrapolation ratio is 1.
+    t_hh = (turbines.dropna(subset=["t_hh"])
+            .groupby("eia_id")["t_hh"].mean().to_dict())
+    hub_h = np.array([
+        float(t_hh.get(int(eid), 80.0)) if pd.notna(eid) else 80.0
+        for eid in meta_subset["eia_plant_id"]
+    ], dtype=float)
+    for sid, h, eid in zip(meta_subset["site_id"], hub_h,
+                            meta_subset["eia_plant_id"]):
+        in_uswtdb = pd.notna(eid) and int(eid) in t_hh
+        log.info(f"  hub_h[{sid}] = {h:.1f} m"
+                 f"{'' if in_uswtdb else ' (fallback to 80 m, no USWTDB)'}")
+
     # ----- Hour list -----
     hours = []
     t = start
@@ -354,27 +388,32 @@ def main():
     power_single = np.full((len(hours), n_plants), np.nan)
     power_multiA = np.full((len(hours), n_plants), np.nan)
     power_multiB = np.full((len(hours), n_plants), np.nan)
+    power_v5_hub = np.full((len(hours), n_plants), np.nan)
 
     def _do_hour(i_h):
         i, h = i_h
         res = fetch_one_hour(h, unique_cells)
         if res is None:
             return i, None
-        _, ws, pres, t2m = res
-        # Method A: per-cell curve, then sum
+        _, ws80, pres, t2m, ws10 = res
+        # Method A (v4): per-cell curve, then sum — uses WS80 only.
         pA = pluswind_v4_power_multicell_A(
-            ws, pres, t2m, W, nameplate_mw, curve_ws, curve_cf, rated_ws)
-        # Method B: average WS then curve
+            ws80, pres, t2m, W, nameplate_mw, curve_ws, curve_cf, rated_ws)
+        # Method B (v4): average WS then curve.
         pB = pluswind_v4_power_multicell_B(
-            ws, pres, t2m, W, nameplate_mw, curve_ws, curve_cf, rated_ws)
-        # Single-cell baseline: each plant uses only its dominant cell
-        ws_s   = ws[single_cell_col]
+            ws80, pres, t2m, W, nameplate_mw, curve_ws, curve_cf, rated_ws)
+        # Method A v5: multi-cell + hub-height shear extrapolation.
+        pV5 = pluswind_v5_power_multicell_A_hubshear(
+            ws80, ws10, pres, t2m, W, hub_h,
+            nameplate_mw, curve_ws, curve_cf, rated_ws)
+        # Single-cell baseline (v3): each plant uses only its dominant cell, WS80.
+        ws_s   = ws80[single_cell_col]
         pres_s = pres[single_cell_col]
         t2m_s  = t2m[single_cell_col]
         pS = pluswind_v3_power_all_plants(
             ws_s, pres_s, t2m_s, nameplate_mw,
             curve_ws, curve_cf, rated_ws)
-        return i, (pS, pA, pB)
+        return i, (pS, pA, pB, pV5)
 
     n_ok = n_fail = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -385,10 +424,11 @@ def main():
                 if out is None:
                     n_fail += 1
                 else:
-                    pS, pA, pB = out
+                    pS, pA, pB, pV5 = out
                     power_single[i, :] = pS
                     power_multiA[i, :] = pA
                     power_multiB[i, :] = pB
+                    power_v5_hub[i, :] = pV5
                     n_ok += 1
                 pbar.update(1)
     log.info(f"Fetch + compute: {n_ok} hours OK, {n_fail} failed")
@@ -399,7 +439,8 @@ def main():
     site_ids = meta_subset["site_id"].tolist()
     for name, arr in [("single", power_single),
                       ("multiA", power_multiA),
-                      ("multiB", power_multiB)]:
+                      ("multiB", power_multiB),
+                      ("v5hub",  power_v5_hub)]:
         df = pd.DataFrame(arr, index=idx, columns=site_ids)
         out = OUT_DIR / f"multicell_pilot_{args.out_tag}_{name}.csv"
         df.to_csv(out, float_format="%.4f")
