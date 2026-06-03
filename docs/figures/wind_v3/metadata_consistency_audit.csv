@@ -1,0 +1,32 @@
+site_id,name,eia_plant_id,meta_np,eia_np,uswtdb_cap,coord_km_to_uswtdb,uswtdb_hub_m,status,flags
+wind_323596,"Niagara Wind Power, LLC Steel Wi",56575,20.0,20.0,20.0,0.0,80.0,PASS,
+wind_323608,"Valcour Bliss Windpark, LLC Blis",56620,100.5,100.5,100.5,0.0,80.0,PASS,
+wind_323693,"Erie Wind, LLC Erie Wind",57078,15.0,15.0,15.0,0.0,80.0,FLAG,"NAME(meta='Erie Wind, LLC Eri'/eia='Steel Winds II')"
+wind_323751,Arkwright Summit Wind Farm LLC A,61673,78.4,78.4,78.4,0.0,95.0,PASS,
+wind_323784,"Cassadaga Wind, LLC Cassadaga Wi",58777,126.5,124.0,125.5,0.0,92.0,PASS,
+wind_323825,"Ball Hill Wind Energy, LLC Ball ",65495,107.5,107.5,107.5,0.0,102.0,PASS,
+wind_24204,Canastota Windpower LLC Fenner W,55790,30.0,30.0,30.0,0.08,66.0,PASS,
+wind_323617,"Canandaigua Power Partners, LLC ",56634,125.0,87.5,87.5,0.0,80.0,FLAG,NAME(meta='Canandaigua Power '/eia='Cohocton Wind Proj')
+wind_323625,Sheldon Energy LLC High Sheldon ,56953,118.1,112.5,112.5,0.0,80.0,PASS,
+wind_323626,"Valcour Wethersfield Windpark, L",56902,126.0,126.0,126.0,0.0,80.0,PASS,
+wind_323690,Howard Wind LLC Howard Wind,57867,55.4,55.4,55.4,0.0,79.0,PASS,
+wind_323706,Stony Creek Energy LLC Orangevil,58088,93.9,94.4,94.0,0.0,80.0,PASS,
+wind_323713,Marsh Hill Energy LLC Marsh Hill,58768,16.2,16.2,16.2,0.0,80.0,PASS,
+wind_323820,"NextEra Energy Marketing, LLC Ei",66052,111.2,101.2,111.0,0.0,109.0,PASS,
+wind_323822,"Baron Winds, LLC Baron Winds",60596,130.0,130.0,121.8,0.0,113.0,PASS,
+wind_323604,"Valcour Ellenburg Windapark,LLC ",56619,81.0,81.0,81.0,0.0,80.0,PASS,
+wind_323605,"Valcour Clinton Windpark,LLC Cli",56618,100.5,100.5,100.5,0.0,80.0,PASS,
+wind_323606,"Valcour Altona Windpark, LLC Alt",56901,97.5,97.5,97.5,0.0,80.0,PASS,
+wind_323614,"Valcour  Chateaugay Windpark, LL",56904,106.5,106.5,106.5,0.0,80.0,PASS,
+wind_323696,Marble River LLC Marble River Wi,56857,215.2,215.3,215.2,0.0,94.0,PASS,
+wind_323719,Jericho Rise Wind Farm LLC Jeric,59629,77.7,77.7,77.7,0.0,93.0,PASS,
+wind_24146,"Madison Windpower, LLC Madison W",55769,11.6,11.5,11.6,0.0,67.0,PASS,
+wind_323574,"Flat Rock Windpower, LLC Maple R",56290,231.0,321.2,321.8,3.71,80.0,FLAG,COORD(3.7km);NP_USWTDB(231vs322);NP_EIA(231vs321)
+wind_323611,"Flat Rock Windpower II, LLC Mapl",56290,90.8,321.2,321.8,3.71,80.0,FLAG,COORD(3.7km);NP_USWTDB(91vs322);NP_EIA(91vs321)
+wind_323609,"Munnsville Wind Farm, LLC Munnsv",56594,34.5,34.5,34.5,0.0,80.0,PASS,
+wind_323673,Hardscrabble Wind Power LLC Hard,57287,74.0,74.0,74.0,0.0,100.0,PASS,
+wind_323753,Galt Power Inc. Copenhagen Wind ,58979,79.9,79.9,80.0,0.0,95.0,PASS,
+wind_323790,Avangrid Renewables LLC Roaring ,61041,79.7,79.7,79.7,0.0,104.0,PASS,
+wind_323818,Number Three Wind LLC Number Thr,65522,103.9,106.0,99.5,0.0,106.0,PASS,
+wind_323821,"Bluestone Wind, LLC BlueStone Wi",65496,111.8,111.8,111.8,0.0,120.0,PASS,
+wind_323839,Long Island Power Authority Sout,65561,136.0,130.0,,,,FLAG,NO_USWTDB
