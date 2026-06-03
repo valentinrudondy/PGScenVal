@@ -194,6 +194,26 @@ def merge_one(kind: str, gb: pd.DataFrame, eia: pd.DataFrame,
         n_sources = int(eia_match is not None) + int(uswtdb_match is not None)
         match_quality = 1 + n_sources  # 1 = goldbook only, 2 = +1 src, 3 = +2 src
 
+        # Per-plant EIA-ID + coord override (R1.3, 2026-06-02). The fuzzy matcher
+        # mis-joins "Canandaigua Power Partners" to Baron Winds (EIA 60596) — they
+        # share the town of Cohocton. Canandaigua actually operates the Cohocton
+        # Wind Project (EIA 56634, +Dutch Hill 56633), 80 m GE2.5-116/C96 turbines.
+        # Left uncorrected, the modeled side inherits Baron's 113 m V150-4.0 spec
+        # (wrong power curve + a spurious +13.8% hub-shear lift) and Baron's
+        # location (10.3 km off). Force the correct EIA ID + Cohocton centroid so
+        # build_sam_curves / build_plant_cell_weights key on the right turbines.
+        # (script 12's EIA_ID_OVERRIDES already fixes the metered side.)
+        _eia_id_out = (int(eia_match["eia_plant_id"])
+                       if eia_match is not None and pd.notna(eia_match.get("eia_plant_id"))
+                       else None)
+        _uswtdb_name_out = uswtdb_match["p_name"] if uswtdb_match is not None else None
+        EIA_ID_COORD_OVERRIDES = {
+            323617: (56634, 42.5324, -77.4386, "Dutch Hill/Cohocton"),
+        }
+        if kind == "wind" and _ptid in EIA_ID_COORD_OVERRIDES:
+            _eia_id_out, lat, lon, _uswtdb_name_out = EIA_ID_COORD_OVERRIDES[_ptid]
+            source = "override:eia860+uswtdb(56634)"
+
         rows.append({
             "site_id": f"{kind}_{int(gb_row['ptid'])}",
             "site_name": name,
@@ -205,11 +225,8 @@ def merge_one(kind: str, gb: pd.DataFrame, eia: pd.DataFrame,
             "nameplate_mw": plate,
             "operating_year": str(gb_row["cod"])[:4] if pd.notna(gb_row["cod"]) else None,
             "goldbook_ptid": int(gb_row["ptid"]),
-            "eia_plant_id": (int(eia_match["eia_plant_id"])
-                             if eia_match is not None and pd.notna(eia_match.get("eia_plant_id"))
-                             else None),
-            "uswtdb_project_name": (uswtdb_match["p_name"]
-                                    if uswtdb_match is not None else None),
+            "eia_plant_id": _eia_id_out,
+            "uswtdb_project_name": _uswtdb_name_out,
             "latlon_source": source,
             "match_quality": match_quality,
             "eia_match_score": round(eia_score, 3) if eia_score else None,
