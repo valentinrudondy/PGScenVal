@@ -44,7 +44,13 @@ WIND_DIR  = REPO_ROOT / "PGscen-2nd" / "data" / "NYISO_real" / "wind"
 META_CSV  = REPO_ROOT / "PGscen-2nd" / "data" / "NYISO_real" / "plant_metadata" / "wind_meta.csv"
 PLUSWIND_RAW = REPO_ROOT / "data" / "pluswind_raw"
 LPI_DIR   = REPO_ROOT / "Verification files"
-OUT_CSV   = REPO_ROOT / "docs" / "figures" / "wind_v3" / "per_plant_hourly_scorecard.csv"
+import os as _os_outcsv
+# v3 (default) writes the frozen baseline name; v4 writes a separate scorecard
+# so the R2.1 rebuild never clobbers the committed v3 baseline.
+_SUFFIX_TAG = _os_outcsv.environ.get("MODEL_SUFFIX", ".pluswind_v3").replace(".pluswind", "")
+OUT_CSV   = (REPO_ROOT / "docs" / "figures" / "wind_v3" /
+             (f"per_plant_hourly_scorecard{_SUFFIX_TAG}.csv"
+              if _SUFFIX_TAG != "_v3" else "per_plant_hourly_scorecard.csv"))
 
 PLUSWIND_YEARS = [2018, 2019, 2020, 2021]
 # LPI overlap with v3 hourly: 2022-09-09 → 2024-12-31 (v3 has no 2025+).
@@ -168,10 +174,16 @@ def discover_pluswind_files(year: int) -> dict[int, Path]:
     return out
 
 
+# Model-actuals suffix to score. Default .pluswind_v3 (the frozen baseline);
+# pass MODEL_SUFFIX=.pluswind_v4 (env) to score the R2.1 v4 rebuild against it.
+import os as _os
+MODEL_SUFFIX = _os.environ.get("MODEL_SUFFIX", ".pluswind_v3")
+
+
 def load_v3_wide(years: list[int]) -> pd.DataFrame:
     frames = []
     for y in years:
-        f = WIND_DIR / f"wind_actual_1h_site_{y}_utc.pluswind_v3.csv"
+        f = WIND_DIR / f"wind_actual_1h_site_{y}_utc{MODEL_SUFFIX}.csv"
         if not f.exists():
             continue
         df = pd.read_csv(f, parse_dates=["Time"], index_col="Time")
