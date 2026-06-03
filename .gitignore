@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 ~$*
 .DS_Store
+
+# R1.1 raw HRRR alpha dumps (regenerable via fetch_alpha_raw.py, ~29MB each)
+docs/figures/wind_v3/alpha_raw_*.npz

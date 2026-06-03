@@ -1,0 +1,32 @@
+site_id,name,op_year,hub_h_m,nameplate_mw,mean_v4_mw,mean_v5_clip025_mw,lift_pct
+wind_24204,Canastota Windpower LLC Fenner Win,2001,66.0,30.0,10.228,9.535,-6.78
+wind_24146,"Madison Windpower, LLC Madison Win",2000,67.0,11.6,2.383,2.176,-8.68
+wind_323690,Howard Wind LLC Howard Wind,2011,78.6,55.4,15.671,15.538,-0.85
+wind_323596,"Niagara Wind Power, LLC Steel Wind",2007,80.0,20.0,7.299,7.299,0.0
+wind_323609,"Munnsville Wind Farm, LLC Munnsvil",2007,80.0,34.5,9.348,9.348,0.0
+wind_323611,"Flat Rock Windpower II, LLC Maple ",2007,80.0,90.8,31.782,31.782,0.0
+wind_323574,"Flat Rock Windpower, LLC Maple Rid",2006,80.0,231.0,80.856,80.856,0.0
+wind_323614,"Valcour  Chateaugay Windpark, LLC ",2008,80.0,106.5,31.996,31.996,0.0
+wind_323606,"Valcour Altona Windpark, LLC Alton",2008,80.0,97.5,25.395,25.395,0.0
+wind_323605,"Valcour Clinton Windpark,LLC Clint",2008,80.0,100.5,30.386,30.386,0.0
+wind_323713,Marsh Hill Energy LLC Marsh Hill W,2014,80.0,16.2,7.616,7.616,0.0
+wind_323604,"Valcour Ellenburg Windapark,LLC El",2008,80.0,81.0,26.482,26.482,0.0
+wind_323626,"Valcour Wethersfield Windpark, LLC",2008,80.0,126.0,47.087,47.087,0.0
+wind_323608,"Valcour Bliss Windpark, LLC Bliss ",2008,80.0,100.5,36.18,36.18,0.0
+wind_323693,"Erie Wind, LLC Erie Wind",2012,80.0,15.0,5.504,5.504,0.0
+wind_323706,Stony Creek Energy LLC Orangeville,2013,80.0,93.9,45.342,45.342,0.0
+wind_323839,Long Island Power Authority South ,2024,80.0,136.0,67.481,67.481,0.0
+wind_323625,Sheldon Energy LLC High Sheldon Wi,2009,80.0,118.1,39.908,39.908,0.0
+wind_323784,"Cassadaga Wind, LLC Cassadaga Wind",2021,91.5,126.5,37.101,39.519,6.52
+wind_323719,Jericho Rise Wind Farm LLC Jericho,2016,93.0,77.7,29.596,31.267,5.65
+wind_323696,Marble River LLC Marble River Wind,2012,94.0,215.2,65.968,71.026,7.67
+wind_323751,Arkwright Summit Wind Farm LLC Ark,2018,95.0,78.4,32.833,34.717,5.74
+wind_323753,Galt Power Inc. Copenhagen Wind Fa,2018,95.0,79.9,29.648,31.43,6.01
+wind_323673,Hardscrabble Wind Power LLC Hardsc,2011,100.0,74.0,18.452,20.393,10.52
+wind_323825,"Ball Hill Wind Energy, LLC Ball Hi",2024,102.2,107.5,39.039,42.824,9.7
+wind_323790,Avangrid Renewables LLC Roaring Br,2021,103.9,79.7,30.622,34.114,11.4
+wind_323818,Number Three Wind LLC Number Three,2023,105.9,103.9,36.171,39.828,10.11
+wind_323820,"NextEra Energy Marketing, LLC Eigh",2023,109.1,111.2,43.149,48.445,12.27
+wind_323617,"Canandaigua Power Partners, LLC Ca",2008,113.2,125.0,41.201,46.894,13.82
+wind_323822,"Baron Winds, LLC Baron Winds",2023,113.2,130.0,42.849,48.77,13.82
+wind_323821,"Bluestone Wind, LLC BlueStone Wind",2024,120.0,111.8,30.772,37.495,21.85

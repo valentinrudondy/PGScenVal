@@ -55,24 +55,45 @@ def loss_fraction(ws: np.ndarray, rated_ws: np.ndarray) -> np.ndarray:
 # Hub-height shear extrapolation (Task 1.2)
 # ---------------------------------------------------------------------------
 
-SHEAR_ALPHA_DEFAULT = 1.0 / 7.0   # Standard onshore power-law exponent.
+SHEAR_ALPHA_DEFAULT = 1.0 / 7.0   # Standard onshore power-law exponent (~0.143).
 SHEAR_ALPHA_MIN     = -0.10       # Clip pathological negative shear (unstable BL)
-SHEAR_ALPHA_MAX     =  0.40       # Clip nighttime LLJ extremes
+SHEAR_ALPHA_MAX     =  0.25       # R1.1-CALIBRATED production clip (was 0.40).
+                                  # 2020 HRRR fleet alpha: day median 0.143
+                                  # (= climatology), night median 0.292 (~2x,
+                                  # inflated by stable nocturnal BL + HRRR 10 m
+                                  # weakness); 12.7% of all hours exceeded 0.40.
+                                  # Clipping at 0.25 admits genuine stable-BL
+                                  # shear but rejects the inflated tail, and
+                                  # lands clean-anchor Copenhagen (95 m) at +5.4%
+                                  # over metered (~5-6% implied loss — physical).
+                                  # See experiments/wind_validation/analyze_alpha.py.
 SHEAR_WS10_MIN_MS   =  1.0        # Below this, log-ratio is too noisy → fall back
 
-def estimate_shear_alpha(ws80: np.ndarray, ws10: np.ndarray) -> np.ndarray:
+def estimate_shear_alpha(
+    ws80: np.ndarray, ws10: np.ndarray,
+    alpha_min: float = SHEAR_ALPHA_MIN,
+    alpha_max: float = SHEAR_ALPHA_MAX,
+    blend_weight: float = 0.0,
+    blend_target: float = SHEAR_ALPHA_DEFAULT,
+) -> np.ndarray:
     """Hourly power-law shear exponent from HRRR 10 m and 80 m wind.
 
         WS(h) = WS_ref * (h / h_ref) ** alpha   (power law, 1/7-th rule baseline)
         alpha = log(WS80 / WS10) / log(80 / 10)
 
-    Two safety rails:
+    Safety rails / treatment knobs (the R1.1 alpha-calibration decision space):
       - WS10 below 1 m/s: log ratio is numerically wild → fall back to 1/7.
-      - Result clipped to [-0.10, 0.40]. Real values cluster around 0.10-0.25
-        on land; clip catches unstable-BL / LLJ outliers that would shift power
-        by tens of percent.
+      - ``blend_weight`` w in [0,1]: climatology blend
+        ``alpha = (1-w)*alpha_HRRR + w*blend_target`` (blend_target defaults to
+        the 1/7 onshore climatology). w=0 (default) = pure HRRR.
+      - Result clipped to ``[alpha_min, alpha_max]``. HRRR median runs high
+        because stable nocturnal boundary layers inflate alpha and HRRR 10 m
+        winds are a known weak spot; lowering ``alpha_max`` (e.g. 0.20/0.25)
+        caps those hours. Defaults reproduce the pre-R1.1 behaviour
+        ([-0.10, 0.40], no blend).
 
-    Returned exponent applies cell-by-cell; pass it into ``extrapolate_to_hub``.
+    Order: raw HRRR alpha → climatology blend → clip. Returned exponent applies
+    cell-by-cell; pass it into ``extrapolate_to_hub``.
     """
     ws80 = np.asarray(ws80, dtype=float)
     ws10 = np.asarray(ws10, dtype=float)
@@ -80,7 +101,9 @@ def estimate_shear_alpha(ws80: np.ndarray, ws10: np.ndarray) -> np.ndarray:
     ok = (ws10 >= SHEAR_WS10_MIN_MS) & (ws80 > 0)
     if ok.any():
         out[ok] = np.log(ws80[ok] / ws10[ok]) / np.log(80.0 / 10.0)
-    return np.clip(out, SHEAR_ALPHA_MIN, SHEAR_ALPHA_MAX)
+    if blend_weight > 0.0:
+        out = (1.0 - blend_weight) * out + blend_weight * blend_target
+    return np.clip(out, alpha_min, alpha_max)
 
 
 def extrapolate_to_hub(ws80: np.ndarray, alpha: np.ndarray,
@@ -391,6 +414,7 @@ def pluswind_v5_power_multicell_A_hubshear(
     hub_h_m: np.ndarray,
     nameplate_mw: np.ndarray,
     curve_ws: np.ndarray, curve_cf: np.ndarray, rated_ws: np.ndarray,
+    alpha_kwargs: dict | None = None,
 ) -> np.ndarray:
     """Method A with per-plant hub-height shear extrapolation (Task 1.2).
 
@@ -404,6 +428,11 @@ def pluswind_v5_power_multicell_A_hubshear(
       4. SAM curve eval per (plant, cell), then nameplate-weighted sum to plant.
       5. Loss taper at the same hub-corrected WS.
 
+    ``alpha_kwargs`` (R1.1) is forwarded to ``estimate_shear_alpha`` to select
+    the alpha treatment — e.g. {"alpha_max": 0.20} for a clip, or
+    {"blend_weight": 0.5} for a climatology blend. None = pure HRRR alpha
+    (the pre-R1.1 default).
+
     Reduces to Method A v4 exactly when ws10_cells == ws80_cells (alpha = 0)
     OR when hub_h_m is uniformly 80 (ratio = 1). Either invariant gives a
     cheap regression check.
@@ -413,8 +442,8 @@ def pluswind_v5_power_multicell_A_hubshear(
     assert plant_cell_weights.shape == (n_plants, n_cells)
     assert hub_h_m.shape == (n_plants,)
 
-    # 1. Per-cell alpha (length C).
-    alpha = estimate_shear_alpha(ws80_cells, ws10_cells)
+    # 1. Per-cell alpha (length C), with the chosen R1.1 treatment.
+    alpha = estimate_shear_alpha(ws80_cells, ws10_cells, **(alpha_kwargs or {}))
 
     # 2. Per-(plant, cell) hub WS. (N, 1) × (1, C) → (N, C).
     ratio = np.power(hub_h_m[:, None] / 80.0, alpha[None, :])

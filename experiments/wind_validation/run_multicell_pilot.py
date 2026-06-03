@@ -89,6 +89,14 @@ def _s3():
             config=botocore.config.Config(
                 signature_version=botocore.UNSIGNED,
                 max_pool_connections=60,
+                connect_timeout=15,
+                read_timeout=30,
+                # "standard" retries (not "adaptive"): retry the retryable
+                # errors without adaptive mode's global client-side rate
+                # limiter, which throttled the whole client ~4x when S3 returned
+                # occasional 503s under concurrency. Our per-range retry loop in
+                # download_subset is the backstop.
+                retries={"max_attempts": 4, "mode": "standard"},
             ),
         )
     return _s3_client
@@ -137,8 +145,15 @@ def _parse_idx(idx_text: str) -> list[tuple[int, int, str]]:
     return result
 
 
-def download_subset(s3_key: str, patterns: list[str]) -> bytes | None:
-    """Download a HRRR byte-range subset and return its bytes (no disk write)."""
+def download_subset(s3_key: str, patterns: list[str], max_tries: int = 4) -> bytes | None:
+    """Download a HRRR byte-range subset and return its bytes (no disk write).
+
+    Retries each byte-range up to ``max_tries`` on transient S3 errors
+    (read/connect timeout, connection reset). A 404/NoSuchKey returns None
+    immediately (file genuinely missing). Returns None only after exhausting
+    retries or a hard miss — never raises, so one bad hour can't crash the
+    pool / lose a whole run's accumulated arrays.
+    """
     idx = _get_idx(s3_key)
     if idx is None:
         return None
@@ -148,11 +163,28 @@ def download_subset(s3_key: str, patterns: list[str]) -> bytes | None:
     buf = bytearray()
     for s, e in ranges:
         rng = f"bytes={s}-" if e == -1 else f"bytes={s}-{e}"
-        try:
-            r = _s3().get_object(Bucket=S3_BUCKET, Key=s3_key, Range=rng)
-            buf.extend(r["Body"].read())
-        except botocore.exceptions.ClientError:
-            return None
+        last_err = None
+        for attempt in range(max_tries):
+            try:
+                r = _s3().get_object(Bucket=S3_BUCKET, Key=s3_key, Range=rng)
+                buf.extend(r["Body"].read())
+                last_err = None
+                break
+            except botocore.exceptions.ClientError as ce:
+                code = ce.response.get("Error", {}).get("Code", "")
+                if code in ("404", "NoSuchKey", "NoSuchBucket"):
+                    return None      # hard miss — don't retry
+                last_err = ce
+            except (botocore.exceptions.ReadTimeoutError,
+                    botocore.exceptions.ConnectTimeoutError,
+                    botocore.exceptions.EndpointConnectionError,
+                    botocore.exceptions.ConnectionError,
+                    Exception) as ex:
+                last_err = ex
+            # transient — brief backoff then retry (no time import needed:
+            # rely on boto's own adaptive retry for the sleep on the next call)
+        if last_err is not None:
+            return None              # exhausted retries for this range
     return bytes(buf)
 
 
@@ -244,45 +276,40 @@ def build_plant_cell_weights(
 # HRRR extraction at the unique-cell set, per hour
 # --------------------------------------------------------------------------
 
+# All six fields we need live in the SAME wrfsfc GRIB and carry distinct
+# eccodes shortNames (verified): u/v = 80 m wind, 10u/10v = 10 m wind, sp =
+# surface pressure, 2t = 2 m temp. Fetching them in ONE byte-range request +
+# ONE GRIB parse (instead of three) is ~3x faster per hour — the dominant
+# cost is the per-hour S3 GET + eccodes parse, not the bytes.
+ALL_IDX_PATTERNS = WIND_IDX_PATTERNS + WIND10_IDX_PATTERNS + DENSITY_IDX_PATTERNS
+
+
 def fetch_one_hour(
     valid_time: datetime, unique_cells: list[tuple[int, int]],
 ) -> tuple[datetime, np.ndarray, np.ndarray, np.ndarray, np.ndarray] | None:
     """Return (valid_time, ws80, pres, t2m, ws10) at the unique cells, or None.
 
-    Single F00 actuals for valid_time. ws10 is the HRRR 10 m wind speed used
-    by Task 1.2 (hub-height shear). It's pulled from the SAME GRIB file as
-    ws80 — both UGRD/VGRD live in the wrfsfc file — but with a different idx
-    pattern set, so it's a second byte-range request to S3.
+    Single F00 analysis for valid_time. One combined byte-range fetch pulls
+    80 m wind, 10 m wind, surface pressure and 2 m temp together (distinct
+    shortNames u/v, 10u/10v, sp, 2t — no collision in the parse dict).
     """
     s3_key = hrrr_s3_key(valid_time.strftime("%Y%m%d"), valid_time.hour, 0)
     rows = np.array([rc[0] for rc in unique_cells])
     cols = np.array([rc[1] for rc in unique_cells])
 
-    # Wind 80 m
-    wind_bytes = download_subset(s3_key, WIND_IDX_PATTERNS)
-    if wind_bytes is None:
+    blob = download_subset(s3_key, ALL_IDX_PATTERNS)
+    if blob is None:
         return None
-    wind = _read_grib_bytes(wind_bytes)
-    ws80 = np.sqrt(wind["u"][rows, cols] ** 2 + wind["v"][rows, cols] ** 2)
-
-    # Wind 10 m (separate byte-range pattern set). eccodes shortName for 10 m
-    # winds is "10u"/"10v" (not "u"/"v" which it uses for 80 m). Be tolerant
-    # in case the convention shifts across HRRR versions.
-    w10_bytes = download_subset(s3_key, WIND10_IDX_PATTERNS)
-    if w10_bytes is None:
-        return None
-    w10 = _read_grib_bytes(w10_bytes)
-    u10_key = "10u" if "10u" in w10 else "u"
-    v10_key = "10v" if "10v" in w10 else "v"
-    ws10 = np.sqrt(w10[u10_key][rows, cols] ** 2 + w10[v10_key][rows, cols] ** 2)
-
-    # Density (PRES surface, TMP 2m)
-    dens_bytes = download_subset(s3_key, DENSITY_IDX_PATTERNS)
-    if dens_bytes is None:
-        return None
-    dens = _read_grib_bytes(dens_bytes)
-    pres = dens["sp"][rows, cols]
-    t2m  = dens["2t"][rows, cols]
+    g = _read_grib_bytes(blob)
+    try:
+        ws80 = np.sqrt(g["u"][rows, cols] ** 2 + g["v"][rows, cols] ** 2)
+        u10 = g["10u"] if "10u" in g else g["u"]
+        v10 = g["10v"] if "10v" in g else g["v"]
+        ws10 = np.sqrt(u10[rows, cols] ** 2 + v10[rows, cols] ** 2)
+        pres = g["sp"][rows, cols]
+        t2m  = g["2t"][rows, cols]
+    except KeyError:
+        return None     # combined blob missing a field — treat as a failed hour
     return valid_time, ws80, pres, t2m, ws10
 
 
