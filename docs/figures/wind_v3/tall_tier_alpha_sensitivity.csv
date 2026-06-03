@@ -1,0 +1,8 @@
+site_id,name,hub_m,GWh_clip0.25,GWh_clip0.20,GWh_daynight,spread_pct,pct_energy_2023_24,rec
+wind_323673,Hardscrabble Wind Power LLC Ha,100.0,1248.2,1232.7,1233.8,1.2,26.4,keep clip0.25
+wind_323825,"Ball Hill Wind Energy, LLC Bal",102.0,340.2,336.1,336.2,1.2,100.0,keep clip0.25
+wind_323790,Avangrid Renewables LLC Roarin,104.0,1075.0,1053.8,1058.6,2.0,48.5,keep clip0.25
+wind_323818,Number Three Wind LLC Number T,106.0,648.7,640.9,640.7,1.2,100.0,keep clip0.25
+wind_323820,"NextEra Energy Marketing, LLC ",109.0,751.2,738.9,739.7,1.6,100.0,keep clip0.25
+wind_323822,"Baron Winds, LLC Baron Winds",113.0,800.8,787.6,788.2,1.6,100.0,keep clip0.25
+wind_323821,"Bluestone Wind, LLC BlueStone ",120.0,304.2,295.3,296.8,2.9,100.0,keep clip0.25
