@@ -10,6 +10,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import sys as _s; _s.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from et_plot import to_et, HOUR_ET  # ALL wind output in US/Eastern
+
 
 REPO = Path(__file__).resolve().parents[2]
 FIG = REPO / "docs" / "figures" / "wind_v3"
@@ -57,14 +60,14 @@ def fleet(suf, year=2020):
                     parse_dates=["Time"])
     d["Time"] = pd.to_datetime(d["Time"], utc=True)
     site = [c for c in d.columns if c.startswith("wind_")]
-    return d.set_index("Time")[site].sum(axis=1, min_count=1)
+    return to_et(d.set_index("Time")[site].sum(axis=1, min_count=1))
 v3 = fleet("v3"); v4 = fleet("v4")
 win = slice("2020-03-01", "2020-03-15")
 c = ax[1, 0]
 c.plot(v3.loc[win].index, v3.loc[win].values, lw=1.3, color="#7f8c8d", label="v3 (single-cell, no hub)")
 c.plot(v4.loc[win].index, v4.loc[win].values, lw=1.3, color="#2471a3", label="v4 (multi-cell + clip-0.25 hub)")
 c.set_ylabel("fleet potential (MW)")
-c.set_title("C) Fleet-sum potential v3 -> v4 (2 weeks, Mar 2020)")
+c.set_title("C) Fleet-sum potential v3 -> v4 (2 weeks, Mar 2020, ET)")
 c.legend(fontsize=9); c.grid(alpha=0.3)
 for lab in c.get_xticklabels():
     lab.set_rotation(30); lab.set_fontsize(7)

@@ -12,6 +12,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import sys as _s; _s.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from et_plot import to_et, HOUR_ET  # ALL wind output in US/Eastern
+
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -27,7 +30,7 @@ def v4_wide(year=2024):
     d = pd.read_csv(WIND / f"wind_actual_1h_site_{year}_utc.pluswind_v4.csv",
                     parse_dates=["Time"])
     d["Time"] = pd.to_datetime(d["Time"], utc=True)
-    return d.set_index("Time")
+    return to_et(d.set_index("Time"))
 
 
 v4 = v4_wide()
@@ -39,7 +42,7 @@ for ax, gk in zip(axes, GROUPS):
     g = LPI_GROUPS[gk]
     sites = [s for s in g["site_ids"] if s in v4.columns]
     mod = v4[sites].sum(axis=1, min_count=1).rename("v4")
-    deliv = (lpi[lpi.group == gk].set_index("ts")["delivered_mw"].rename("lpi"))
+    deliv = (lpi[lpi.group == gk].set_index("ts")["delivered_mw"].tz_convert("US/Eastern").rename("lpi"))
     j = pd.concat([mod, deliv], axis=1).dropna()
     j = j[j.index.year == 2024]
     j["hod"] = j.index.hour
@@ -56,12 +59,12 @@ for ax, gk in zip(axes, GROUPS):
     ax.set_title(f"{g['label'][:38]}\n"
                  f"definitional loss {loss:.0f}%  |  shape: r={r:.2f}, "
                  f"CF-norm nMAE={cf_nmae:.0f}%", fontsize=10)
-    ax.set_xlabel("hour of day (UTC)")
+    ax.set_xlabel(HOUR_ET)
     ax.set_ylabel("MW")
     ax.legend(fontsize=9, loc="upper right")
     ax.grid(alpha=0.3)
 
-fig.suptitle("v4 potential vs LPI metered — aged groups (2024). Red = definitional "
+fig.suptitle("v4 potential vs LPI metered — aged groups (2024, ET). Red = definitional "
              "loss (availability+wake+curtailment), NOT model error (I3); validate SHAPE.",
              fontsize=12, y=1.03)
 fig.tight_layout()
@@ -70,7 +73,7 @@ fig.savefig(out, dpi=130, bbox_inches="tight")
 print(f"wrote {out}")
 for gk in GROUPS:
     g = LPI_GROUPS[gk]; sites = [s for s in g["site_ids"] if s in v4.columns]
-    mod = v4[sites].sum(axis=1, min_count=1); deliv = lpi[lpi.group == gk].set_index("ts")["delivered_mw"]
+    mod = v4[sites].sum(axis=1, min_count=1); deliv = lpi[lpi.group == gk].set_index("ts")["delivered_mw"].tz_convert("US/Eastern")
     j = pd.concat([mod.rename("v4"), deliv.rename("lpi")], axis=1).dropna()
     j = j[j.index.year == 2024]
     print(f"  {gk}: v4 {j.v4.mean():.1f} MW, LPI {j.lpi.mean():.1f} MW, "

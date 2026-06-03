@@ -11,6 +11,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import sys as _s; _s.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from et_plot import to_et, HOUR_ET  # ALL wind output in US/Eastern
+
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -24,7 +27,7 @@ def modeled(suf, sid, year=2024):
     d = pd.read_csv(WIND / f"wind_actual_1h_site_{year}_utc.pluswind_{suf}.csv",
                     parse_dates=["Time"])
     d["Time"] = pd.to_datetime(d["Time"], utc=True)
-    return d.set_index("Time")[sid]
+    return to_et(d.set_index("Time")[sid])
 
 
 fig, ax = plt.subplots(1, 2, figsize=(16, 5.5))
@@ -35,7 +38,7 @@ v3 = modeled("v3", cop); v4 = modeled("v4", cop)
 lpi = load_lpi_groups([2024])
 lpi_cop = (lpi[lpi.group == "copenhagen"].assign(
     ts=lambda x: pd.to_datetime(x.ts_utc, utc=True))
-    .set_index("ts")["delivered_mw"])
+    .set_index("ts")["delivered_mw"].tz_convert("US/Eastern"))
 j = pd.concat({"v3": v3, "v4": v4, "lpi": lpi_cop}, axis=1).dropna()
 j["hod"] = j.index.hour
 diur = j.groupby("hod").mean()
@@ -43,7 +46,7 @@ a = ax[0]
 a.plot(diur.index, diur.lpi, "o-", color="#000000", lw=2, label=f"LPI metered (mean {j.lpi.mean():.1f} MW)")
 a.plot(diur.index, diur.v3, "s--", color="#7f8c8d", lw=1.6, label=f"v3 potential (mean {j.v3.mean():.1f} MW)")
 a.plot(diur.index, diur.v4, "^-", color="#2471a3", lw=1.8, label=f"v4 potential (mean {j.v4.mean():.1f} MW)")
-a.set_xlabel("hour of day (UTC)"); a.set_ylabel("MW")
+a.set_xlabel(HOUR_ET); a.set_ylabel("MW")
 loss_v3 = 100 * (j.v3.mean() - j.lpi.mean()) / j.v3.mean()
 loss_v4 = 100 * (j.v4.mean() - j.lpi.mean()) / j.v4.mean()
 a.set_title(f"A) Copenhagen 2024 diurnal (clean anchor, {len(j)} hrs)\n"
