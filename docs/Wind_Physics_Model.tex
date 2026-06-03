@@ -25,7 +25,7 @@
 \setlist{itemsep=2pt, parsep=0pt, topsep=4pt}
 
 \newcommand{\code}[1]{\texttt{\small #1}}
-\newcommand{\term}[1]{\textbf{#1}}
+\newcommand{\term}[1]{\emph{#1}}
 
 \graphicspath{{figures/wind_v3/}}
 
@@ -100,15 +100,14 @@ the same HRRR weather inputs and extends the series to 2024, so we get the
 benefit of PLUSWIND's quality on the historical window and consistent
 methodology going forward.
 
-\paragraph{Quality bar.} The shared SAM-physics core --- density
-correction, power curve, loss --- matches PLUSWIND to within
-$\sim$1.5\,\% nMAE on the fleet sum over the 2018--2021 window (Section
-\ref{sec:validation}), establishing that our implementation reproduces
-the reference recipe. The two extensions we add on top (multi-cell
-aggregation and hub-height shear) deliberately depart from PLUSWIND ---
-they correct things PLUSWIND's single-cell, 80\,m treatment leaves out
---- so they are validated not against PLUSWIND but against the
-independent references in Sections~\ref{sec:hubshear_validation} and
+The shared SAM-physics core --- density correction, power curve, loss
+--- matches PLUSWIND to within $\sim$1.5\,\% nMAE on the fleet sum over
+the 2018--2021 window (Section \ref{sec:validation}), establishing that
+our implementation reproduces the reference recipe. The two extensions
+we add on top, multi-cell aggregation and hub-height shear, deliberately
+depart from PLUSWIND: they correct things its single-cell, 80\,m
+treatment leaves out, and are validated not against PLUSWIND but against
+the independent references in Sections~\ref{sec:hubshear_validation} and
 \ref{sec:eia923}. Beyond 2021, where PLUSWIND does not exist, the full
 extended pipeline runs alone.
 
@@ -133,42 +132,35 @@ version 2, MERRA-2. We use the HRRR variant as our target because HRRR
 is the highest resolution of the three and is what we already use for
 our solar pipeline.
 
-\paragraph{Why PLUSWIND is the right target for us.}
+PLUSWIND is the right target for our purposes on four counts. It models
+potential generation: power is a deterministic function of weather and
+turbine specifications, with no curtailment or outage signals entering,
+which matches what PGScen's downstream unit-commitment and dispatch
+consumer requires. It is resolved per plant, the natural granularity for
+a stochastic generator that PGScen samples to seed each plant's
+scenarios. It is published, reviewed, and validated:
+\citet{millstein2023pluswind} compare PLUSWIND against operator-reported
+generation in multiple ISOs and find biases in the few-percent range,
+which gives us a defensible quality target. And its methodology is fully
+documented~\citep{millstein2023pluswind}, including the dataset's
+accompanying technical PDF, so we can reproduce it and extend it to
+years PLUSWIND does not cover.
 
-\begin{enumerate}[leftmargin=*]
-  \item \textbf{It models potential generation.} Power is a deterministic
-        function of weather and turbine specifications --- no curtailment
-        or outage signals enter. That matches what PGScen's downstream
-        UC/dispatch consumer wants.
-  \item \textbf{It is per-plant.} Plant-level granularity is the right
-        resolution for a stochastic generator that PGScen samples to seed
-        each plant's scenarios.
-  \item \textbf{It is published, reviewed, and validated.}
-        \citet{millstein2023pluswind} validate PLUSWIND against
-        operator-reported generation in multiple ISOs and find biases
-        in the few-percent range. Building to PLUSWIND gives us a
-        defensible quality target.
-  \item \textbf{The methodology is fully
-        documented}~\citep{millstein2023pluswind}, including the
-        dataset's accompanying technical PDF, so we can reproduce it
-        and extend it to years PLUSWIND does not cover.
-\end{enumerate}
-
-\paragraph{What we use PLUSWIND for, exactly.}
-For 2018--2021, PLUSWIND is the validation \emph{benchmark}: we compute
-nMAE and BC nMAE between our pipeline output and PLUSWIND's. For 2022 and
-later, where PLUSWIND does not exist, our pipeline runs alone using the
-identical methodology PLUSWIND specifies.
+For 2018--2021, PLUSWIND serves as the validation benchmark, against
+which we compute nMAE and bias-corrected nMAE for our pipeline output.
+For 2022 and later, where PLUSWIND does not exist, our pipeline runs
+alone using the identical methodology PLUSWIND specifies.
 
 % ============================================================================
 \section{Data sources}
 \label{sec:data}
 
-The model takes inputs from four sources. Each is described below.
+The model takes inputs from four sources, described in turn below, with
+PLUSWIND serving a fifth role as validation benchmark.
 
-\paragraph{HRRR (the High-Resolution Rapid Refresh from the National
-Oceanic and Atmospheric Administration, NOAA).}
-HRRR~\citep{dowell2022hrrr} is NOAA's operational atmospheric
+The High-Resolution Rapid Refresh (HRRR)~\citep{dowell2022hrrr},
+produced by the National Oceanic and Atmospheric Administration (NOAA),
+is NOAA's operational atmospheric
 forecasting model. It runs every hour on a $3\,$km horizontal grid
 covering the continental United States, and publishes each cycle's
 $0$--$48\,$h forecast and an analysis state at the cycle time. Files
@@ -196,12 +188,11 @@ file. Actuals use the F00 analysis valid at the target hour; day-ahead
 forecasts use the previous day's $18$\,Z cycle at horizons F06--F29 (the
 day-ahead-market issuance), as described in Section~\ref{sec:forecast}.
 
-\paragraph{USWTDB (the US Wind Turbine Database, maintained by the
-United States Geological Survey, USGS).}
-USWTDB is a maintained inventory of every utility-scale wind turbine
-in the United States, joined to plant identifiers from the US Energy
-Information Administration (EIA). It provides the per-turbine
-specifications we need for the power curve:
+The US Wind Turbine Database (USWTDB), maintained by the United States
+Geological Survey (USGS), is a maintained inventory of every
+utility-scale wind turbine in the United States, joined to plant
+identifiers from the US Energy Information Administration (EIA). It
+provides the per-turbine specifications we need for the power curve:
 \begin{description}[leftmargin=*]
   \item[\code{t\_cap}] Rated capacity per turbine (kW).
   \item[\code{t\_rd}] Rotor diameter (m).
@@ -223,29 +214,28 @@ from. Two plants sharing an EIA ID (e.g.\ Maple Ridge 1 and 2) get the
 same per-turbine spec, but each plant's total output scales by its own
 nameplate.
 
-\paragraph{NYISO Gold Book and EIA-860.}
-The Gold Book is NYISO's annual planning document. Combined with EIA-860
+The NYISO Gold Book is the system operator's annual planning document.
+Combined with EIA-860
 (the federal generator inventory), it gives us the canonical list of
 utility-scale wind plants in NY, their nameplate capacities, locations, and
 the year they came online. This is how we filter the country-wide USWTDB
 turbine list down to the 31 NY plants the pipeline serves, and how we
 decide which plants are active in any given year.
 
-\paragraph{The System Advisor Model (SAM), from the National Renewable
-Energy Laboratory (NREL).}
-SAM~\citep{blair2018sam} is NREL's reference model for
+The System Advisor Model (SAM)~\citep{blair2018sam}, from the National
+Renewable Energy Laboratory (NREL), is NREL's reference model for
 renewable-energy generation analysis. We
 use it through its Python API (\code{nrel-pysam}) for one specific
-purpose: producing each plant's empirical wind power curve --- the function
+purpose: producing each plant's empirical wind power curve, the function
 that maps wind speed at hub height to capacity factor, given the plant's
 turbine specifications. SAM's curves are based on measured turbine
 performance and are the same curves PLUSWIND uses.
 
-\paragraph{PLUSWIND (validation only).}
-For 2018--2021 we compare our output, plant by plant and hour by hour,
-against PLUSWIND's published HRRR-variant generation. The 22 NY plants
-that appear in PLUSWIND's plant list form the comparison fleet. PLUSWIND
-plays no role in the model itself --- only as a benchmark.
+Finally, PLUSWIND enters only as a validation benchmark. For 2018--2021
+we compare our output, plant by plant and hour by hour, against
+PLUSWIND's published HRRR-variant generation; the 22 NY plants that
+appear in PLUSWIND's plant list form the comparison fleet. PLUSWIND
+plays no role in the model itself.
 
 % ============================================================================
 \section{The physical model}
@@ -342,7 +332,7 @@ using HRRR's 10\,m wind (\code{UGRD/VGRD@10m}) alongside the 80\,m wind.
 This lets the correction follow the real diurnal and seasonal shear
 cycle instead of a constant.
 
-\paragraph{Calibrating the clip.} A measured $\alpha$ needs guard rails,
+A measured $\alpha$ needs guard rails,
 because HRRR's 10\,m wind is a known weak spot and stable night-time
 boundary layers can drive the raw ratio to physically extreme values.
 We computed the hourly $\alpha$ over the whole fleet for a full year and
@@ -367,16 +357,16 @@ generation, rather than at or below it.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{v4_summary.png}
-  \caption{The two extensions at a glance. \textbf{(A)} per-plant
-    hub-shear lift: the 18 plants at exactly 80\,m are unchanged, two
-    short old plants (66--67\,m) are corrected \emph{down}, and the
-    tall newer plants are lifted, growing with hub height.
-    \textbf{(B)} the measured shear exponent $\alpha$: the daytime
-    median sits in the onshore climatology band, while the night-time
-    median is inflated; the clip at $0.25$ admits the former and trims
-    the latter. \textbf{(C)} fleet potential, single-cell vs.\
-    multi-cell$+$shear, over two weeks. \textbf{(D)} tall-tier energy
-    is stable to $1$--$3\,\%$ across $\alpha$ treatments.}
+  \caption{The two extensions to the PLUSWIND recipe.
+    (A)~per-plant hub-shear lift against hub height, with the 80\,m
+    plants, the two short plants at 66--67\,m, and the tall plants
+    distinguished by colour. (B)~the measured shear exponent $\alpha$
+    for daytime, all hours, and night-time, with the onshore
+    climatology band and the adopted $0.25$ clip marked. (C)~fleet
+    potential over two weeks of March 2020 under the single-cell and
+    the multi-cell-plus-shear pipelines. (D)~tall-tier annual-mean
+    energy under three $\alpha$ treatments, with the percentage spread
+    annotated per plant.}
 \end{figure}
 
 \subsection{Stage 3: density correction}
@@ -425,12 +415,11 @@ cell using its own density-corrected hub-height wind speed.
   \centering
   \includegraphics[width=0.85\textwidth]{sam_curve_examples.png}
   \caption{SAM empirical power curves for two NY plants of different
-    specific power. The curve has three regimes: zero below 3\,m/s
-    (cut-in); a smooth empirical rise through the 5--9\,m/s shaded band
-    where most NY hours fall; nameplate (CF=1) above the rated wind speed
-    and below 25\,m/s (cut-out). A plant's specific power $\sigma$ ---
-    its rated capacity per swept m$^2$ of rotor --- determines how
-    quickly the curve climbs.}
+    specific power. Each curve is zero below the 3\,m/s cut-in, rises
+    smoothly through the 5--9\,m/s shaded band, and holds at nameplate
+    (capacity factor of one) between the rated wind speed and the
+    25\,m/s cut-out. The plant's specific power $\sigma$, its rated
+    capacity per swept m$^2$ of rotor, sets the steepness of the rise.}
 \end{figure}
 
 \subsection{Stage 5: wake/availability loss and aggregation to the plant}
@@ -480,37 +469,33 @@ the atmosphere as it actually was. The forecast uses a single
 day-ahead-market issuance: the $18$\,Z cycle of the previous day,
 forecast horizons F06--F29, which covers the next calendar day's
 $24$ hours. The same Python routine processes both --- it does not know
-which kind of HRRR file it has been handed --- so any difference between
+which kind of HRRR file it has been handed, so any difference between
 the two series reflects HRRR's analysis-versus-forecast skill at
 day-ahead lead, not the power conversion. The forecast series receives
 one further layer of post-processing, a statistical bias correction
-(Section~\ref{sec:forecast}); the actuals do not.
-
-The forecast series receives one extra layer of post-processing on top of
-the physics --- a statistical bias correction described in Section
-\ref{sec:forecast}. The actuals do not.
+described in Section~\ref{sec:forecast}; the actuals do not.
 
 % ============================================================================
 \section{Validation}
 \label{sec:validation}
 
 Validation proceeds in three layers, each answering a different
-question. \textbf{(i)} Against PLUSWIND (this section): does our
-implementation of the shared SAM-physics core reproduce the published
-reference? This is a model-vs-model check on the same HRRR inputs, and
-because PLUSWIND is itself single-cell and 80\,m it is run with our
-multi-cell and hub-shear extensions \emph{disabled}, so the comparison
-isolates the core. \textbf{(ii)} Against the clean Copenhagen metered
-anchor (Section~\ref{sec:hubshear_validation}): do the two extensions
-move the absolute level in the physically correct direction, on a plant
-where metered delivery is close to potential? PLUSWIND cannot answer
-this --- it is structurally blind to hub height. \textbf{(iii)} Against
-Form EIA-923 delivered generation fleet-wide (Section~\ref{sec:eia923}):
-is the absolute level of the potential series consistent with what NY
-wind plants actually delivered, once curtailment and losses are
-accounted for? The three layers establish, in turn, reproducibility,
-correct-direction calibration of the extensions, and absolute-level
-plausibility.
+question. The first, against PLUSWIND and the subject of this section,
+asks whether our implementation of the shared SAM-physics core
+reproduces the published reference. This is a model-versus-model check
+on the same HRRR inputs, and because PLUSWIND is itself single-cell and
+80\,m it is run with our multi-cell and hub-shear extensions disabled,
+so the comparison isolates the core. The second, against the clean
+Copenhagen metered anchor (Section~\ref{sec:hubshear_validation}), asks
+whether the two extensions move the absolute level in the physically
+correct direction on a plant where metered delivery is close to
+potential; PLUSWIND cannot answer this, being structurally blind to hub
+height. The third, against Form EIA-923 delivered generation fleet-wide
+(Section~\ref{sec:eia923}), asks whether the absolute level of the
+potential series is consistent with what NY wind plants actually
+delivered, once curtailment and losses are accounted for. The three
+layers establish, in turn, reproducibility, correct-direction
+calibration of the extensions, and absolute-level plausibility.
 
 For layer (i) the core output is compared against PLUSWIND for each of
 the 22 NY plants present in both datasets, hour by hour, across the
@@ -532,11 +517,10 @@ penalises that.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.55\textwidth]{scatter_v3_vs_pluswind.png}
-  \caption{34\,863 hourly fleet-sum observations (22 NY plants, 2018--2021).
-    The cloud sits on the y=x diagonal: bias near zero, nMAE of $1.99$\,\%,
-    bias-corrected nMAE of $2.07$\,\%. The remaining error is consistent
-    with floating-point and curve-interpolation differences between two
-    independent SAM-based pipelines.}
+  \caption{Hourly fleet-sum potential from the in-house core against
+    PLUSWIND, 34\,863 observations over 22 NY plants, 2018--2021. Mean
+    bias is near zero, nMAE $1.99$\,\%, and bias-corrected nMAE
+    $2.07$\,\%.}
 \end{figure}
 
 \subsection{Per-year scorecard}
@@ -554,10 +538,10 @@ Year & n (h) & bias & nMAE & BC nMAE \\
 2021 &  8\,758 & $+0.36\%$ & $1.60\%$ & $1.59\%$ \\
 \bottomrule
 \end{tabular}
-\caption{In-house model vs PLUSWIND, fleet-sum, by year. 2018 is slightly
-worse because HRRR transitioned from version 2 to version 3 mid-year
-(July 2018) and the early-2018 data has noisier wind components. The
-remaining three years show $\sim$1.5\,\% nMAE.}
+\caption{In-house core versus PLUSWIND, fleet-sum bias, nMAE, and
+bias-corrected nMAE by year. The elevated 2018 figures coincide with
+HRRR's mid-year transition from version~2 to version~3 (July 2018),
+discussed in Section~\ref{sec:limits}.}
 \end{table}
 
 \subsection{Monthly and diurnal patterns}
@@ -565,20 +549,18 @@ remaining three years show $\sim$1.5\,\% nMAE.}
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{monthly_4yr.png}
-  \caption{Monthly fleet mean (MW). The model (orange) traces PLUSWIND
-    (purple) across all 48 months: same seasonal envelope, same year-to-
-    year variation, no systematic drift.}
+  \caption{Monthly fleet-mean potential (MW) for the in-house core
+    (orange) and PLUSWIND (purple) across the 48 months of
+    2018--2021.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{diurnal_pooled.png}
-  \caption{Diurnal pattern, summer (June--July--August, JJA) and
+  \caption{Diurnal pattern for summer (June--July--August, JJA) and
     winter (December--January--February, DJF), pooled across
-    2018--2021. Both seasons show the model lying directly on top of
-    PLUSWIND. Generation is highest in the overnight hours
-    (US/Eastern) --- when the boundary layer is most stable and
-    winds aloft penetrate down to hub height.}
+    2018--2021, for the in-house core and PLUSWIND. Both series peak
+    in the overnight hours (US/Eastern).}
 \end{figure}
 
 \subsection{Hour-by-hour tracking}
@@ -586,10 +568,9 @@ remaining three years show $\sim$1.5\,\% nMAE.}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.95\textwidth]{year_zooms_summer.png}
-  \caption{The same summer week (July 13--19) for each of the four
-    PLUSWIND years. The model (orange) is invisible beneath PLUSWIND
-    (purple) at hour resolution: same ramps, same peak timing, same
-    quiescent stretches.}
+  \caption{The same summer week (July 13--19) of each of the four
+    PLUSWIND years, in-house core (orange) and PLUSWIND (purple) at
+    hourly resolution.}
 \end{figure}
 
 \subsection{Per-plant validation}
@@ -618,9 +599,8 @@ are written to \code{docs/figures/wind\_v3/per\_plant\_metrics.csv}.
   \includegraphics[width=0.85\textwidth]{per_plant_nmae_vs_pluswind.png}
   \caption{Per-plant nMAE of the in-house \code{pluswind\_v3} actuals
     against PLUSWIND, 2020--2021 pooled. Each bar is one of the 22
-    NY plants present in both datasets. The dotted vertical line
-    marks the across-plant median of $1.1\,\%$; seventeen of the
-    twenty-two plants sit below $2\,\%$ nMAE.}
+    NY plants present in both datasets, and the dotted vertical line
+    marks the across-plant median of $1.1\,\%$.}
   \label{fig:per_plant_nmae_pluswind}
 \end{figure}
 
@@ -681,15 +661,13 @@ is genuine, not a modelling defect.
   \centering
   \includegraphics[width=\textwidth]{per_plant_scatter_grid.png}
   \caption{Hourly scatter of in-house \code{pluswind\_v3} against
-    PLUSWIND for every plant in the overlap, 2020--2021 pooled.
-    Panels are sorted by nMAE, lowest first. Each point is one
-    plant-hour. Most panels show a tight cloud on the $y=x$
-    diagonal; the Maple Ridge / Flat Rock combined panel shows the
-    Tug Hill terrain residual discussed above; and the two
-    bottom-row plants (Erie Wind, Niagara Wind Power) show the
-    elbow expected when v3's post-repowering GE curve is compared
-    against PLUSWIND's stale Clipper curve at the two repowered
-    sites.}
+    PLUSWIND for every plant in the overlap, 2020--2021 pooled, one
+    point per plant-hour, panels sorted by nMAE with the lowest
+    first. The Maple Ridge / Flat Rock combined panel carries the Tug
+    Hill terrain residual discussed above, and the two bottom-row
+    plants (Erie Wind, Niagara Wind Power) show the partial-load
+    elbow between v3's post-repowering GE curve and PLUSWIND's stale
+    Clipper curve.}
   \label{fig:per_plant_scatter}
 \end{figure}
 
@@ -737,17 +715,14 @@ calibrated in Section~\ref{sec:hubshear}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{v4_copenhagen_bluestone.png}
-  \caption{\textbf{Left:} Copenhagen 2024 mean diurnal cycle (US/Eastern).
-    With the $80$\,m treatment the modelled potential sits at the metered
-    line --- an unphysical zero loss; the hub-shear correction lifts it a
-    few percent above metered, the expected availability-plus-wake gap for
-    a clean plant, without changing the shape. \textbf{Right:} Bluestone
-    ($120$\,m, the tallest plant) over two weeks, single-cell vs.\ the
-    production series: the lift is the largest in the fleet but, lacking a
-    clean metered anchor, rests on the physics and the Copenhagen analogy.}
+  \caption{Left, Copenhagen 2024 mean diurnal cycle (US/Eastern) for the
+    metered LPI delivery and the modelled potential under the $80$\,m and
+    the hub-shear treatments. Right, Bluestone ($120$\,m, the tallest
+    plant) over two weeks of November 2024 under the single-cell and the
+    production series.}
 \end{figure}
 
-\paragraph{The unvalidated tall tier.} Copenhagen at $95$\,m is the
+Copenhagen at $95$\,m is the
 tallest plant with a clean anchor. The eight plants above it
 ($100$--$120$\,m, mostly 2023--2024 commissions such as Bluestone and
 Baron Winds) receive larger shear lifts ($+10$ to $+22\,\%$) that
@@ -761,11 +736,11 @@ $\alpha$ choice, not an artefact of a fragile exponent; what it lacks is
 a direct metered check, which only per-resource curtailment data
 (Section~\ref{sec:limits}) could supply.
 
-\paragraph{Fleet-wide cross-check against \code{rtfuelmix}.} NYISO's
-real-time fuel-mix feed (\code{rtfuelmix}) reports statewide delivered
-wind at five-minute resolution. It is the only independent signal that
-touches the \emph{whole} 2024 fleet, including the tall plants with no
-LPI anchor. Summed to the fleet and compared hour by hour across 2024,
+A fleet-wide cross-check comes from NYISO's
+real-time fuel-mix feed (\code{rtfuelmix}), which reports statewide
+delivered wind at five-minute resolution and is the only independent
+signal that touches the whole 2024 fleet, including the tall plants with
+no LPI anchor. Summed to the fleet and compared hour by hour across 2024,
 the model's potential tracks the shape of statewide delivery closely on
 calm and ramping days (Pearson $r$ up to $0.9$), sitting $\sim 25$--$35\,\%$
 above it --- the curtailment-plus-availability gap, consistent with the
@@ -802,7 +777,8 @@ the model output should \emph{exceed} metered NY wind generation by
 $20$--$30\,\%$ in aggregate. The EIA-923 cross-check is a test of that
 prediction.
 
-\paragraph{Method.} For each of the seven years 2018--2024 we sum the
+The cross-check is computed as follows. For each of the seven years
+2018--2024 we sum the
 hourly \code{pluswind\_v3} actuals series to monthly per-plant totals
 on the US/Eastern calendar (the calendar EIA-923 reports against), join
 on EIA plant ID, and compute the per-plant and fleet loss fraction
@@ -823,7 +799,7 @@ and one plant forms a \emph{degraded} bucket (model series is correct,
 but the real plant operates below registered nameplate); these are
 excluded from the headline and reported separately.
 
-\paragraph{Result.} The matched-fleet loss fraction is in the
+The matched-fleet loss fraction is in the
 $22$--$29\,\%$ band in every one of the seven years
 (Table~\ref{tab:eia923_fleet}), with no trend across the period and
 $\pm 0.1$~pp sensitivity to removal of any single matched plant or to
@@ -847,18 +823,19 @@ Year & Plants & Mod (TWh) & EIA (TWh) & Gap & Loss & Curt$^\dagger$ & Residual \
 2024 & 24 & 6.17 & 4.75 & $29.9\%$ & $23.0\%$ &     -- &     -- \\
 \bottomrule
 \end{tabular}
-\caption{Matched-fleet annual rollup. Loss $=(M-E)/M$ is the model's
-overshoot expressed as a fraction of its own output. Curt is the
-NYISO transmission-driven wind curtailment from NYISO Power Trends 2024
-Figure~18\,\cite{nyiso2024powertrends}. Residual is Loss minus Curt and
-is discussed below. Partial-year first-months for mid-year-commissioned
-plants are excluded from both the modeled and the EIA sums. 2024
-curtailment was not yet published when the table was assembled.
-$^\dagger$ Transmission/economic curtailment only; see text.}
+\caption{Matched-fleet annual rollup. Loss $=(M-E)/M$ is the modeled
+potential expressed as a fraction of its own output relative to
+delivered generation. Curt is the NYISO transmission-driven wind
+curtailment from NYISO Power Trends 2024 Figure~18
+\cite{nyiso2024powertrends}, and Residual is Loss minus Curt. Partial-year
+first-months for mid-year-commissioned plants are excluded from both the
+modeled and the EIA sums; 2024 curtailment was not yet published when
+the table was assembled. $^\dagger$ Transmission and economic
+curtailment only.}
 \label{tab:eia923_fleet}
 \end{table}
 
-\paragraph{Stability.} A subset sensitivity test confirms the headline
+A subset sensitivity test confirms the headline
 is not sustained by a small number of plants. Removing each of the five
 unverified-bucket plants or the one degraded plant individually, or all
 six together, moves the pooled $2018$--$2024$ loss fraction by at most
@@ -867,7 +844,7 @@ by at most $0.6$~pp. Treating the five unverified plants as matched (the
 most aggressive perturbation) gives $28.9\,\%$ loss instead of $24.9\,\%$,
 still inside the predicted band. The result is structural.
 
-\paragraph{What the curtailment column does and does not cover.}
+The curtailment column requires care in interpretation.
 The Curt column reports the share of NY wind production curtailed by
 NYISO real-time dispatch for transmission and economic reasons, as
 published by NYISO. This is the only NY-specific curtailment time series
@@ -893,7 +870,7 @@ output limits, but still does not collapse to a single annual number.
 We note the result and leave the decomposition for a subsequent
 validation layer.
 
-\paragraph{Per-plant view.} Figure~\ref{fig:eia923_monthly_fleet} shows
+Figure~\ref{fig:eia923_monthly_fleet} shows
 the monthly fleet sum of modeled potential and EIA-923 delivered across
 the full window. The two series trace the same seasonal envelope, with
 the gap between them widening modestly in 2021--2022, consistent with
@@ -902,12 +879,11 @@ NYISO's documented curtailment escalation in those years.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{eia923_monthly_fleet_ts.png}
-  \caption{NY wind fleet monthly generation, matched bucket, $2018$--$2024$.
-    \code{pluswind\_v3} modeled potential (orange) traces EIA-923 delivered
-    (blue) across all 84 months with the same seasonal shape; the shaded
-    gap represents the combined effect of wake, availability,
-    transmission and non-transmission curtailment, and any residual
-    model bias.}
+  \caption{NY wind fleet monthly generation, matched bucket,
+    $2018$--$2024$: \code{pluswind\_v3} modeled potential (orange) and
+    EIA-923 delivered (blue) across all 84 months. The shaded gap is the
+    combined effect of wake, availability, transmission and
+    non-transmission curtailment, and any residual model bias.}
   \label{fig:eia923_monthly_fleet}
 \end{figure}
 
@@ -919,15 +895,14 @@ the cluster of large outliers that a localised model bug would produce.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{eia923_annual_scatter.png}
-  \caption{Per-plant annual modeled vs delivered, matched bucket, one
-    panel per year. Point colour scales with plant capacity (logarithmic
-    colourbar). Each panel's title reports the year's fleet gap and
-    loss fraction. The $y=x$ dashed line is the no-loss reference; the
-    cloud sits above it consistently year-over-year.}
+  \caption{Per-plant annual modeled versus delivered, matched bucket,
+    one panel per year. Point colour scales with plant capacity on a
+    logarithmic colourbar, each panel's title reports the year's fleet
+    gap and loss fraction, and the dashed line is the $y=x$ no-loss
+    reference.}
   \label{fig:eia923_scatter}
 \end{figure}
 
-\paragraph{Metadata integrity and two fixes.}
 A fleet-wide audit cross-checking the NYISO Gold Book, EIA-860, and
 USWTDB for all 31 plants found that the apparent ``location errors'' of
 an earlier pass were in fact two distinct metadata bugs of the same
@@ -974,7 +949,7 @@ such model, not a defect of \code{pluswind\_v3} specifically; it is
 material here only because Madison is $0.4\,\%$ of the fleet
 nameplate.
 
-\paragraph{Modestly low cluster.} Within the matched bucket itself,
+Within the matched bucket itself,
 five plants run consistently $2$--$15\,\%$ below EIA-923: Steel
 Winds~I, Steel Winds~II, Fenner, Munnsville, and Hardscrabble. The
 five are geographically distributed across Zones A, C, and E, ruling
@@ -990,7 +965,7 @@ model: four plants run high (where the metadata is broken, see above)
 and five plants run modestly low. Across the fleet the model is not
 systematically biased.
 
-\paragraph{Diagnostic figures.} The per-plant gap heatmap
+The per-plant gap heatmap
 (Figure~\ref{fig:eia923_heatmap}) and the multi-panel time series for
 the differential-outlier plants
 (Figure~\ref{fig:eia923_flagged_panels}) are included as supplementary
@@ -1000,29 +975,27 @@ diagnostics and are not load-bearing for the headline result.
   \centering
   \includegraphics[width=\textwidth]{eia923_per_plant_heatmap.png}
   \caption{Per-plant monthly $(M-E)/E \times 100$ gap across the matched
-    bucket, $2018$--$2024$. Rows are plants, sorted by pooled mean
-    gap. Diverging colormap centred on the pooled fleet baseline
-    (orange to purple, where dark red is large positive gap, dark blue
-    is negative gap). Vertical bands across all rows reveal fleet-wide
-    months with elevated curtailment exposure.}
+    bucket, $2018$--$2024$. Rows are plants sorted by pooled mean gap, on
+    a diverging colourmap centred on the pooled fleet baseline (dark red
+    a large positive gap, dark blue a negative gap). Vertical bands span
+    all rows in a given month.}
   \label{fig:eia923_heatmap}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{eia923_flagged_panels.png}
-  \caption{Monthly modeled-vs-EIA-923 trajectories for plants whose
-    annual gap is more than $15$~pp away from the matched-fleet baseline
-    in at least three of seven years. The fifteen panels include both
-    the modestly-low cluster (orange-below-blue) and the
-    sustained-high cluster (orange-above-blue), with the
-    metadata-bug plants explicitly shown in the unverified bucket
-    discussion above. Red crosses mark partial-year months excluded
+  \caption{Monthly modeled and EIA-923 trajectories for the fifteen
+    plants whose annual gap is more than $15$~pp from the matched-fleet
+    baseline in at least three of the seven years, spanning the
+    modestly-low cluster (modeled below delivered), the sustained-high
+    cluster (modeled above delivered), and the metadata-bug plants of
+    the unverified bucket. Red crosses mark partial-year months excluded
     from the scorecard sums.}
   \label{fig:eia923_flagged_panels}
 \end{figure}
 
-\paragraph{What EIA-923 certifies that PLUSWIND cannot.} The PLUSWIND
+The two cross-checks certify different things. The PLUSWIND
 comparison in Section~\ref{sec:validation} certifies that two
 independent SAM-based pipelines applied to the same HRRR inputs
 produce the same potential-generation series. It cannot certify that
@@ -1133,11 +1106,9 @@ rolling-window MOS (2019--2022 fit)        & $+1.30\%$ & $6.15\%$ & $8.74\%$ \\
 \caption{Forecast skill on 2023, normalised to the fleet nameplate.
 Columns are bias, nMAE, and the normalised root mean square error
 (nRMSE, defined analogously to nMAE but with squared rather than
-absolute errors). Raw physics has the largest bias and error; MOS
-removes roughly two-thirds of the bias and a similar fraction of the
-error increment; the rolling-window fit, which uses only data
-preceding 2023, costs nothing meaningful relative to the in-sample
-fit. The shipped 2023 forecast is the rolling-window version.}
+absolute errors). The three rows are the raw physics forecast, the
+in-sample MOS fit on the full pool, and the rolling-window MOS fit on
+2019--2022; the shipped 2023 forecast is the rolling-window version.}
 \label{tab:forecast_skill}
 \end{table}
 
@@ -1159,14 +1130,10 @@ the New York footprint.
   \centering
   \includegraphics[width=\textwidth]{per_plant_forecast_skill_2023.png}
   \caption{Per-plant day-ahead forecast skill in 2023, MOS variant,
-    for the twenty-eight active NY plants. Left panel: bias as a
-    percent of plant nameplate, near zero on almost every plant and
-    capped at $4\,\%$ on the few exceptions. Right panel: nMAE as a
-    percent of plant nameplate, ranging from $7.3\,\%$ to $12.9\,\%$
-    with a median of $10.5\,\%$. The fleet-level nMAE of $6.15\,\%$
-    in Table~\ref{tab:forecast_skill} is the spatial-decorrelation
-    aggregate of these per-plant numbers, not a different
-    measurement.}
+    for the twenty-eight active NY plants. Left, bias as a percent of
+    plant nameplate; right, nMAE as a percent of plant nameplate,
+    ranging from $7.3\,\%$ to $12.9\,\%$ with a median of
+    $10.5\,\%$.}
   \label{fig:per_plant_forecast}
 \end{figure}
 
@@ -1198,22 +1165,17 @@ rather than signal, which we return to in the next section.
   \centering
   \includegraphics[width=0.95\textwidth]{forecast_fleet_2023.png}
   \caption{Fleet aggregate over two representative weeks of 2023, one
-    in mid-January and one in mid-July. The actual model series is in
-    black, the raw forecast in red, and the rolling-window MOS in
-    blue. Both forecasts capture the day-shape closely; the raw
-    series sits visibly above the actuals on most hours, while the
-    MOS line tracks the actuals tightly enough that the two are hard
-    to separate at this scale.}
+    in mid-January and one in mid-July, showing the model actuals
+    (black), the raw forecast (red), and the rolling-window MOS
+    (blue).}
   \label{fig:forecast_fleet}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{forecast_diurnal_2023.png}
-  \caption{Mean diurnal pattern by season, 2023 fleet. The raw
-    forecast sits 100--250\,MW above the actuals across most hours of
-    the day. The MOS series lies on top of the actuals in every
-    season, recovering the day-shape that the raw forecast misses.}
+  \caption{Mean diurnal pattern by season for the 2023 fleet, showing
+    the actuals, the raw forecast, and the MOS series.}
   \label{fig:forecast_diurnal}
 \end{figure}
 
@@ -1221,9 +1183,8 @@ rather than signal, which we return to in the next section.
   \centering
   \includegraphics[width=0.95\textwidth]{forecast_scatter_2023.png}
   \caption{Hexbin density of fleet forecast against actual, full year
-    2023. The left panel is the raw forecast, the right panel the
-    rolling-window MOS. The right cloud is visibly tighter and
-    re-centred on the 1:1 diagonal.}
+    2023, with the raw forecast at left and the rolling-window MOS at
+    right.}
   \label{fig:forecast_scatter}
 \end{figure}
 
@@ -1295,11 +1256,9 @@ envelope on any hour of any day in the window.
   \includegraphics[width=\textwidth]{scenarios_fleet_fan_7day_2023.png}
   \caption{Fleet-aggregate scenarios over the seven days from 15 to 21
     July 2023, summed across the 28 active plants. The light blue band
-    is the P5--P95 envelope of the thousand scenarios at each hour;
-    the darker band is the P25--P75 envelope. The actual is in black
-    and the MOS forecast in solid blue. The fan widens on the more
-    variable mid-week days and tightens during the calmer days at the
-    end of the window.}
+    is the P5--P95 envelope of the thousand scenarios at each hour and
+    the darker band the P25--P75 envelope, with the actual in black and
+    the MOS forecast in solid blue.}
   \label{fig:scenarios_fan}
 \end{figure}
 
@@ -1403,40 +1362,40 @@ Year & Active plants & Mean fleet output (MW) & Capacity factor \\
 2024 & 31 & 972 & 32.5\,\% \\
 \bottomrule
 \end{tabular}
-\caption{Annual fleet-sum output and capacity factor. Capacity factors of
-30--35\,\% are typical for NY's mix of inland and upstate wind.}
+\caption{Annual fleet-sum mean output and capacity factor by year.}
 \end{table}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{fleet_7yr.png}
-  \caption{Top: monthly fleet output across all seven years (orange),
-    with the active nameplate capacity overlaid (grey dashed line) showing
-    fleet growth through new plant commissioning. Bottom: monthly
-    capacity factor remains within the typical NY range (28--38\,\%) in
-    every year.}
+  \caption{Top, monthly fleet output across all seven years (orange)
+    with the active nameplate capacity overlaid (grey dashed). Bottom,
+    monthly capacity factor.}
 \end{figure}
 
 % ============================================================================
 \section{Limits and caveats}
 \label{sec:limits}
 
-\paragraph{2018 quality is slightly worse.} HRRR transitioned from version
-2 to version 3 in mid-July 2018. The first half of 2018 has noisier wind
-components than the rest of the period; this shows up as nMAE of $\sim$3\,\%
-vs $\sim$1.5\,\% in subsequent years. PLUSWIND has the same issue.
+The 2018 series is of slightly lower quality than the later years. HRRR
+transitioned from version~2 to version~3 in mid-July 2018, and the first
+half of that year has noisier wind components than the rest of the
+period; this shows up as nMAE of $\sim$3\,\% against $\sim$1.5\,\% in
+subsequent years. PLUSWIND has the same issue.
 
-\paragraph{The model targets potential, not delivered.} Because the model
+The model targets potential generation rather than delivered generation.
+Because it
 contains no curtailment or outage signals, its output can exceed actually
-metered wind generation by 20--30\,\% in NY (this is the curtailment plus
-real-world wake/availability loss). For PGScen this is the desired behaviour;
-any comparison to NYISO \code{rtfuelmix} or EIA-923 must expect the model
-to lie above them, and is a check on \emph{shape}, not level, except on
-the clean Copenhagen anchor (Section~\ref{sec:hubshear_validation}).
+metered wind generation by 20--30\,\% in NY, the curtailment plus
+real-world wake and availability loss. For PGScen this is the desired
+behaviour; any comparison to NYISO \code{rtfuelmix} or EIA-923 must
+expect the model to lie above them, and is a check on shape, not level,
+except on the clean Copenhagen anchor
+(Section~\ref{sec:hubshear_validation}).
 
-\paragraph{The tall-plant hub lift is validated only indirectly.} The
+The tall-plant hub lift is validated only indirectly. The
 hub-height shear is checked directly against metered delivery only at
-Copenhagen ($95$\,m). The eight plants above $95$\,m extrapolate the
+Copenhagen ($95$\,m), and the eight plants above $95$\,m extrapolate the
 power law beyond that anchor; their lift is robust to the $\alpha$
 treatment ($1$--$3\,\%$ spread, Section~\ref{sec:hubshear_validation})
 but has no direct ground truth. The single missing piece for a
@@ -1447,7 +1406,7 @@ Acquiring it is the natural next validation layer and would let
 \code{potential} $=$ \code{metered} $+$ \code{curtailment} $+$
 \code{outage} be reconstructed plant by plant.
 
-\paragraph{Forecast skill is limited by HRRR's day-ahead skill.} The
+Forecast skill is bounded by HRRR's own day-ahead skill. The
 day-ahead forecast errors are dominated by intrinsic HRRR forecast
 skill at the F06--F29 horizons, not by the power conversion. Improving
 forecast quality further would require a different NWP source --- a
@@ -1456,11 +1415,11 @@ global forecast --- rather than better physics. The MOS correction
 (Section~\ref{sec:forecast}) removes the systematic bias but cannot add
 information HRRR did not have.
 
-\paragraph{Per-plant resolution is fleet-aggregated by EIA ID.} When two
-plants in our metadata share an EIA plant identifier (e.g.\ Maple Ridge
-1 and 2), they receive the same per-turbine specifications because USWTDB
-does not distinguish them; the fleet sum is exact, the per-plant split
-approximate. A related, deliberately deferred case is Canandaigua, whose
+Per-plant resolution is limited where plants share an EIA identifier.
+When two plants in our metadata share an EIA plant identifier (e.g.\
+Maple Ridge 1 and 2), they receive the same per-turbine specifications
+because USWTDB does not distinguish them; the fleet sum is exact, the
+per-plant split approximate. A related, deliberately deferred case is Canandaigua, whose
 $125$\,MW is the Cohocton (EIA $56634$) plus Dutch Hill (EIA $56633$)
 registrations: its multi-cell footprint currently covers the Cohocton
 turbines only, so its level is right (correct curve, hub, nameplate)
@@ -1468,10 +1427,10 @@ while its sub-field ramp variance is slightly overstated. Extending the
 cell mapping to span multiple EIA IDs per plant is a fleet-wide
 physics-module change held for a later pass.
 
-\paragraph{Early-2018 forecast coverage.} The day-ahead forecast relies
+The day-ahead forecast has incomplete coverage in early 2018. It relies
 on the $18$\,Z extended HRRR horizons, which the public archive carries
-only from the HRRRv3 transition (July 2018). The afternoon/evening
-forecast hours of January--June 2018 are therefore absent. The actuals
+only from the HRRRv3 transition (July 2018), so the afternoon and
+evening forecast hours of January--June 2018 are absent. The actuals
 (F00) are unaffected, and 2019 onward is complete.
 
 \appendix
@@ -1483,22 +1442,21 @@ The model and the validation tooling live in the project repository. The
 production series is the \code{.pluswind\_v4} variant: multi-cell
 Method~A with the clip-$0.25$ hub-height shear.
 
-\paragraph{Physics module.}
-\code{PGscen-2nd/pgscen/utils/wind\_physics.py}. Contains the SAM curve
+The physics module, \code{PGscen-2nd/pgscen/utils/wind\_physics.py},
+contains the SAM curve
 builder (\code{build\_sam\_curves}), the density correction, the
 wind-shear estimator and hub extrapolation
 (\code{estimate\_shear\_alpha}, \code{extrapolate\_to\_hub}, with
 \code{SHEAR\_ALPHA\_MAX}\,$=0.25$), the loss model, and the per-hour
-power functions: \code{pluswind\_v4\_power\_multicell\_A} (multi-cell,
+power functions \code{pluswind\_v4\_power\_multicell\_A} (multi-cell,
 no shear) and \code{pluswind\_v5\_power\_multicell\_A\_hubshear} (the
 production path, multi-cell $+$ hub shear). The earlier single-cell
 \code{pluswind\_v3\_power\_all\_plants} is retained for the foundation
 comparison of Section~\ref{sec:validation}.
 
-\paragraph{Build pipeline.}
-The multi-cell physics needs the HRRR $80$\,m and $10$\,m winds at every
-cell a plant occupies, so the build runs in two steps under
-\code{experiments/wind\_validation/}:
+The build pipeline runs in two steps under
+\code{experiments/wind\_validation/}, because the multi-cell physics
+needs the HRRR $80$\,m and $10$\,m winds at every cell a plant occupies.
 \code{fetch\_alpha\_raw.py --year YYYY} fetches the six variables at the
 union of all fleet cells (one combined byte-range request per hour) and
 caches them; \code{build\_v4\_actuals.py} and \code{build\_v4\_forecast.py}
@@ -1506,7 +1464,7 @@ then compute the per-plant actuals (F00) and day-ahead forecasts (the
 $18$\,Z F06--F29 issuance) and write them to the \code{.pluswind\_v4}
 files.
 
-\paragraph{Forecast bias correction.}
+Forecast bias correction is performed by
 \code{PGscen-2nd/scripts/06\_mos\_bias\_correction.py} with
 \texttt{--variant .pluswind\_v4}. In-sample mode (\texttt{--years
 2018..2024}) fits on the full pool and writes the corrected forecast
@@ -1516,40 +1474,41 @@ the four prior years only and writes a sibling
 \code{*.pluswind\_v4.rolling.csv}, the operationally honest variant that
 produced the 2023 numbers in Section~\ref{sec:forecast}.
 
-\paragraph{Plant metadata and its guards.}
-\code{PGscen-2nd/data/NYISO\_real/plant\_metadata/wind\_meta.csv} (NY
-plant table, joined to \code{uswtdb\_ny\_turbines.csv} on EIA plant ID).
+Plant metadata lives in
+\code{PGscen-2nd/data/NYISO\_real/plant\_metadata/wind\_meta.csv}, the NY
+plant table, joined to \code{uswtdb\_ny\_turbines.csv} on EIA plant ID.
 The two metadata fixes of Section~\ref{sec:eia923} are enforced by
 override guards in \code{scripts/04\_build\_plant\_metadata.py}
 (\code{NAMEPLATE\_OVERRIDES} for Baron Winds; \code{EIA\_ID\_COORD\_OVERRIDES}
-for Canandaigua) so a metadata rebuild preserves them.
+for Canandaigua) so that a metadata rebuild preserves them.
 
-\paragraph{Output series.}
+The output series are
 \code{wind\_actual\_1h\_site\_<year>\_utc.pluswind\_v4.csv} and the
-matching \code{wind\_day\_ahead\_forecast\_*}, wide format, one column
-per plant. The on-disk index is hourly UTC (the computation zone); all
-figures and reported timestamps convert to US/Eastern at the
+matching \code{wind\_day\_ahead\_forecast\_*}, in wide format with one
+column per plant. The on-disk index is hourly UTC (the computation
+zone); all figures and reported timestamps convert to US/Eastern at the
 presentation layer via \code{experiments/wind\_validation/et\_plot.py}.
 
-\paragraph{Validation and figure tooling.}
-\code{experiments/wind\_validation/score\_per\_plant\_hourly.py} produces
+Validation and figure tooling sits in
+\code{experiments/wind\_validation/}, where
+\code{score\_per\_plant\_hourly.py} produces
 the frozen per-plant scorecard against PLUSWIND, Copenhagen LPI, and the
-aged-group LPI; \code{score\_vs\_rtfuelmix.py} the fleet \code{rtfuelmix}
-comparison; \code{metadata\_audit.py} the fleet metadata consistency
-audit; \code{analyze\_alpha.py} and \code{tall\_tier\_alpha\_sensitivity.py}
+aged-group LPI, \code{score\_vs\_rtfuelmix.py} the fleet \code{rtfuelmix}
+comparison, \code{metadata\_audit.py} the fleet metadata consistency
+audit, and \code{analyze\_alpha.py} and
+\code{tall\_tier\_alpha\_sensitivity.py}
 the $\alpha$ diagnostic and tall-tier sensitivity. The figures in this
 document are produced by the \code{make\_*.py} and \code{v4\_*.py}
 scripts in the same directory.
 
-\paragraph{Downstream consumers.}
-\code{experiments/stage\_a\_joint\_load\_wind/} (the joint load+wind
+The downstream consumers are
+\code{experiments/stage\_a\_joint\_load\_wind/} (the joint load-and-wind
 Stage~A entry point) and \code{scripts/10\_run\_pgscen\_wind.py} (the
-PGScen \code{GeminiEngine} runner) both read the \code{.pluswind\_v4}
-files.
+PGScen \code{GeminiEngine} runner), both of which read the
+\code{.pluswind\_v4} files.
 
-\paragraph{PLUSWIND methodology PDF.}
-A local copy of the methodology PDF lives at
-\code{data/pluswind\_docs/PLUSWIND-Documentation.pdf}. The published
+A local copy of the PLUSWIND methodology PDF lives at
+\code{data/pluswind\_docs/PLUSWIND-Documentation.pdf}, and the published
 paper is \citet{millstein2023pluswind}.
 
 % ============================================================================
