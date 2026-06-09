@@ -1,0 +1,20 @@
+=== SHIP-CONFIG coverage artifact (PRODUCTION path) ===
+days: 52 (2024-01-03 -> 2024-12-25, every 7d)
+asset_rho=0.5 (geographic), time_rho=0.05, short-history reg via pgscen.short_history, in_sample=False, nscen=1000
+  [10/52] 2024-03-06  (1.3m, eta 5.6m)
+  [20/52] 2024-05-15  (2.7m, eta 4.4m)
+  [30/52] 2024-07-24  (4.1m, eta 3.0m)
+  [40/52] 2024-10-02  (5.6m, eta 1.7m)
+  [50/52] 2024-12-11  (7.0m, eta 0.3m)
+  [52/52] 2024-12-25  (7.3m, eta 0.0m)
+
+=== per-zone (production path) ===
+zone  n_obs  cov_50  cov_80  cov_90  mean_bias
+   A   7488   0.495   0.808   0.913      0.737
+   C  11232   0.515   0.835   0.935      0.197
+   D   7440   0.517   0.832   0.926      2.127
+   E  11232   0.515   0.830   0.929      0.257
+   K   1248   0.442   0.800   0.929      1.504
+
+=== FLEET ===  cov_80=0.721  cov_90=0.812  bias=4 MW
+commit fee7d17633  ->  wrote /Users/val/Desktop/Princeton/experiments/wind_per_plant/outputs/ship_artifact

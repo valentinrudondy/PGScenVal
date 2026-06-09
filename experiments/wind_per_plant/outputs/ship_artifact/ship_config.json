@@ -1,14 +1,14 @@
 {
-  "commit": "8bc6c032ff4ad2b5e4ea6f9509ee2387b96d33e8",
+  "commit": "fee7d17633d196dee1754338e6901fac13807029",
   "asset_rho": 0.5,
   "time_rho": 0.05,
-  "short_history_reg": true,
-  "regularizer_module": "pgscen.short_history",
+  "precod_marginal_fix": true,
+  "marginal_module": "pgscen.short_history.restrict_marginals_to_operating",
   "in_sample": false,
   "nscen": 1000,
   "days": 52,
   "stride_days": 7,
-  "fleet_cov_80": 0.7307692307692307,
-  "fleet_cov_90": 0.8277243589743589,
-  "fleet_mean_bias_mw": 9.335796758504333
+  "fleet_cov_80": 0.7211538461538461,
+  "fleet_cov_90": 0.811698717948718,
+  "fleet_mean_bias_mw": 3.8319198986282297
 }

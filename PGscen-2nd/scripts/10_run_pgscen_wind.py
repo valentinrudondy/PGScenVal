@@ -55,11 +55,13 @@ def main():
     # geographic kernel at the old 0.05 over-coupled distant zones ~10x.
     ap.add_argument('--asset-rho', type=float, default=0.5)
     ap.add_argument('--time-rho', type=float, default=0.05)
-    ap.add_argument('--short-history-reg', action=argparse.BooleanOptionalAction,
+    ap.add_argument('--precod-marginal-fix', action=argparse.BooleanOptionalAction,
                     default=True,
-                    help='widen 2023-24 young-plant marginals to the mature-fleet '
-                         'spread (pgscen.short_history; on by default). '
-                         '--no-short-history-reg to disable.')
+                    help='drop each plant pre-commissioning history from the '
+                         'conditional marginals, so a young plant does not collapse '
+                         'its low-forecast scenario fan to a point mass at the '
+                         'forecast (pgscen.short_history; on by default). Replaced '
+                         'the earlier multiplicative young-plant widener.')
     ap.add_argument('--years', type=int, nargs='+',
                     default=[2019, 2020, 2021, 2022, 2023, 2024],
                     help='years to load actuals + forecasts from')
@@ -139,20 +141,20 @@ def main():
         dist = engine.asset_distance().values
         # geographic asset_rho scaled to fleet diameter (matches T7k pattern)
         engine.fit(2 * args.asset_rho * dist / dist.max(), args.time_rho)
-        engine.create_scenario(args.scenario_count, forecast_future)
 
         # ------------------------------------------------------------------
-        # 4b. Short-history regularizer: widen young-plant (2023-24) marginals
-        #     to the mature-fleet spread, in place, before writing.
+        # 4b. Pre-COD marginal fix: drop each plant's pre-commissioning history
+        #     from the conditional marginals (between fit and create_scenario) so a
+        #     young plant's pre-COD zeros don't collapse its low-forecast fan to a
+        #     point mass at the forecast. Replaces the old multiplicative widener.
         # ------------------------------------------------------------------
-        if args.short_history_reg:
-            from pgscen.short_history import build_factors, widen_engine_scenarios
-            factors, _ = build_factors(actual_hist, forecast_hist,
-                                       day_start.year)
-            widen_engine_scenarios(engine, forecast_future, scen_timesteps,
-                                   factors)
-            log.info('[%s] short-history reg: widened %d young plant(s)',
-                     day_start.date(), len(factors))
+        if args.precod_marginal_fix:
+            from pgscen.short_history import restrict_marginals_to_operating
+            trimmed = restrict_marginals_to_operating(engine)
+            log.info('[%s] pre-COD marginal fix: trimmed %d plant(s)',
+                     day_start.date(), len(trimmed))
+
+        engine.create_scenario(args.scenario_count, forecast_future)
 
         # ------------------------------------------------------------------
         # 5. Write per-asset scenario CSVs to <out_dir>/<YYYYMMDD>/wind/

@@ -57,19 +57,21 @@ on v4 data, 52 days of 2024. Headline measured results:
   limitation. **This is a modest point in favour of the zonal
   approach** (Stage A fits each cross-zone pair directly) — answering open question #3 with a
   real trade, not a clean win.
-- **The young-plant risk (§7) is confirmed and partially mitigated.** The only
-  systematically under-dispersed plants are the 2023–24 commissions (cov_80 0.60–0.70,
-  exactly as predicted). The short-history regularizer widens them (+0.03–0.08 cov_80,
-  e.g. Baron 0.66→0.73) while leaving mature plants untouched (0.822→0.820) — it helps but
-  doesn't fully close; a known low-confidence bucket that self-corrects as history accrues.
+- **The young-plant risk (§7) is confirmed and now RESOLVED.** The 2023–24 commissions were the
+  only systematically under-dispersed plants (cov_80 0.60–0.70, as predicted). The
+  multiplicative short-history regularizer (a partial mitigation) was later **superseded by the
+  pre-COD marginal fix** (RESULTS.md §9), which found the root cause — pre-commissioning marginal
+  pollution — and brings the whole cohort (plus the 2021 Cassadaga/Roaring Brook pair) onto
+  target (cov_80 0.79–0.82).
 
 **Net effect on the recommendation:** the per-plant *deliverable* (what the grid ingests —
 per-plant injections) is sound and well-calibrated. The honest qualification is at the
 **aggregate/cross-zone** level: the one-parameter geographic kernel can't fully reproduce
 the zonal correlation structure that Stage A fits directly, and the headline fleet number
-was flattered by error cancellation. **Final ship recipe (see RESULTS.md §7, which tested and
-*rejected* the global widen): (1) `asset_rho=0.5`; (2) the young-plant regularizer only —
-no global marginal widen; (3) fleet cov_80 ships at ≈0.73 as a documented known limitation.**
+was flattered by error cancellation. **Final ship recipe (see RESULTS.md §7 and §9):
+(1) `asset_rho=0.5`; (2) the pre-COD marginal fix (`restrict_marginals_to_operating`) — which
+replaced the multiplicative young-plant widener; no global marginal widen (tested and rejected,
+§7); (3) fleet cov_80 ships at ≈0.72 as a documented known limitation.**
 The global widen was rejected on evidence: the fleet deficit is heterogeneous in sign across
 zones (A/K too narrow, C/D/E already wide) and the cross-zone copula nets out at the fleet
 level, so a uniform factor over-inflates D/E while leaving A under. A *structured* asset
@@ -258,7 +260,7 @@ critical path and effort (with maximal reuse of existing templates):
 | **Runner refactor** → production `run_one_day()` callable; **fix the `in_sample=True` leakage**; add a preloaded-data path | ~0.5–1 day | **On the critical path** — blocks the two below. Target parity with `btm_solar_zonal/run_btm_solar.py` (368 lines, structured return, leakage-safe split). |
 | **Per-plant calibration harness** (PIT / interval coverage / CRPS, multi-day stride) | ~1 day | Depends on the runner. Adapts `stage_b_conditional_loads/multi_day_calibration.py` (loads) + `btm_solar_zonal/calibration.py`. |
 | **Held-out rho tuning** (energy score over the plant geography) | ~0.25 day | Near-drop-in reuse of `stage_a_joint_load_wind/tune_rho.py` (292 lines, already leakage-safe). |
-| **Short-history marginal regularizer** (see below) | ~0.5 day | Named deliverable, gated on the calibration evidence. |
+| **Short-history marginal regularizer** (see below) | ~0.5 day | Named deliverable, gated on the calibration evidence. *Superseded post-hoc by the pre-COD marginal fix (RESULTS.md §9), which addressed the root cause directly.* |
 | **Cross-block validation** (§6) + tail-co-occurrence check (§5) | ~0.5 day | The decision gate. |
 
 **Honest total: ~2–3 focused days**, sequential (calibration and tuning are blocked on the

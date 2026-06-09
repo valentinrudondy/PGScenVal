@@ -1,12 +1,10 @@
 """Record the SHIP-CONFIG coverage artifact from the PRODUCTION code path.
 
-calibration.py applies the experiments-prototype widener (short_history_reg.py, on
-the result tensor). THIS script instead routes every day through the PRODUCTION
-regularizer module `pgscen.short_history` (build_factors + widen_engine_scenarios,
-operating on engine.scenarios['wind']) -- the exact code `10_run_pgscen_wind.py`
-runs -- with per-day history-derived factors, then scores per-plant / per-zone /
-fleet coverage. The fit itself is identical to the runner's (geographic
-asset_rho=0.5, time_rho=0.05, in_sample=False, lead 18h).
+Routes every day through the shipped path: per-plant GeminiEngine at geographic
+asset_rho=0.5, in_sample=False, with the pre-COD conditional-marginal fix
+(`pgscen.short_history.restrict_marginals_to_operating`, applied inside
+run_one_day) -- the fix that replaced the multiplicative young-plant widener.
+Scores per-plant / per-zone / fleet coverage.
 
 Output is the ship artifact: coverage produced by production code at production
 settings, tied to a commit (recorded in ship_config.json). Parity with the
@@ -34,12 +32,6 @@ THIS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(THIS_DIR))
 from run_wind_per_plant import run_one_day, load_wind  # noqa: E402
 from calibration import crps_kernel, pit_value  # noqa: E402
-from pgscen.short_history import (  # noqa: E402
-    build_factors as prod_build_factors,
-    widen_engine_scenarios,
-)
-from pgscen.utils.data_utils import (  # noqa: E402
-    split_actuals_hist_future, split_forecasts_hist_future)
 
 WIND_META = Path("/Users/val/Desktop/Princeton/PGscen-2nd/data/NYISO_real/"
                  "plant_metadata/wind_meta.csv")
@@ -92,24 +84,14 @@ def main():
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
+                # run_one_day restricts pre-COD marginals by default (the fix that
+                # replaced the multiplicative young-plant widener); nothing else
+                # to apply here.
                 res = run_one_day(day, nscen=args.nscen, asset_rho=args.asset_rho,
                                   time_rho=args.time_rho, preloaded=pre,
                                   seed=args.seed + i, verbose=False)
-                # --- PRODUCTION regularizer path (per-day history factors) ---
-                scen_ts = pd.DatetimeIndex(res["scen_timesteps"])
-                a_hist, _ = split_actuals_hist_future(actual_df, scen_ts,
-                                                      in_sample=False)
-                f_hist, f_future = split_forecasts_hist_future(forecast_df, scen_ts,
-                                                               in_sample=False)
-                factors, _ = prod_build_factors(a_hist, f_hist,
-                                                pd.Timestamp(day).year)
-                widen_engine_scenarios(res["engine"], f_future,
-                                       res["scen_timesteps"], factors)
-                # re-extract the widened tensor from engine.scenarios
-                eng_scen = res["engine"].scenarios["wind"]
                 assets = res["assets"]
-                mw = np.stack([eng_scen[a].loc[:, res["scen_timesteps"]].values
-                               for a in assets], axis=1)   # (nscen, n_asset, 24)
+                mw = res["mw_all"]                        # (nscen, n_asset, 24)
         except Exception as e:
             print(f"  [{i+1}/{len(days)}] {day}: FAILED {type(e).__name__}: {e}")
             continue
@@ -172,8 +154,9 @@ def main():
     zagg.to_csv(out_dir / "per_zone_summary.csv", index=False)
 
     cfg = {"commit": _git_commit(), "asset_rho": args.asset_rho,
-           "time_rho": args.time_rho, "short_history_reg": True,
-           "regularizer_module": "pgscen.short_history", "in_sample": False,
+           "time_rho": args.time_rho, "precod_marginal_fix": True,
+           "marginal_module": "pgscen.short_history.restrict_marginals_to_operating",
+           "in_sample": False,
            "nscen": args.nscen, "days": len(days), "stride_days": args.step_days,
            "fleet_cov_80": float(fl["in_80"].mean()),
            "fleet_cov_90": float(fl["in_90"].mean()),

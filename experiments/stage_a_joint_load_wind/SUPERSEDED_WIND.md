@@ -28,9 +28,10 @@ dropping these is a spec amendment that is his decision to make (see
 
 Per-plant wind: [`../wind_per_plant/`](../wind_per_plant/), production runner
 `PGscen-2nd/scripts/10_run_pgscen_wind.py` with the shipped config **`asset_rho=0.5` +
-young-plant regularizer**, `in_sample=False` (leakage fixed). Evidence:
+the pre-COD marginal fix** (`restrict_marginals_to_operating`, which replaced the multiplicative
+young-plant widener), `in_sample=False` (leakage fixed). Evidence:
 [`../wind_per_plant/RESULTS.md`](../wind_per_plant/RESULTS.md) (calibration, the §6 decision
-gate, the §7 fleet-dispersion diagnostic, and §8 known limitations).
+gate, the §7 fleet-dispersion diagnostic, §8 known limitations, and the §9 pre-COD fix).
 
 ## The honest qualification
 

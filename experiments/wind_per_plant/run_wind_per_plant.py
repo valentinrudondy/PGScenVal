@@ -71,7 +71,8 @@ def load_wind(years=None, variant="pluswind_v4", use_raw_forecast=False):
 
 def run_one_day(scen_day, nscen=1000, asset_rho=0.5, time_rho=0.05,
                 nearest_days=None, variant="pluswind_v4", use_raw_forecast=False,
-                years=None, preloaded=None, seed=None, verbose=True) -> dict:
+                years=None, preloaded=None, seed=None, verbose=True,
+                restrict_precod=True) -> dict:
     """Generate `nscen` day-ahead per-plant wind scenarios for one UTC scenario day.
 
     Parameters
@@ -135,6 +136,13 @@ def run_one_day(scen_day, nscen=1000, asset_rho=0.5, time_rho=0.05,
         dist = engine.asset_distance().values
         engine.fit(2 * asset_rho * dist / dist.max(), time_rho,
                    nearest_days=nearest_days)
+        # Drop pre-commissioning history from the conditional marginals so a young
+        # plant's pre-COD zeros don't collapse its low-forecast scenario fan to a
+        # point mass at the forecast (pgscen.short_history). Must be between fit
+        # and create_scenario.
+        if restrict_precod:
+            from pgscen.short_history import restrict_marginals_to_operating
+            restrict_marginals_to_operating(engine)
         engine.create_scenario(nscen, forecast_future)
 
     assets = list(engine.asset_list)

@@ -761,13 +761,9 @@ potential series --- both use the same nameplate-based recipe. To
 certify the level we add a methodologically independent cross-check
 against operator-reported delivered generation from Form EIA-923, the
 federally-mandated monthly generation report covering every utility-scale
-plant in the United States. The cross-check below was computed on the
-single-cell potential series; it transfers directly to the production
-multi-cell-plus-hub-shear series, because at the fleet-and-year scale of
-this comparison the two differ by well under one percent --- the
-tall-plant hub lifts are offset by the Baron nameplate correction and
-the sub-80\,m down-corrections (see the metadata paragraph below), so
-the fleet-level loss fractions reported here are the production figures.
+plant in the United States. The cross-check below is computed directly on
+the production multi-cell-plus-hub-shear (\code{pluswind\_v4}) series, so
+the loss fractions reported here are the production figures.
 
 The model in this document targets \emph{potential} generation: it carries
 no curtailment, no outage, and no wake-loss signals beyond the constant
@@ -779,30 +775,30 @@ prediction.
 
 The cross-check is computed as follows. For each of the seven years
 2018--2024 we sum the
-hourly \code{pluswind\_v3} actuals series to monthly per-plant totals
+hourly \code{pluswind\_v4} actuals series to monthly per-plant totals
 on the US/Eastern calendar (the calendar EIA-923 reports against), join
 on EIA plant ID, and compute the per-plant and fleet loss fraction
 $L = (M-E)/M$, with $M$ the modeled potential MWh and $E$ the
 EIA-923 delivered MWh.\footnote{Pipeline:
 \code{PGscen-2nd/scripts/11\_download\_eia923.py} downloads and parses
-the annual workbooks; \code{12\_join\_eia923\_to\_pluswind.py} produces
-the long-format scorecard at
-\code{PGscen-2nd/data/NYISO\_real/eia923/eia923\_vs\_pluswind\_v3\_long.csv};
+the annual workbooks; \code{12\_join\_eia923\_to\_pluswind.py}
+(\code{PLUSWIND\_VARIANT=v4}) produces the long-format scorecard at
+\code{PGscen-2nd/data/NYISO\_real/eia923/eia923\_vs\_pluswind\_v4\_long.csv};
 \code{experiments/wind\_validation/score\_vs\_eia923.py} produces the
 fleet and per-plant scorecards under \code{docs/figures/wind\_v3/}.}
-Of the $29$ NY wind plants with unique EIA IDs in our metadata, $24$
+Of the $30$ NY wind plants with unique EIA IDs in our metadata, $25$
 form the \emph{matched} bucket --- verified EIA-ID, EIA-860 lat/lon
 agreement within $5\,$km, no commissioning-month conflicts --- which we
-use as the headline. Five plants form an \emph{unverified} bucket
+use as the headline. Four plants form an \emph{unverified} bucket
 (metadata errors documented below, where the model series is suspect)
 and one plant forms a \emph{degraded} bucket (model series is correct,
 but the real plant operates below registered nameplate); these are
 excluded from the headline and reported separately.
 
 The matched-fleet loss fraction is in the
-$22$--$29\,\%$ band in every one of the seven years
+$24$--$30\,\%$ band in every one of the seven years
 (Table~\ref{tab:eia923_fleet}), with no trend across the period and
-$\pm 0.1$~pp sensitivity to removal of any single matched plant or to
+$\pm 0.4$~pp sensitivity to removal of any single matched plant or to
 the inclusion or exclusion of any of the unverified-bucket plants. The
 predicted $20$--$30\,\%$ band from Section~\ref{sec:limits} brackets
 every observed year. This is the headline of the cross-check.
@@ -814,13 +810,13 @@ every observed year. This is the headline of the cross-check.
 \toprule
 Year & Plants & Mod (TWh) & EIA (TWh) & Gap & Loss & Curt$^\dagger$ & Residual \\
 \midrule
-2018 & 19 & 4.78 & 3.41 & $40.5\%$ & $28.8\%$ & $1.1\%$ & $27.7\%$ \\
-2019 & 19 & 5.04 & 3.89 & $29.6\%$ & $22.8\%$ & $1.6\%$ & $21.2\%$ \\
-2020 & 21 & 5.09 & 3.95 & $28.7\%$ & $22.3\%$ & $1.5\%$ & $20.8\%$ \\
-2021 & 21 & 4.88 & 3.67 & $33.2\%$ & $24.9\%$ & $2.0\%$ & $22.9\%$ \\
-2022 & 23 & 5.80 & 4.12 & $40.7\%$ & $28.9\%$ & $3.4\%$ & $25.5\%$ \\
-2023 & 24 & 5.26 & 4.04 & $30.3\%$ & $23.2\%$ & $3.4\%$ & $19.8\%$ \\
-2024 & 24 & 6.17 & 4.75 & $29.9\%$ & $23.0\%$ &     -- &     -- \\
+2018 & 19 & 4.87 & 3.41 & $42.9\%$ & $30.0\%$ & $1.1\%$ & $28.9\%$ \\
+2019 & 19 & 5.14 & 3.89 & $32.2\%$ & $24.4\%$ & $1.6\%$ & $22.8\%$ \\
+2020 & 21 & 5.18 & 3.95 & $31.1\%$ & $23.7\%$ & $1.5\%$ & $22.2\%$ \\
+2021 & 21 & 4.94 & 3.67 & $34.7\%$ & $25.7\%$ & $2.0\%$ & $23.7\%$ \\
+2022 & 24 & 5.88 & 4.12 & $42.5\%$ & $29.8\%$ & $3.4\%$ & $26.4\%$ \\
+2023 & 25 & 5.75 & 4.31 & $33.4\%$ & $25.0\%$ & $3.4\%$ & $21.6\%$ \\
+2024 & 25 & 6.78 & 5.10 & $33.0\%$ & $24.8\%$ &     -- &     -- \\
 \bottomrule
 \end{tabular}
 \caption{Matched-fleet annual rollup. Loss $=(M-E)/M$ is the modeled
@@ -836,12 +832,11 @@ curtailment only.}
 \end{table}
 
 A subset sensitivity test confirms the headline
-is not sustained by a small number of plants. Removing each of the five
+is not sustained by a small number of plants. Removing each of the four
 unverified-bucket plants or the one degraded plant individually, or all
-six together, moves the pooled $2018$--$2024$ loss fraction by at most
-$0.1$~pp; substituting in each unverified plant as if matched moves it
-by at most $0.6$~pp. Treating the five unverified plants as matched (the
-most aggressive perturbation) gives $28.9\,\%$ loss instead of $24.9\,\%$,
+five together, moves the pooled $2018$--$2024$ loss fraction (a baseline
+of $26.2\,\%$) by at most $0.4$~pp. Treating the unverified-bucket plants
+as matched (the most aggressive perturbation) gives $27.6\,\%$ loss,
 still inside the predicted band. The result is structural.
 
 The curtailment column requires care in interpretation.
@@ -858,9 +853,9 @@ availability. The Residual column in Table~\ref{tab:eia923_fleet} is
 therefore the model's loss fraction minus the transmission component
 alone, not the model's loss minus all possible non-model effects.
 
-A full quantitative decomposition of the residual $\sim 20\,\%$ into
-its physical contributors --- wake, availability, OOM curtailment, and
-any residual model bias --- is not attempted here. NYISO does not
+A full quantitative decomposition of the residual (low-to-mid-twenties
+percent) into its physical contributors --- wake, availability, OOM
+curtailment, and any residual model bias --- is not attempted here. NYISO does not
 publish an inclusive ``total wind output reduction'' figure, and a
 proper decomposition would require per-resource MIS curtailment data,
 plant-level availability disclosures, and a wake model calibrated to
@@ -880,7 +875,7 @@ NYISO's documented curtailment escalation in those years.
   \centering
   \includegraphics[width=\textwidth]{eia923_monthly_fleet_ts.png}
   \caption{NY wind fleet monthly generation, matched bucket,
-    $2018$--$2024$: \code{pluswind\_v3} modeled potential (orange) and
+    $2018$--$2024$: \code{pluswind\_v4} modeled potential (orange) and
     EIA-923 delivered (blue) across all 84 months. The shaded gap is the
     combined effect of wake, availability, transmission and
     non-transmission curtailment, and any residual model bias.}
@@ -912,7 +907,7 @@ $238.4$\,MW inherited from the Gold Book's planning figure, against an
 as-built capacity of $130$\,MW (EIA-860) confirmed by its $32$ USWTDB
 turbines; the $1.8\times$ overstatement, not any coordinate error, was
 what drove its impossible ``$49$--$140\,\%$ loss.'' Correcting the
-nameplate brings its $2024$ loss into the $6\,\%$ band. \emph{Canandaigua
+nameplate brings its $2024$ loss to a physical $16\,\%$. \emph{Canandaigua
 Power Partners} (wind\_323617) had been joined to Baron's EIA $60596$ by
 the fuzzy matcher --- they share the town of Cohocton --- instead of to
 its true Cohocton Wind Project (EIA $56634$); that mis-join gave it
@@ -933,37 +928,33 @@ identified in EIA-860 but had not yet reported to EIA-923 for $2024$, an
 apparent reporting lag.
 
 One additional plant, \emph{Madison Windpower} (EIA $55769$,
-$11.5\,$MW commissioned $2000$), is treated separately. The
-\code{pluswind\_v3} series for Madison agrees with PLUSWIND's raw
-hourly file within $1\,\%$ in every overlapping year --- the two
-models are computing the same physics on the same HRRR inputs at the
-correct location. EIA-923 delivered output, however, declines from
+$11.5\,$MW commissioned $2000$), is treated separately. Its EIA-923
+delivered output declines from
 $\sim 18\,$GWh/yr in $2018$--$2020$ to $\sim 10\,$GWh/yr in $2021$--$2022$
 and $7.5\,$GWh in $2024$, consistent with progressive in-place turbine
 degradation that EIA-860 has not yet reflected in the registered
-nameplate. Both \code{pluswind\_v3} and PLUSWIND assume the registered
-nameplate and so both overstate Madison's delivery by a factor of two
-to three in the post-degradation period. This is a known
-nameplate-driven-potential-model limitation that affects \emph{any}
-such model, not a defect of \code{pluswind\_v3} specifically; it is
-material here only because Madison is $0.4\,\%$ of the fleet
-nameplate.
+nameplate. Because \code{pluswind\_v4} --- like PLUSWIND, and any
+nameplate-driven potential model --- assumes the registered $11.5\,$MW,
+it overstates Madison's delivery by a factor of two
+to three in the post-degradation period. This is a known limitation of
+nameplate-driven models, not a defect of \code{pluswind\_v4}
+specifically; it is material here only because Madison is $0.4\,\%$ of
+the fleet nameplate.
 
-Within the matched bucket itself,
-five plants run consistently $2$--$15\,\%$ below EIA-923: Steel
-Winds~I, Steel Winds~II, Fenner, Munnsville, and Hardscrabble. The
-five are geographically distributed across Zones A, C, and E, ruling
-out a single local cause. Two of them (Steel Winds~I/II) are the
-post-repowering GE 2.5-116 sites for which we apply
-\code{TURBINE\_SPEC\_OVERRIDES} (Section~\ref{sec:per_plant_validation});
-the magnitudes ($2$--$12\,\%$ low) are comparable to manufacturer
-power-curve conservatism and to the cluster's narrowness across
-geography, suggesting the SAM curve choice for that turbine is
-slightly conservative. The cluster's existence is reassurance that
-the matched-bucket headline is not a one-sided over-prediction by the
-model: four plants run high (where the metadata is broken, see above)
-and five plants run modestly low. Across the fleet the model is not
-systematically biased.
+Within the matched bucket itself, a cluster of plants runs well below
+the fleet's $\sim 26\,\%$ pooled loss. Two of them --- Steel Winds~II and
+Bluestone --- sit a few to $\sim 13\,\%$ \emph{below} delivered (a
+negative implied loss), and a further handful (Hardscrabble, Copenhagen,
+Steel Winds~I, Howard, Munnsville, Fenner) fall in the $5$--$14\,\%$
+range. Steel Winds~I and~II are the post-repowering GE 2.5-116 sites for
+which we apply \code{TURBINE\_SPEC\_OVERRIDES}
+(Section~\ref{sec:per_plant_validation}); their modeled potential sitting
+at or slightly below metered delivery is consistent with a mildly
+conservative SAM curve for that turbine. The spread is reassurance that
+the matched-bucket headline is not a one-sided over-prediction: some
+plants sit above the fleet loss (where the metadata was broken, see
+above) while a cluster sits at or below it, so across the fleet the model
+is not systematically biased.
 
 The per-plant gap heatmap
 (Figure~\ref{fig:eia923_heatmap}) and the multi-panel time series for
@@ -985,7 +976,7 @@ diagnostics and are not load-bearing for the headline result.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{eia923_flagged_panels.png}
-  \caption{Monthly modeled and EIA-923 trajectories for the fifteen
+  \caption{Monthly modeled and EIA-923 trajectories for the thirteen
     plants whose annual gap is more than $15$~pp from the matched-fleet
     baseline in at least three of the seven years, spanning the
     modestly-low cluster (modeled below delivered), the sustained-high
@@ -1076,12 +1067,12 @@ no in-sample optimism baked in.
 \subsection{Skill}
 
 The forecast was evaluated on the full year 2023 (8\,760 hours across
-28 active plants, fleet capacity 2\,638\,MW). The headline numbers,
+28 active plants, fleet capacity 2\,530\,MW). The headline numbers,
 normalised to the fleet nameplate, are summarised in Table
 \ref{tab:forecast_skill}. The raw forecast carries a positive bias of
-about four and a half percent of capacity and a fleet-mean absolute
-error of just over seven percent. The MOS correction removes
-approximately two-thirds of the bias and trims about fifteen percent
+about three and a half percent of capacity and a fleet-mean absolute
+error of just over six percent. The MOS correction removes
+roughly three-quarters of the bias and trims about a sixth
 off the mean absolute error. A rolling-window MOS, fitted only on
 2019--2022, is essentially indistinguishable from the in-sample fit
 on 2023, both at the level of the bias and at the level of the
@@ -1098,9 +1089,9 @@ access to the evaluation year.
 \toprule
 forecast (fleet aggregate) & bias & nMAE & nRMSE \\
 \midrule
-raw physics                                & $+4.52\%$ & $7.24\%$ & $10.29\%$ \\
-in-sample MOS (full pool)                  & $+1.27\%$ & $6.13\%$ & $8.67\%$ \\
-rolling-window MOS (2019--2022 fit)        & $+1.30\%$ & $6.15\%$ & $8.74\%$ \\
+raw physics                                & $+3.57\%$ & $6.14\%$ & $8.72\%$ \\
+in-sample MOS (full pool)                  & $+1.02\%$ & $5.18\%$ & $7.29\%$ \\
+rolling-window MOS (2019--2022 fit)        & $+0.96\%$ & $5.15\%$ & $7.28\%$ \\
 \bottomrule
 \end{tabular}
 \caption{Forecast skill on 2023, normalised to the fleet nameplate.
@@ -1114,13 +1105,13 @@ in-sample MOS fit on the full pool, and the rolling-window MOS fit on
 
 The fleet aggregate hides a wider distribution at the plant level.
 Figure~\ref{fig:per_plant_forecast} reports plant-by-plant bias and
-nMAE for all twenty-eight active plants in 2023, normalised to plant
+nMAE for the active NY plants in 2023, normalised to plant
 nameplate for direct comparison with the fleet line in Table
-\ref{tab:forecast_skill}. The across-plant median nMAE is $10.5\,\%$
-of nameplate; the spread runs from $7.3\,\%$ on the easiest plant to
-$12.9\,\%$ on the hardest, slightly under twice the fleet figure of
-$6.15\,\%$. The widening is a textbook spatial-decorrelation effect:
-the errors of the twenty-eight partially independent plants average
+\ref{tab:forecast_skill}. The across-plant median nMAE is $9.2\,\%$
+of nameplate; the spread runs from $6.0\,\%$ on the easiest plant to
+$11.5\,\%$ on the hardest, slightly under twice the fleet figure of
+$5.15\,\%$. The widening is a textbook spatial-decorrelation effect:
+the errors of the partially independent plants average
 out at the fleet level by approximately a factor of
 $\sqrt{\rho + (1-\rho)/N}$, where $N$ is the fleet size and $\rho$ is
 the typical pairwise residual correlation, around $0.3$--$0.5$ for
@@ -1129,24 +1120,24 @@ the New York footprint.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{per_plant_forecast_skill_2023.png}
-  \caption{Per-plant day-ahead forecast skill in 2023, MOS variant,
-    for the twenty-eight active NY plants. Left, bias as a percent of
+  \caption{Per-plant day-ahead forecast skill in 2023, rolling-window
+    MOS, for the active NY plants. Left, bias as a percent of
     plant nameplate; right, nMAE as a percent of plant nameplate,
-    ranging from $7.3\,\%$ to $12.9\,\%$ with a median of
-    $10.5\,\%$.}
+    ranging from $6.0\,\%$ to $11.5\,\%$ with a median of
+    $9.2\,\%$.}
   \label{fig:per_plant_forecast}
 \end{figure}
 
 The bias panel on the left shows that the MOS correction succeeds at
-the per-plant level too: twenty-five of the twenty-eight plants land
-within $\pm 2\,\%$ of nameplate, and the three outliers (Number
-Three Wind, Baron Winds, NextEra) sit at roughly $3.5\,\%$. These
-three plants commissioned in 2022 or 2023 and therefore enter the
+the per-plant level too: all but three plants land
+within $\pm 2\,\%$ of nameplate, and the three exceptions --- the
+newest plants, commissioned in 2022--2023, including Baron Winds ---
+sit at $2.2$--$3.3\,\%$. Those plants enter the
 2023 evaluation with only a partial training window of historical
-residuals; their larger residual bias is consistent with that. The
+residuals, so their larger residual bias is consistent with that. The
 nMAE panel shows almost no dependence on plant size --- the
-smallest plants ($12$ and $20$\,MW nameplate) and the largest
-($238$ and $231$\,MW) sit in the same $8$--$13\,\%$ band, which
+smallest plants (around $12$--$20$\,MW nameplate) and the largest
+(over $200$\,MW) sit in the same $6$--$11\,\%$ band, which
 suggests that the dominant residual is HRRR forecast error common
 across the fleet rather than anything plant-specific.
 
@@ -1155,9 +1146,9 @@ per-plant series rather than the aggregate, the per-plant
 distribution in Figure~\ref{fig:per_plant_forecast} is the
 operational figure of merit, with the fleet-level number serving as
 a diagnostic for whether the cross-plant correlations are reasonable.
-On a small but consistent margin the rolling-window fit also edges
-the in-sample fit at the plant level, with a mean nMAE across plants
-of $10.55\,\%$ versus $10.66\,\%$ for the in-sample variant. This is
+On a small but consistent margin the rolling-window fit even edges
+the in-sample fit at the fleet level, with an nMAE of $5.15\,\%$
+versus $5.18\,\%$ for the in-sample variant. This is
 consistent with the variance-rescaling component of MOS adding noise
 rather than signal, which we return to in the next section.
 
@@ -1242,23 +1233,55 @@ each plant's marginal distribution. The scenarios it emits respect
 both the per-plant marginals and the cross-plant covariance. This is
 the engine the downstream consumer samples.
 
+\subsection{Per-plant modelling and the shipped configuration}
+\label{sec:perplant-ship}
+
+The downstream unit-commitment model dispatches and curtails wind
+\emph{per plant} (each plant maps to a transmission bus), so the
+quantity it ingests is a per-plant injection, not a zonal total. The
+production engine therefore models all $\sim 31$ plants \emph{directly}:
+it fits one joint GEMINI model over the per-plant Gaussianised forecast
+residuals, with a \emph{geographic} asset penalty
+$\rho_{\mathrm{asset}}(i,j) \propto d_{ij}$ scaled by the pairwise
+lat/lon distance, so that nearby plants are penalised less and the
+inter-plant spatial coupling is carried without ever aggregating to a
+zone. This replaces an earlier zonal-first design (fit four zonal wind
+sums jointly with load, then disaggregate each sum back to plants),
+which for a per-plant deliverable is a lossy
+plant\,$\rightarrow$\,sum\,$\rightarrow$\,plant round-trip; the load
+side, which is intrinsically zonal, is unchanged.
+
+The shipped configuration is $\rho_{\mathrm{asset}}=0.5$ together with the
+pre-COD marginal fix for plants commissioned inside the training window
+(Section~\ref{sec:scenario-calibration}), fit strictly on history
+\emph{before} each scenario day. An earlier
+$\rho_{\mathrm{asset}}=0.05$ default over-coupled distant zones by an
+order of magnitude; $0.5$ brings the cross-zone correlations into line
+(Section~\ref{sec:scenario-aggregate}). The model is fit on history
+strictly preceding the scenario start --- the calibration below is fully
+out of sample.
+
 \subsection{Engine validation}
 
-The engine was run on a seven-day window in 2023, from 15 to 21 July,
-generating one thousand scenarios per day from five years of training
-history (2018--2022). The fleet-aggregate fan chart in Figure
-\ref{fig:scenarios_fan} shows the actual trajectory remaining inside
-the P25--P75 band most of the time and never exceeding the P5--P95
-envelope on any hour of any day in the window.
+Figure~\ref{fig:scenarios_fan} shows the fleet-aggregate fan over a
+seven-day Eastern window in October 2024 at the shipped configuration.
+The actual trajectory (black) tracks the median scenario through calm
+days and large ramps alike and stays inside the P5--P95 envelope on
+essentially every hour, with the day-ahead forecast (dashed) setting the
+shape the fan expands around.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{scenarios_fleet_fan_7day_2023.png}
-  \caption{Fleet-aggregate scenarios over the seven days from 15 to 21
-    July 2023, summed across the 28 active plants. The light blue band
-    is the P5--P95 envelope of the thousand scenarios at each hour and
-    the darker band the P25--P75 envelope, with the actual in black and
-    the MOS forecast in solid blue.}
+  \includegraphics[width=\textwidth]{scenarios_fleet_fan_ship_2024.png}
+  \caption{Fleet-aggregate scenarios over seven Eastern days, 7--13
+    October 2024, at the shipped configuration
+    ($\rho_{\mathrm{asset}}=0.5$ plus the pre-COD marginal fix),
+    summed across the NY wind fleet. The light band is the P5--P95
+    envelope of $1\,000$ scenarios at each hour, the darker band P25--P75,
+    the actual in black and the MOS forecast in dashed blue. The week
+    spans calm days (peak $\sim$0.8\,GW) and high-wind ramps
+    ($\sim$2.8\,GW). Eastern days are stitched from two consecutive UTC
+    engine runs.}
   \label{fig:scenarios_fan}
 \end{figure}
 
@@ -1269,72 +1292,246 @@ score,
                     \tfrac{1}{2}\,\mathbb{E}\,\lVert X - X' \rVert,
 \end{equation}
 where $X$ and $X'$ are independent scenario draws and $Y$ is the
-realised actual. Per-plant scores normalised to capacity range from
-about 27 percent on the calmest day to about 71 percent on the
-hardest, and the fleet-mean across the seven days sits in the 27--53
-percent band that is typical for HRRR-driven 24-hour scenarios.
-Nothing in the distribution of scores points to an anomaly; the
-engine is producing scenarios with the expected statistical
-properties.
+realised actual. Held-out energy-score tuning over a $3\times3$ grid of
+$(\rho_{\mathrm{asset}},\rho_{\mathrm{horizon}})$ is essentially flat
+(a $0.1$ percent range), reproducing the same finding the zonal model
+showed: the proper score is dominated by per-coordinate forecast
+calibration, not by the inter-asset correlation structure, and so cannot
+by itself discriminate $\rho_{\mathrm{asset}}$. The correlation structure
+has to be tuned against a correlation target instead
+(Section~\ref{sec:scenario-aggregate}).
 
 The fleet-aggregate fan is the most visible diagnostic, but the
-operational granularity of the engine is per-plant: the
-unit-commitment consumer downstream samples each plant's marginal
-series, not the fleet sum. Figure~\ref{fig:scenarios_per_plant_panels}
-shows twenty random (plant, Eastern-day) panels from 2024, fixed by
-random seed for reproducibility. Each panel is one plant on one day,
-with $1\,000$ GEMINI scenarios drawn around that day's MOS-corrected
-day-ahead forecast. The fan envelopes track the forecast shape
-rather than the plant nameplate: on calm days they cluster tight near
-zero, on windy days they expand toward the plant cap, and the
-realised trajectory (black) sits inside the P5--P95 band on most
-hours of every panel and inside the P25--P75 band on roughly half of
-them. The panels are not cherry-picked --- the script samples
-uniformly from the year and the plant list, then plots whatever it
-draws --- so the visual coverage is a fair sample and matches the
-calibration numbers from the energy-score distribution above.
+operational granularity is per-plant. Figure~\ref{fig:scenarios_per_plant_panels}
+shows every online plant's scenario fan on a single Eastern day at the
+shipped configuration, grouped by zone. The envelopes track each plant's
+day-ahead forecast shape rather than its nameplate, and the realised
+trajectory sits inside the P5--P95 band on most hours of most panels; the
+young (2023--24) plants, flagged in red, show the visibly tighter fans
+that the calibration of Section~\ref{sec:scenario-calibration}
+quantifies.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{wind_random_plant_date_panels_20_2024.png}
-  \caption{Twenty random (plant, Eastern-day) panels from 2024,
-    seed-fixed for reproducibility. In each panel the light blue
-    band is the P1--P99 envelope of $1\,000$ scenarios at each hour;
-    the medium band is P5--P95; the dark band is P25--P75; the dark
-    line is the median scenario. The black trace with markers is the
-    realised actual and the dashed blue trace is the MOS-corrected
-    day-ahead forecast. The grey dotted line marks the plant
-    nameplate. Plant sizes range from $12$\,MW (Madison Windpower)
-    to $238$\,MW (Baron Winds), and the dates span the calendar
-    year. Eastern-day windows are stitched from two consecutive UTC
-    engine runs so that each panel shows a clean local-time day.}
+  \includegraphics[width=\textwidth]{scenario_per_plant_panels_ship_2024.png}
+  \caption{Per-plant scenario fans for every online plant on one Eastern
+    day (12 October 2024) at the shipped configuration, grouped by zone
+    (fan colour: A blue, C green, D orange, E purple, K red). In each
+    panel the darker band is P25--P75 and the lighter band P5--P95 of
+    $1\,000$ scenarios, the solid line the median scenario, the black
+    trace the realised actual, the dashed blue trace the MOS day-ahead
+    forecast, and the dotted line the plant nameplate. Red panel titles
+    mark the young (2023--24) plants, whose fans are visibly
+    under-dispersed relative to their forecast error.}
   \label{fig:scenarios_per_plant_panels}
 \end{figure}
 
-\subsection{Open issues}
+\subsection{Per-plant calibration on held-out 2024 days}
+\label{sec:scenario-calibration}
 
-The 2023 forecast file shipped with the pipeline is the rolling-window
-MOS introduced in Section \ref{sec:forecast}. The MOS files for the
-remaining years --- 2018, 2019--2022, and 2024 --- were fit in-sample
-over the full pool and have not yet been re-fit on the corresponding
-rolling windows. The in-sample optimism is small enough that this is
-a hygiene improvement rather than a blocker, but it is the natural
-next step.
+The engine was scored on 52 held-out 2024 days (weekly stride, $1\,000$
+scenarios per day). For every (plant, hour) with the plant online we
+record interval coverage, the probability integral transform (PIT), and
+CRPS. One caveat governs the reading of these numbers: the ``actual'' is
+the v4 modelled potential the engine was fit on, so PIT and coverage
+measure the engine's \emph{self-consistency} --- whether it reproduces
+the per-plant residual distribution it was trained on --- not real-world
+interval coverage. There is no hourly per-plant metered truth for
+roughly 28 of the 31 plants; external checks live at the fleet aggregate
+(versus the NYISO real-time fuel mix) and at the two single-plant metered
+groups. Read accordingly.
 
-The variance-rescaling component of MOS, the $\sigma_a/\sigma_f$ factor
-in Equation \ref{eq:mos}, contributes almost nothing once one moves
-out of sample. A bias-only variant that retains only the $\mu_a -
-\mu_f$ shift, dropping the variance scaling and the three-hour smooth,
-would simplify the correction without losing skill. We did not make
-that change here because it would alter the on-disk format consumed
-downstream, but it is a candidate cleanup the next time this part of
-the pipeline is touched.
+The headline is that the per-plant deliverable is well calibrated across
+the \emph{entire} fleet. Mature plants (commissioned before 2021) reach
+$\mathrm{cov}_{80}$ of $0.80$--$0.87$ across all four mainland wind zones,
+and the 2023--24 commissions --- together with the two 2021 plants that
+were initially under-dispersed --- are brought onto target
+($\mathrm{cov}_{80}$ $0.79$--$0.82$) by the pre-COD marginal fix described
+below (Figure~\ref{fig:scenario_scorecard}). Pooled by zone the
+central-80\% coverage is $0.81/0.84/0.83/0.83/0.80$ for zones A/C/D/E/K.
 
-The simpler daily-block bootstrap, useful for plant-level intuition
-and used in the validation work for that purpose, is calibrated only
-at the plant level. Operational fleet-level uncertainty has to come
-from the GEMINI engine; the block bootstrap should not be used as a
-fleet uncertainty model.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{scenario_per_plant_coverage.png}
+  \caption{Per-plant empirical coverage of the central-80\% (bars) and
+    central-90\% (diamonds) scenario intervals over 52 held-out 2024
+    days, grouped by zone, at the shipped configuration. The dashed line
+    is the 0.80 target. With the pre-COD marginal fix
+    (Section~\ref{sec:scenario-limits}) the whole fleet clusters around
+    target: the hatched young (2023--24) plants and the two 2021 plants
+    (Cassadaga, Roaring Brook) are no longer outliers.}
+  \label{fig:scenario_scorecard}
+\end{figure}
+
+The PIT histograms (Figure~\ref{fig:scenario_pit}) and the reliability
+diagram (Figure~\ref{fig:scenario_reliability}) make the same point
+distributionally. The mature-plant PIT is close to uniform, and the
+young-plant PIT --- sharply $\cup$-shaped before the fix --- is now nearly
+flat. The one curve that still sits below the diagonal at high nominal
+coverage is the \emph{fleet sum}, whose mild $\cup$-shaped PIT is the
+cross-zone residual of Section~\ref{sec:scenario-aggregate}, not a
+per-plant marginal problem.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{scenario_pit_histograms.png}
+  \caption{Probability integral transform of the realised actual within
+    the scenario ensemble, pooled over 52 held-out 2024 days. A flat
+    histogram is calibrated; a $\cup$-shape (mass at $0$ and $1$) is
+    under-dispersion. The mature plants are close to flat and the young
+    2023--24 cohort, sharply $\cup$-shaped before the pre-COD fix, is now
+    nearly flat; the fleet sum retains a mild $\cup$-shape --- the
+    cross-zone residual, not a marginal one.}
+  \label{fig:scenario_pit}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{scenario_reliability.png}
+  \caption{Reliability: empirical versus nominal central-interval
+    coverage. Curves below the diagonal are under-dispersed. After the
+    pre-COD fix the mature and young curves both track the diagonal; the
+    fleet sum is the only curve mildly below it at high nominal coverage
+    (the cross-zone residual).}
+  \label{fig:scenario_reliability}
+\end{figure}
+
+\paragraph{The pre-COD marginal fix.} The young-plant under-dispersion had
+a specific, removable cause rather than being intrinsic to thin history.
+The engine fits each per-plant conditional marginal by binning historical
+deviations by forecast level; for a plant commissioned \emph{inside} the
+training window, every pre-commissioning hour has forecast $=$ actual $=0$,
+so deviation $=0$, and at a \emph{low} scenario forecast the bin
+$[0,\,\text{range}\cdot\text{ratio}]$ sweeps in all of those pre-COD zeros.
+For a 2024 plant that is $\sim$89\,\% of its history (Ball Hill: $6\,629$
+operating hours against $52\,795$ pre-COD zero hours), so $\sim$90\,\% of
+scenarios are drawn at deviation $0$ --- exactly the forecast --- and the
+fan collapses to \emph{zero width} at low-forecast hours, a guaranteed miss
+when the wind does blow. The fix restricts each plant's marginal history to
+its operating period (dropping the pre-commissioning rows) before scenario
+generation, leaving the joint copula untouched. It is not a tuning knob, it
+is applied to every plant by its own commissioning date, and it replaces an
+earlier multiplicative widener that could not fix a point mass (scaling a
+zero deviation leaves it zero). Over the 52-day calibration it lifts the
+entire young/new cohort onto target in $\mathrm{cov}_{80}$ --- Cassadaga
+$0.66\!\to\!0.80$, Roaring Brook $0.69\!\to\!0.82$, Baron $0.73\!\to\!0.81$,
+Number Three $0.69\!\to\!0.82$, Ball Hill $0.69\!\to\!0.79$, Bluestone
+$0.68\!\to\!0.79$, South Fork $0.69\!\to\!0.80$ --- while leaving the mature
+plants and the fleet aggregate unchanged to within $0.01$.
+
+\subsection{The fleet aggregate: what the residual is, and is not}
+\label{sec:scenario-aggregate}
+
+At the shipped configuration the fleet-sum coverage is
+$\mathrm{cov}_{80}=0.73$, $\mathrm{cov}_{90}=0.83$ --- mildly
+under-dispersed. Because the obvious remedy is a global widening of the
+marginals, we diagnosed the residual before applying any such patch, and
+the diagnosis rules that patch out.
+
+First, the residual is \emph{not} a cross-zone coupling error. Summing
+the per-plant scenarios to zones and re-coupling those zone sums to the
+\emph{exact} empirical cross-zone correlation (an Iman--Conover
+reordering that leaves every marginal untouched) moves the fleet
+$\mathrm{cov}_{80}$ by only $+0.004$. The per-pair correlations are
+individually imperfect --- a single distance-scaled $\rho_{\mathrm{asset}}$
+cannot match a matrix whose entries do not follow distance, so C--D and
+D--E under-couple while C--E and A--C over-couple
+(Figure~\ref{fig:scenario_crosszone}) --- but these errors offset in the
+fleet sum. This is the one structural point in favour of the zonal
+design, which fits each cross-zone pair directly; the per-plant remedy
+would be a structured asset covariance rather than the one-parameter
+distance kernel.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{scenario_cross_zone_corr.png}
+  \caption{Cross-zone correlation of the zonal scenario deviations
+    (blue) against the empirical truth (black), by zone pair. A single
+    distance-scaled $\rho_{\mathrm{asset}}$ cannot reproduce the full
+    matrix: the moderate-distance pairs C--D and D--E under-couple while
+    C--E and A--C over-couple. The errors largely cancel in the fleet
+    sum, so re-coupling to the empirical matrix barely moves the fleet
+    coverage.}
+  \label{fig:scenario_crosszone}
+\end{figure}
+
+Second, the residual is \emph{not} a uniform marginal deficit either, so
+a single global widen is the wrong instrument. The under-dispersion is
+heterogeneous in sign across zones: at the zone-sum level zones A and K
+are too narrow (scenario/empirical deviation-std ratio $0.81$ and $0.95$)
+while zones C, D and E are already too wide ($1.09$--$1.14$), and the
+pooled fleet scenario variance is in fact $1.17\times$ the empirical.
+Sweeping a global widen factor $g$ (Figure~\ref{fig:scenario_globalwiden})
+makes this concrete: lifting the fleet to $0.80$ requires $g\approx1.25$,
+which over-inflates the already-wide zones D and E to $\sim$0.90 while
+zone A still falls short at $0.72$. A single multiplier cannot serve both
+regimes. The mechanism is diversification: the under-dispersed zones A
+(six plants) and K (one plant) have little intra-zone averaging and are
+sensitive to per-plant marginal misfit, whereas the six-to-nine-plant
+zones C/D/E average that misfit away and their residual spread is a
+matter of how the correlations aggregate. A \emph{structured} (block)
+asset covariance that places different correlation strength on $\{$A,K$\}$
+versus $\{$C,D,E$\}$ can address this; a global widen cannot, and was
+therefore not shipped.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{scenario_global_widen_rejected.png}
+  \caption{Why a global marginal widen was rejected. Coverage versus a
+    global widen factor $g$ ($g=1$ is the shipped configuration). To pull
+    the fleet (black) to $0.80$ needs $g\approx1.25$, at which the
+    already-adequate zones D and E over-cover near $0.90$ while zone A
+    remains short. The deficit is heterogeneous in sign across zones, so
+    no single multiplier corrects it.}
+  \label{fig:scenario_globalwiden}
+\end{figure}
+
+\subsection{Known limitations}
+\label{sec:scenario-limits}
+
+\begin{itemize}
+\item \textbf{Self-consistency, not metered truth.} The per-plant PIT and
+  coverage above are measured against the v4 modelled potential the engine
+  was fit on. Real external validation exists only at the fleet aggregate
+  and at the two single-plant metered groups; the per-plant fan is not
+  independently interval-validated.
+\item \textbf{Fleet/aggregate residual.} Fleet $\mathrm{cov}_{80}\approx0.72$.
+  Neither a single $\rho_{\mathrm{asset}}$ nor a global marginal widen
+  fixes it cleanly (Section~\ref{sec:scenario-aggregate}), and the pre-COD
+  marginal fix --- which lifts the per-plant deliverable onto target ---
+  correctly leaves it unmoved, confirming the residual is cross-zone and
+  structural, not a per-plant marginal deficit. A structured asset
+  covariance is the principled next lever, deferred until it can be
+  validated out of sample.
+\item \textbf{Cross-zone per-pair coupling.} The one-parameter distance
+  kernel cannot reproduce every cross-zone correlation simultaneously
+  (C--D/D--E under, C--E/A--C over). They net out at the fleet level, but
+  the zonal \emph{fit} would represent each pair directly.
+\item \textbf{Young-plant cohort.} The 2023--24 commissions, once the main
+  under-dispersed group, are brought onto target by the pre-COD marginal
+  fix (Section~\ref{sec:scenario-calibration}); what remains is ordinary
+  thin-history noise that self-corrects as history accrues. The earlier
+  hypothesis that the 2021 plants (Cassadaga, Roaring Brook) needed a
+  heavy-tail (GPD) correction proved \emph{wrong}: their cause was the same
+  pre-commissioning marginal pollution, and the same fix resolves them
+  (Cassadaga $0.80$, Roaring Brook $0.82$).
+\item \textbf{Relationship to the zonal design.} The wind half of the
+  earlier joint load+wind stage, and the never-built per-plant
+  disaggregation stage, are superseded by this per-plant pipeline and are
+  retained (not deleted) pending a formal decision; the load side stays
+  zonal.
+\item \textbf{Forecast hygiene.} The MOS forecast files for years other
+  than 2023 were fit in-sample over the full pool and have not yet been
+  re-fit on rolling windows; the in-sample optimism is small but the
+  re-fit is the natural next step. The variance-rescaling term of MOS
+  contributes little out of sample and a bias-only variant would simplify
+  the correction without losing skill, deferred only because it changes
+  the on-disk format consumed downstream.
+\item \textbf{Block bootstrap.} The simpler daily-block bootstrap is
+  calibrated only at the plant level and must not be used as a
+  fleet-uncertainty model; operational fleet uncertainty comes from the
+  GEMINI engine.
+\end{itemize}
 
 % ============================================================================
 \section{Seven-year deliverable}
@@ -1353,13 +1550,13 @@ to 31 plants in 2024.
 \toprule
 Year & Active plants & Mean fleet output (MW) & Capacity factor \\
 \midrule
-2018 & 23 & 698 & 35.3\,\% \\
-2019 & 23 & 673 & 34.0\,\% \\
-2020 & 23 & 676 & 34.2\,\% \\
-2021 & 25 & 688 & 31.5\,\% \\
-2022 & 25 & 762 & 34.9\,\% \\
-2023 & 28 & 778 & 29.5\,\% \\
-2024 & 31 & 972 & 32.5\,\% \\
+2018 & 23 & 704 & 35.6\,\% \\
+2019 & 23 & 679 & 34.3\,\% \\
+2020 & 23 & 685 & 34.6\,\% \\
+2021 & 25 & 692 & 31.7\,\% \\
+2022 & 25 & 768 & 35.1\,\% \\
+2023 & 28 & 764 & 30.2\,\% \\
+2024 & 31 & 966 & 33.5\,\% \\
 \bottomrule
 \end{tabular}
 \caption{Annual fleet-sum mean output and capacity factor by year.}
@@ -1501,11 +1698,23 @@ the $\alpha$ diagnostic and tall-tier sensitivity. The figures in this
 document are produced by the \code{make\_*.py} and \code{v4\_*.py}
 scripts in the same directory.
 
-The downstream consumers are
-\code{experiments/stage\_a\_joint\_load\_wind/} (the joint load-and-wind
-Stage~A entry point) and \code{scripts/10\_run\_pgscen\_wind.py} (the
-PGScen \code{GeminiEngine} runner), both of which read the
-\code{.pluswind\_v4} files.
+The downstream scenario pipeline is the per-plant model in
+\code{experiments/wind\_per\_plant/} (rationale and full calibration in
+its \code{RESULTS.md} and the root \code{Per\_Plant\_Wind\_Plan.md}). The
+production runner is \code{scripts/10\_run\_pgscen\_wind.py}, shipped at
+$\rho_{\mathrm{asset}}=0.5$ with \code{--precod-marginal-fix} on by default
+and \code{in\_sample=False}; the pre-COD marginal fix of
+Section~\ref{sec:scenario-calibration}
+(\code{restrict\_marginals\_to\_operating}) lives in the package as
+\code{pgscen/short\_history.py}, and the fleet-dispersion diagnostic of
+Section~\ref{sec:scenario-aggregate} is
+\code{experiments/wind\_per\_plant/diagnose\_fleet\_dispersion.py}. The
+recorded ship-configuration coverage artifact is under
+\code{experiments/wind\_per\_plant/outputs/ship\_artifact/}. The wind half
+of the earlier \code{experiments/stage\_a\_joint\_load\_wind/} joint
+load-and-wind model is superseded by this per-plant path and retained for
+reference (\code{SUPERSEDED\_WIND.md}); its load side is unchanged. All of
+these read the \code{.pluswind\_v4} files.
 
 A local copy of the PLUSWIND methodology PDF lives at
 \code{data/pluswind\_docs/PLUSWIND-Documentation.pdf}, and the published

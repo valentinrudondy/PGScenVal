@@ -1,33 +1,31 @@
-"""Short-history marginal regularizer for per-plant wind (production).
+"""Young-plant marginal handling for per-plant wind (production).
 
-Canonical implementation of the young-plant marginal widener validated in
-``experiments/wind_per_plant/`` (see ``RESULTS.md`` s5 and
-``Per_Plant_Wind_Plan.md`` s7). The 2023-24 commissions have <=2 yr of deviation
-history, so GEMINI fits each a too-narrow conditional forecast-error marginal and
-its scenario fan under-disperses (cov_80 ~0.60-0.70). This widens each young
-plant's scenario deviation around its day-ahead forecast so its
-capacity-normalized spread matches the pooled mature-fleet spread.
+SHIPPED (RESULTS.md s9): ``restrict_marginals_to_operating`` -- the pre-COD
+marginal fix. Plants commissioned inside the training window have forecast =
+actual = 0 for every pre-commissioning hour (deviation = 0); at a LOW scenario
+forecast the conditional-marginal bin sweeps in all those pre-COD zeros and the
+scenario fan collapses to a point mass at the forecast. This drops each plant's
+pre-commissioning rows from the conditional-marginal data (between ``engine.fit``
+and ``engine.create_scenario``), which brings the whole young/new cohort -- and the
+2021 Cassadaga/Roaring Brook pair -- onto target (cov_80 0.79-0.82). It is the
+shipped young-plant treatment in ``scripts/10_run_pgscen_wind.py``
+(``--precod-marginal-fix``) and in ``run_wind_per_plant.run_one_day``.
 
-Marginal-only and copula-preserving: only the per-plant deviation MAGNITUDE grows;
-the temporal shape and the inter-plant (geographic) rank dependence are untouched.
-It is surgical -- it touches only the young plants, so mature-plant, per-zone and
-fleet aggregates move negligibly.
+RETAINED BUT SUPERSEDED: the multiplicative widener below
+(``build_factors`` + ``widen_engine_scenarios``) was the *original* young-plant
+mitigation. It widened each young plant's deviation to the mature-fleet spread, but
+it cannot fix a point mass (``f * 0 = 0``) and never saw the pollution (its target
+is an operating-only std), so it was replaced by the pre-COD fix (RESULTS.md s5 ->
+s9). The code is kept for the parity test
+``experiments/wind_per_plant/check_short_history_parity.py`` and the experiments
+prototype ``experiments/wind_per_plant/short_history_reg.py``; it is NOT in the
+ship path.
 
-Two appliers share one factor-builder:
-  - ``widen_engine_scenarios`` -- production: rescales ``engine.scenarios['wind']``
-    in place, before ``engine.write_to_csv`` (what the grid ingests).
-  - the experiments prototype ``experiments/wind_per_plant/short_history_reg.py``
-    rescales the ``run_one_day`` result tensor (calibration path).
-
-Parity between the two is asserted by
-``experiments/wind_per_plant/check_short_history_parity.py``.
-
-NOTE on the global marginal widen: a *fleet-wide* widen was considered and
-REJECTED on evidence (``RESULTS.md`` s4 / ``diagnose_fleet_dispersion.py``). The
-fleet under-dispersion is heterogeneous in sign across zones (A/K too narrow,
-C/D/E already wide) and the cross-zone copula -- not a uniform marginal deficit --
-so a single global factor over-inflates the already-wide zones. Only this
-targeted young-plant widener ships.
+NOTE on the global marginal widen: a *fleet-wide* widen was also considered and
+REJECTED on evidence (RESULTS.md s7 / ``diagnose_fleet_dispersion.py``): the fleet
+under-dispersion is heterogeneous in sign across zones (A/K too narrow, C/D/E
+already wide) and is a cross-zone copula matter, not a uniform marginal deficit, so
+a single global factor over-inflates the already-wide zones.
 """
 
 from __future__ import annotations
@@ -114,6 +112,50 @@ def build_factors(actual_df, forecast_df, scen_year, meta_path=WIND_META,
     diag["factor"] = fcol
     diag["mature_target_std"] = mature_std
     return factors, diag
+
+
+def restrict_marginals_to_operating(engine, eps=1e-6):
+    """Drop each plant's PRE-COMMISSIONING history from the conditional-marginal
+    data, in place, before scenario generation.
+
+    Root cause this fixes (found 2026-06-09). ``fit_conditional_marginal_dist``
+    builds a per-(plant, horizon) marginal by binning historical deviations whose
+    *forecast* is within ``bin_width_ratio`` of the scenario-day forecast. For a
+    plant commissioned inside the training window, every pre-COD hour has
+    forecast = actual = 0 (the physics gates it off), so deviation = 0. At a LOW
+    scenario forecast the bin ``[0, ~range*ratio]`` sweeps in all of those pre-COD
+    zeros, so the marginal becomes a dominant point mass at 0 and the scenario fan
+    collapses onto the forecast (zero width) at low-forecast hours -- e.g. a 2024
+    plant whose history is ~89% pre-COD zeros emits ~90% of scenarios exactly at
+    the forecast. This under-represents uncertainty exactly where the young/new
+    plants are already weakest.
+
+    The multiplicative widener below cannot fix this (it scales deviations, and
+    ``f * 0 = 0``). The correct fix is to not let a plant's pre-existence define
+    its uncertainty: restrict each plant's ``deviation_dict`` to rows at or after
+    its first operating hour (first hour with non-zero forecast or actual). The
+    joint copula (``gauss_df``, fit in the model constructor) is left untouched;
+    only the back-transform marginal is cleaned.
+
+    Call AFTER ``engine.fit()`` and BEFORE ``engine.create_scenario()``. Applies to
+    every plant, so plants commissioned anywhere in the window (e.g. the 2021
+    cohort) benefit, not only the youngest. Returns {asset: (n_before, n_after)}
+    for the plants that were trimmed.
+    """
+    dd = engine.model.deviation_dict
+    trimmed = {}
+    for a, df in dd.items():
+        df = df.sort_index()
+        operating = (df["Actual"].abs() > eps) | (df["Forecast"].abs() > eps)
+        if not operating.any():
+            continue
+        pos = int(np.argmax(operating.values))   # first operating row (first True)
+        if pos == 0:
+            dd[a] = df
+            continue
+        dd[a] = df.iloc[pos:]
+        trimmed[a] = (len(df), len(dd[a]))
+    return trimmed
 
 
 def widen_engine_scenarios(engine, forecast_future, scen_timesteps, factors):

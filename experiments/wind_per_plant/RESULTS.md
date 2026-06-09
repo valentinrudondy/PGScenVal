@@ -175,6 +175,11 @@ not by a global widen.
 
 ## 5. Short-history regularizer
 
+> **SUPERSEDED by §9 (2026-06-09).** This multiplicative widener was the original young-plant
+> mitigation. It was later found to treat a symptom: the real cause of young-plant
+> under-dispersion is pre-commissioning marginal pollution (§9), which the pre-COD fix removes
+> directly and far better. The widener is retired from the ship path; §5 is kept for the record.
+
 `build_factors` flags the 6 young plants (2023–24) and widens their scenario deviations
 to the pooled mature-fleet capacity-normalized spread (copula-preserving: only the
 per-plant deviation magnitude grows). Factors are modest (1.05–1.25) because each young
@@ -221,13 +226,15 @@ adopted, to avoid calibrating to the 2024 test year.
   becomes "per-plant is right for the per-plant product, but Stage A's direct cross-zone fit
   is genuinely better at the zonal/fleet level." This is the honest empirical answer to open
   question #3, and the strongest remaining argument for retaining some zonal structure.
-- **Final ship recipe (corrected by §7):** `asset_rho=0.5` + the young-plant regularizer
-  **only** — the global marginal widen proposed earlier was tested and rejected (§7). Fleet
-  cov_80 ships at ≈0.73 as a documented known limitation (§8); the per-plant deliverable the
-  grid ingests is sound. Shipped into `PGscen-2nd/scripts/10_run_pgscen_wind.py`
-  (rho=0.5 default, `in_sample=False` leakage fix, `--short-history-reg` on by default).
-- **Known low-confidence bucket confirmed and partially mitigated:** the 2023–24 cohort
-  (§2, §5), as the plan anticipated; self-corrects as history accrues.
+- **Final ship recipe (corrected by §7 and §9):** `asset_rho=0.5` + the **pre-COD marginal
+  fix** (§9) — the global marginal widen was rejected (§7) and the §5 multiplicative widener
+  was superseded by §9. Fleet cov_80 ships at ≈0.72 as a documented known limitation (§8.1);
+  the per-plant deliverable the grid ingests is sound and now well-calibrated across the
+  *whole* fleet, young and mature (§9). Shipped into
+  `PGscen-2nd/scripts/10_run_pgscen_wind.py` (rho=0.5 default, `in_sample=False` leakage fix,
+  `--precod-marginal-fix` on by default).
+- **Young-plant cohort: now RESOLVED (§9), not merely mitigated.** The 2023–24 cohort *and* the
+  2021 Cassadaga/Roaring Brook pair are brought onto target by the pre-COD fix.
 
 ---
 
@@ -272,10 +279,15 @@ under-coverage is conditional/heterogeneous, not a uniform scale deficit.
 within-day-hour fan width with across-day-hour variation, so we rely on the two **coverage**
 counterfactuals above, not that number.)*
 
-### Decision: ship `asset_rho=0.5` + the young-plant regularizer ONLY
+### Decision: ship `asset_rho=0.5` + a targeted young-plant fix (NOT a global widen)
+
+> **Update (§9):** the targeted fix shipped here was first the multiplicative regularizer, then
+> — once the *root cause* (pre-COD marginal pollution) was found — the **pre-COD marginal fix**,
+> which is strictly better and brings the cohort onto target. The §7 conclusion (a global widen
+> is the wrong tool; the right tool is targeted) stands; only the targeted tool changed.
 
 The deficit concentrates where short history lives (A/Ball Hill, K/South Fork, C/Baron+Eight
-Point) — so the **targeted** young-plant regularizer is the right tool; a global widen is not.
+Point) — so a **targeted** fix is right; a global widen is not.
 Confirmation run, full 52-day calibration at `asset_rho=0.5 --short-history-reg`:
 
 | metric | rho=0.5 (no reg) | rho=0.5 + young-plant reg |
@@ -320,18 +332,99 @@ Outputs: `outputs/diagnose/{variance_decomposition,cross_zone_corr,zone_marginal
    level (§7) but the zonal *fit* of Stage A would represent each pair directly — the one
    genuine structural point in favour of zonal awareness (open question #3, answered as a
    real trade, not a clean win).
-3. **2023–24 young-plant cohort** (§5). Partially mitigated by the regularizer; remains a
-   low-confidence bucket that self-corrects as history accrues.
+3. **2023–24 young-plant cohort** — **RESOLVED (§9).** Originally a low-confidence bucket only
+   partially mitigated by the §5 multiplicative regularizer; the real cause was
+   pre-commissioning marginal pollution, and the pre-COD fix (§9) brings the whole cohort onto
+   target (cov_80 0.79–0.82). What remains is ordinary thin-history noise that self-corrects.
 4. **Self-consistency, not metered truth** (§2, plan §9). PIT/coverage are vs the v4 modeled
    potential the engine was fit on; there is no hourly per-plant metered truth for ~28/31
    plants.
-5. **Two ~3.5-yr plants under-dispersed — but probably a *tail*, not a *scale*, problem.**
-   Cassadaga (zone A, commissioned 2021-07) and Roaring Brook / Avangrid (zone E, 2021-10)
-   show cov_80 ≈ 0.66 / 0.69 yet sit *past* the ≤2-yr young-plant threshold (~3.5 yr of
-   history by 2024). **Hypothesis:** their deviation *std* is representative but their *tails*
-   are not — 3.5 years has not yet sampled an extreme event — so the principled correction is
-   **tail extension via a GPD fit on the residuals** (the Carmona-style heavy-tail treatment
-   the load side already uses), *not* the std-ratio widen the young-plant regularizer applies.
-   Deliberately **not applied**: it is gated on out-of-sample evidence, and std-scaling these
-   two now would calibrate to the 2024 test year (§5 rationale). A specific, falsifiable
-   follow-up rather than a vague "some mature plants are narrow."
+5. **Cassadaga and Roaring Brook (commissioned 2021) — RESOLVED (§9); the tail hypothesis was
+   wrong.** These two were under-dispersed (cov_80 0.66 / 0.69) despite ~3.5 yr of history. An
+   earlier version of this doc hypothesised a heavy-tail (GPD) cause. That was **wrong**: the
+   root cause was the *same* pre-commissioning marginal pollution as the young cohort (~3 yr of
+   pre-COD zeros, 2018–2020), and the pre-COD fix (§9) brings both onto target (Cassadaga 0.80,
+   Roaring Brook 0.82). No GPD extension was needed.
+
+---
+
+## 9. Pre-COD marginal fix — supersedes the §5 regularizer
+
+A per-plant panel review (2026-06-09) found the young plants' scenario fans **collapsing to a
+point mass exactly at the forecast** at low-forecast hours — e.g. Ball Hill, 2024-10-12 h14:
+forecast 5 MW, **fan width 0** (P5=P50=P95=5.0), actual 10.7 MW — a guaranteed miss. Traced to
+the engine:
+
+> `fit_conditional_marginal_dist` builds each per-(plant, horizon) marginal by binning
+> historical deviations whose *forecast* is within `bin_width_ratio` of the scenario-day
+> forecast. A plant commissioned **inside** the training window has forecast = actual = 0 for
+> every pre-COD hour, so deviation = 0. At a **low** scenario forecast the bin `[0, ~range·ratio]`
+> sweeps in all of those pre-COD zeros, so the conditional marginal becomes a dominant point mass
+> at 0. For a 2024 plant that is ~89% of its history (Ball Hill: 6,629 operating hours vs 52,795
+> pre-COD zero hours) → ~90% of scenarios drawn at deviation 0 = the forecast → zero-width fan.
+
+The §5 multiplicative widener cannot fix this (`f·0 = 0`) and never sees it (its target is an
+operating-only std). The visible artifact is at forecast > 0 hours; genuinely calm hours
+(forecast ≈ 0 → fan ≈ 0) are correct.
+
+**Fix:** `pgscen/short_history.py:restrict_marginals_to_operating`, called between `engine.fit`
+and `engine.create_scenario`, drops each plant's pre-commissioning rows (everything before its
+first operating hour) from the conditional-marginal data. The joint copula (`gauss_df`) is
+untouched. It applies to *every* plant by its own COD, so the 2021 cohort benefits too, and it
+**replaces** the multiplicative widener. Single-day check: Ball Hill 10/24 → **0/24** collapsed
+hours (width < 1% cap); h14 fan becomes [0, 19.5], which now covers the 10.7 MW actual.
+
+### 52-day before/after (rho=0.5; before = §5 widener, after = pre-COD fix)
+
+| plant (COD) | cov_80 before → after | cov_90 before → after |
+|---|---:|---:|
+| Cassadaga (2021) | 0.66 → **0.80** | 0.84 → 0.90 |
+| Roaring Brook (2021) | 0.69 → **0.82** | 0.87 → 0.92 |
+| Baron (2023) | 0.73 → **0.81** | 0.78 → 0.93 |
+| Eight Point (2023) | 0.76 → **0.81** | 0.82 → 0.91 |
+| Number Three (2023) | 0.69 → **0.82** | 0.77 → 0.92 |
+| Ball Hill (2024) | 0.69 → **0.79** | 0.75 → 0.88 |
+| Bluestone (2024) | 0.68 → **0.79** | 0.74 → 0.89 |
+| South Fork (2024) | 0.69 → **0.80** | 0.80 → 0.93 |
+
+Per-zone (plant-pooled) cov_80: **A .765→.808, C .821→.835, E .790→.830, K .690→.800**, D .832
+unchanged (no young plants). The whole cohort is now on target.
+
+**Fleet sum: 0.731 → 0.721** (cov_90 0.828 → 0.812) — essentially unchanged, which **confirms
+§7**: the fleet residual is a *cross-zone structural* matter, not a per-plant marginal one, so a
+marginal fix correctly does not move it (the small dip is from dropping the §5 widener, which had
+mildly over-inflated the fleet). The fleet residual remains the documented §8.1 limitation, with
+a structured asset covariance as the next lever.
+
+**Net:** the per-plant deliverable — what the grid ingests — is now well-calibrated across the
+*entire* fleet, young and mature, with no degenerate fans. **Ship config = `asset_rho=0.5` +
+pre-COD marginal fix** (`restrict_marginals_to_operating`); the §5 multiplicative widener is
+retired. Re-run from `record_ship_artifact.py`; figures regenerated in `docs/figures/wind_v3/`.
+
+---
+
+## 10. Approaches tried and set aside
+
+A consolidated record of the dead ends, so the reasoning isn't lost (details in the cited
+sections):
+
+1. **Zonal Stage A wind + Stage C disaggregation** — *set aside for per-plant-direct.* The grid
+   dispatches wind per plant, so the plant → zonal-sum → plant round-trip is lossy, and Stage C
+   carried an unsolved latent-sum coherence problem (per-plant MW would not sum back to the
+   Stage-A zonal MW). Retained, not deleted, pending René's sign-off
+   ([`../stage_a_joint_load_wind/SUPERSEDED_WIND.md`](../stage_a_joint_load_wind/SUPERSEDED_WIND.md);
+   plan §2, §4).
+2. **Global marginal widen** — *tested and rejected (§7).* It was proposed to lift fleet
+   cov_80 from 0.72 toward 0.80. The diagnostic showed the deficit is heterogeneous in sign
+   across zones (A/K too narrow, C/D/E already wide) and the cross-zone copula nets out at the
+   fleet level (Iman–Conover re-coupling moves it +0.004), so a single global factor over-inflates
+   D/E while A stays short. Structurally the wrong tool.
+3. **Multiplicative young-plant widener** (`short_history_reg`) — *shipped first, then superseded
+   (§5 → §9).* It widened young plants' deviations to the mature-fleet spread. Once the root cause
+   (pre-COD marginal pollution) was found, the pre-COD fix replaced it: the widener cannot fix a
+   point mass (`f·0 = 0`) and never saw the pollution (its target was an operating-only std). Code
+   retained for the parity check.
+4. **GPD heavy-tail hypothesis for Cassadaga / Roaring Brook** — *proposed, then disproven
+   (§8 → §9).* These two 2021 plants were under-dispersed; we hypothesised their ~3.5-yr history
+   undersampled the tails. Wrong: the cause was the *same* pre-COD pollution, and the pre-COD fix
+   resolves them (0.80 / 0.82). No heavy-tail correction was needed.
