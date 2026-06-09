@@ -9,3 +9,6 @@ docs/figures/wind_v3/alpha_raw_*.npz
 # Bulky Grid SCED data / generated results — commit source only
 Grid/grid_data/
 Grid/binding_constraints_7y.csv
+
+# Personal documents — never track
+Admin/
