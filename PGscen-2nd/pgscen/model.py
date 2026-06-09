@@ -572,6 +572,13 @@ class GeminiModel:
         distribution conditioned on a set of realizations of the aggregations
         (sum) of random variables.
 
+        NOTE (2026-06): this is the never-wired "Stage C" wind-disaggregation
+        primitive. It is SUPERSEDED by the per-plant wind pipeline
+        (experiments/wind_per_plant/) and retained only as reference. It
+        conditions on the sum of the *latent Gaussian* variables, not the sum of
+        MW, so per-plant MW would not sum back to a Stage-A zonal MW without extra
+        handling (Per_Plant_Wind_Plan.md §4). Unused in production.
+
         For example, suppose a gemini model is fitted for a set of assets for
         the lags from 0 to 23. If the scenarios for all assets and lags from 8
         to 17 have been generated, this function computes the covariance matrix

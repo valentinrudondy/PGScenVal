@@ -50,8 +50,16 @@ def main():
     ap.add_argument('-o', '--out-dir', default='outputs/wind_scenarios',
                     help='where to save scenarios')
     ap.add_argument('-n', '--scenario-count', type=int, default=1000)
-    ap.add_argument('--asset-rho', type=float, default=0.05)
+    # asset_rho=0.5 is the cross-zone-corrected default (per-plant ship config,
+    # Per_Plant_Wind_Plan.md / experiments/wind_per_plant/RESULTS.md s4): the
+    # geographic kernel at the old 0.05 over-coupled distant zones ~10x.
+    ap.add_argument('--asset-rho', type=float, default=0.5)
     ap.add_argument('--time-rho', type=float, default=0.05)
+    ap.add_argument('--short-history-reg', action=argparse.BooleanOptionalAction,
+                    default=True,
+                    help='widen 2023-24 young-plant marginals to the mature-fleet '
+                         'spread (pgscen.short_history; on by default). '
+                         '--no-short-history-reg to disable.')
     ap.add_argument('--years', type=int, nargs='+',
                     default=[2019, 2020, 2021, 2022, 2023, 2024],
                     help='years to load actuals + forecasts from')
@@ -103,10 +111,15 @@ def main():
         # ------------------------------------------------------------------
         # 3. Split history/future for both actuals and forecasts.
         # ------------------------------------------------------------------
+        # in_sample=False: history strictly BEFORE the scenario start. The old
+        # in_sample=True trained on every hour except the 24 scenario hours --
+        # i.e. on data AFTER the scenario day -- which leaks in any backtest
+        # (Per_Plant_Wind_Plan.md s4). For a true forward run history is naturally
+        # pre-scenario, so this is the correct default in both cases.
         actual_hist, actual_future = split_actuals_hist_future(
-            actual_df, scen_timesteps, in_sample=True)
+            actual_df, scen_timesteps, in_sample=False)
         forecast_hist, forecast_future = split_forecasts_hist_future(
-            forecast_df, scen_timesteps, in_sample=True)
+            forecast_df, scen_timesteps, in_sample=False)
 
         log.info('[%s] hist: %d hours of actuals, %d forecast rows',
                  day_start.date(), len(actual_hist), len(forecast_hist))
@@ -127,6 +140,19 @@ def main():
         # geographic asset_rho scaled to fleet diameter (matches T7k pattern)
         engine.fit(2 * args.asset_rho * dist / dist.max(), args.time_rho)
         engine.create_scenario(args.scenario_count, forecast_future)
+
+        # ------------------------------------------------------------------
+        # 4b. Short-history regularizer: widen young-plant (2023-24) marginals
+        #     to the mature-fleet spread, in place, before writing.
+        # ------------------------------------------------------------------
+        if args.short_history_reg:
+            from pgscen.short_history import build_factors, widen_engine_scenarios
+            factors, _ = build_factors(actual_hist, forecast_hist,
+                                       day_start.year)
+            widen_engine_scenarios(engine, forecast_future, scen_timesteps,
+                                   factors)
+            log.info('[%s] short-history reg: widened %d young plant(s)',
+                     day_start.date(), len(factors))
 
         # ------------------------------------------------------------------
         # 5. Write per-asset scenario CSVs to <out_dir>/<YYYYMMDD>/wind/

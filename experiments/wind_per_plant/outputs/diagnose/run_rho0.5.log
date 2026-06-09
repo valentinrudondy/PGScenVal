@@ -1,0 +1,62 @@
+=== Fleet-dispersion decomposition (asset_rho=0.5) ===
+days: 52 (2024-01-03 -> 2024-12-25, every 7d, UTC)   nscen=1000
+
+pre-loading wind data once ...
+  actuals (61368, 31), 31 plants (0.4s)
+  [10/52] 2024-03-06  (1.3m, eta 5.3m)
+  [20/52] 2024-05-15  (2.6m, eta 4.1m)
+  [30/52] 2024-07-24  (3.9m, eta 2.9m)
+  [40/52] 2024-10-02  (5.3m, eta 1.6m)
+  [50/52] 2024-12-11  (6.6m, eta 0.3m)
+  [52/52] 2024-12-25  (6.9m, eta 0.0m)
+
+records (day-hours): 1248 kept of 1248 (100% all-zones-online)
+
+=== (1) ANALYTIC VARIANCE DECOMPOSITION (zone-level Pearson) ===
+  fleet Var  empirical(realized) = 37,101   analytic = 37,101
+  fleet Var  scenario           = 43,378   (ratio scen/emp = 1.169; <1 => fan too narrow)
+  CF fix MARGINALS only (emp sigma, scen copula): Var=37,883  -> closes 88% of the gap
+  CF fix COPULA   only (scen sigma, emp copula): Var=43,086  -> closes 5% of the gap
+
+  per-zone marginal std (MW): scenario vs empirical
+zone  sigma_emp  sigma_scen  sigma_ratio_scen_emp
+   A       51.8        42.1                 0.812
+   C       74.3        81.2                 1.092
+   D       93.1       106.5                 1.144
+   E       92.2       102.3                 1.109
+   K       28.5        27.2                 0.954
+    ratio ~1 => zone marginal correctly sized
+
+  cross-zone correlation: scenario vs empirical
+pair  emp_pearson  scen_pearson  emp_spearman
+ A-C        0.436         0.511         0.428
+ A-D        0.038         0.049         0.007
+ A-E       -0.009         0.110         0.020
+ A-K        0.004         0.014         0.051
+ C-D        0.171         0.061         0.183
+ C-E        0.122         0.279         0.111
+ C-K        0.033         0.011         0.045
+ D-E        0.153         0.078         0.139
+ D-K        0.040         0.017         0.021
+ E-K        0.047         0.013         0.056
+
+=== (2) COVERAGE COUNTERFACTUALS ===
+  baseline per-zone cov_80: A=0.624  C=0.707  D=0.785  E=0.780  K=0.690
+  baseline FLEET cov_80   : 0.731   (target 0.80)
+
+  CF-COPULA (re-couple zone sums to empirical corr; marginals fixed):
+    FLEET cov_80 0.731 -> 0.735   per-zone unchanged: A=0.624  C=0.707  D=0.785  E=0.780  K=0.690
+
+  CF-MARGINAL (widen zone-sum deviations by global g; copula fixed):
+        g   fleet      A      C      D      E      K
+     1.00   0.731  0.624  0.707  0.785  0.780  0.690
+     1.05   0.740  0.646  0.728  0.817  0.804  0.723
+     1.10   0.756  0.667  0.744  0.837  0.826  0.753
+     1.15   0.768  0.679  0.764  0.860  0.841  0.775
+     1.20   0.780  0.697  0.782  0.887  0.852  0.787
+     1.25   0.795  0.720  0.801  0.905  0.870  0.797
+     1.30   0.809  0.733  0.828  0.918  0.889  0.804
+     1.40   0.833  0.774  0.860  0.947  0.922  0.810
+     1.50   0.853  0.806  0.882  0.961  0.940  0.816
+
+wrote /Users/val/Desktop/Princeton/experiments/wind_per_plant/outputs/diagnose
