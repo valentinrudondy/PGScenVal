@@ -5,3 +5,7 @@ __pycache__/
 
 # R1.1 raw HRRR alpha dumps (regenerable via fetch_alpha_raw.py, ~29MB each)
 docs/figures/wind_v3/alpha_raw_*.npz
+
+# Bulky Grid SCED data / generated results — commit source only
+Grid/grid_data/
+Grid/binding_constraints_7y.csv
