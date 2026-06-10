@@ -1,11 +1,21 @@
-"""Stage A data prep: build the aligned 8-column actuals + forecast frames.
+"""Shared load+wind data alignment for diagnostics/validation.
+
+Reads the NYISO load and wind CSVs and aligns them into matched actuals +
+forecast frames. Used by the cross-group dependency diagnostic
+(`three_way_dependency_graph/`) and the per-plant wind validation/figures
+(`wind_per_plant/validate_cross_block.py`, `wind_validation/make_scenario_fan.py`).
+
+NOTE: this is a data aligner, NOT a model. It was originally written for the
+abandoned two-stage joint load+wind experiment (see `Claude_load.md` for why that
+was dropped) and relocated here because the join is reused by the keepers above;
+no production code depends on it.
 
 The 8-dim joint vector per hour is:
     [LOAD_A, LOAD_C, LOAD_D, LOAD_E, WIND_A, WIND_C, WIND_D, WIND_E]
 where LOAD_X is the zone load and WIND_X is the sum of all wind plants in
 zone X. Zones are NYISO letter codes (A,C,D,E are the four wind-bearing
 load zones in the metadata). Zone K (offshore South Fork, 1 plant) is
-excluded per Rene's spec.
+excluded.
 
 Time convention
 ---------------

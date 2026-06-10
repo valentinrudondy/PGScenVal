@@ -1,15 +1,12 @@
 """Run PGScen single-stage 11-zone NYISO LOAD scenario generation (production).
 
 Fits ONE GeminiEngine over all 11 NYISO load zones and draws scenarios directly
-(``pgscen.load_scenarios.run_load_one_day``). This is the production load runner:
-it replaces the experimental two-stage Stage A (joint load+wind) + Stage B
-(conditional) pipeline, validated calibration-equivalent and ~3.6x faster (see
-``pgscen/load_scenarios.py``). Mirrors ``10_run_pgscen_wind.py`` and writes
-per-zone scenario CSVs under ``<out_dir>/<YYYYMMDD>/load/`` (the same
-``engine.write_to_csv`` schema the grid bridge consumes for wind).
-
-SUPERSEDES Stage A + Stage B for production, pending Rene's sign-off; the
-experiments/stage_*_*/ code is retained (reversible).
+(``pgscen.load_scenarios.run_load_one_day``). This is the production load runner.
+Load is modelled independently of wind/solar/BTM (their cross-group correlation
+is ~0; see ``pgscen/load_scenarios.py`` and ``Claude_load.md``). Mirrors
+``10_run_pgscen_wind.py`` and writes per-zone scenario CSVs under
+``<out_dir>/<YYYYMMDD>/load/`` (the same ``engine.write_to_csv`` schema the grid
+bridge consumes for wind).
 
 Usage
 -----

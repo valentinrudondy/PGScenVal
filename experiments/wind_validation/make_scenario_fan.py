@@ -12,8 +12,8 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(REPO / "experiments" / "stage_a_joint_load_wind"))
-from build_joint_inputs import build_joint_inputs  # noqa
+sys.path.insert(0, str(REPO / "experiments" / "_shared"))
+from load_wind_io import build_joint_inputs  # noqa
 FIG = REPO / "docs" / "figures" / "wind_v3"
 SCEN_DIR = Path("/tmp/stage_a_v4_fan/stage_a_2024-01-20")
 SCEN_DAY = "2024-01-20"          # ET calendar day

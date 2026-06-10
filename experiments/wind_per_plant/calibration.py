@@ -1,9 +1,9 @@
 """Multi-day per-plant calibration of the per-plant wind scenarios.
 
 This is the calibration the per-plant wind path never had (it was only ever
-physics-validated on fleet sums). Mirrors
-`stage_b_conditional_loads/multi_day_calibration.py` but per PLANT instead of per
-zone. For each held-out UTC scenario day in a sweep we run `run_one_day` and, per
+physics-validated on fleet sums). Same multi-day held-out coverage/PIT/CRPS
+approach as the zonal load calibration, but per PLANT instead of per zone. For
+each held-out UTC scenario day in a sweep we run `run_one_day` and, per
 (plant, hour) with the plant online and the actual finite, record:
 
   - in_50 / in_80 / in_90 : actual within p25-p75 / p10-p90 / p05-p95 (targets .50/.80/.90)

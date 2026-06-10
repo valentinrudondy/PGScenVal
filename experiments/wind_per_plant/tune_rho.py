@@ -1,6 +1,6 @@
 """Tune (asset_rho, time_rho) for per-plant wind via held-out energy score.
 
-Per-plant analogue of stage_a_joint_load_wind/tune_rho.py. The energy score (proper,
+Held-out energy-score rho tuning for the per-plant wind fit. The energy score (proper,
 multivariate CRPS generalization) is computed on the ONLINE-plant x 24-hour vector,
 standardized per coordinate by its historical hour-of-day std so every plant-hour
 contributes equally. `asset_rho` is the BASE scalar that run_one_day rescales to the

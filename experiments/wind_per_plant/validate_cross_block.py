@@ -45,7 +45,7 @@ THIS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(THIS_DIR))
 from run_wind_per_plant import run_one_day, load_wind  # noqa: E402
 
-STAGE_A_DIR = Path("/Users/val/Desktop/Princeton/experiments/stage_a_joint_load_wind")
+SHARED_DIR = Path("/Users/val/Desktop/Princeton/experiments/_shared")
 WIND_META = Path("/Users/val/Desktop/Princeton/PGscen-2nd/data/NYISO_real/"
                  "plant_metadata/wind_meta.csv")
 WIND_ZONES = ["A", "C", "D", "E"]   # Stage A wind-bearing zones (K handled separately)
@@ -182,8 +182,8 @@ def part_a(days, nscen, asset_rho, time_rho, nearest_days, years, out_dir):
 # ---------------------------------------------------------------------------
 
 def part_b(years, out_dir):
-    sys.path.insert(0, str(STAGE_A_DIR))
-    from build_joint_inputs import build_joint_inputs, WIND_ZONES as WZ  # noqa: E402
+    sys.path.insert(0, str(SHARED_DIR))
+    from load_wind_io import build_joint_inputs, WIND_ZONES as WZ  # noqa: E402
 
     print("building aligned 8-dim joint load+wind inputs ...")
     with warnings.catch_warnings():

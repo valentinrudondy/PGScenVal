@@ -12,3 +12,9 @@ Grid/binding_constraints_7y.csv
 
 # Personal documents — never track
 Admin/
+
+# Abandoned Stage A/B joint-load+wind experiment — kept locally as a record only,
+# never tracked (see Claude_load.md for why it was moot). The one shared data
+# aligner it used now lives at experiments/_shared/load_wind_io.py.
+experiments/stage_a_joint_load_wind/
+experiments/stage_b_conditional_loads/

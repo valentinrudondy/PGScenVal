@@ -1,26 +1,21 @@
 """Single-stage 11-zone NYISO load scenario generation (production).
 
-Fits ONE GeminiEngine over all 11 NYISO load zones and draws scenarios DIRECTLY
--- the natural PGScen usage. Validated calibration-equivalent to the earlier
-two-stage pipeline (Stage A joint load+wind + Stage B conditional simulation,
-experiments/stage_b_conditional_loads/): on 52 held-out 2024 days the per-zone
-all-11 cov_80 is 0.765 vs 0.767 and the fleet cov_80 0.797 vs 0.795 -- identical
-within noise -- while this is ~3.6x faster and far simpler (one fit, no
-conditional sampler, no marginal-inconsistency caveat).
+The production NYISO load model: fit ONE GeminiEngine over all 11 load zones and
+draw scenarios DIRECTLY (the natural PGScen usage). Load is modelled on its own
+-- independent of wind/solar/BTM -- because their cross-group forecast-error
+correlation is ~0 (partial corr 0.004; the three_way_dependency_graph diagnostic
+puts wind and solar in their own glasso components). What matters is the strong
+load<->load cross-zone correlation (empirical |corr| ~0.30, all 11 zones one
+component), and that lives directly in the engine's asset_cov.
 
-Why it's valid: load<->wind/solar/BTM forecast-error correlation is ~0
-(partial corr 0.004; the three_way_dependency_graph diagnostic shows wind/solar
-form their own glasso components), so the only reason Stage A modelled load
-jointly-with-wind, and Stage B conditioned the other 7 zones onto the 4
-wind-bearing ones, is gone. The strong load<->load cross-zone correlation
-(empirical |corr| ~0.30, all 11 zones one component) lives in the engine's
-asset_cov regardless and is captured directly here.
+A two-stage joint-load+wind approach (Stage A + Stage B conditional) was tried
+and abandoned once that no-correlation result was in: it was calibration-
+equivalent (52 held-out 2024 days: per-zone cov_80 0.765 vs 0.767, fleet 0.797
+vs 0.795 -- identical within noise) but ~3.6x slower and far more complex (two
+fits, a conditional sampler, a marginal-inconsistency caveat). See Claude_load.md
+for the full record.
 
-SUPERSEDES the Stage A + Stage B load pipeline for production, PENDING RENE'S
-SIGN-OFF (it amends his named stage structure, like the per-plant wind change).
-The Stage A/B code is retained (experiments/), so this is reversible.
-
-asset_rho=0.002 confirmed optimal for the 11-zone load-only fit (per-zone cov is
+asset_rho=0.002 is optimal for the 11-zone load-only fit (per-zone cov is
 rho-insensitive; fleet cov is best at the lowest rho); horizon_rho=0.05;
 in_sample=False (leakage-safe: history strictly before the scenario start).
 """
